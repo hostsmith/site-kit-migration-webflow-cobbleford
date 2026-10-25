@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+# Webflow's exports during a migration, never committed.
+.hostsmith/snapshot/
