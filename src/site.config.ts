@@ -13,7 +13,7 @@
 // "/blog". A base path starts with "/", has no trailing slash and may have
 // several segments.
 export const siteConfig = {
-  url: "https://www.example.com",
+  url: "https://cobbleford.us.hostsmith.link",
   locales: [{ code: "en", tag: "en-US" }],
   collections: {
     news: { basePath: "/news" },

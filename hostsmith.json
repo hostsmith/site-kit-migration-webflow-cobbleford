@@ -1,6 +1,6 @@
 {
   "kit": { "framework": "astro" },
-  "site": { "id": "" },
+  "site": { "id": "e48aa6fd-ba0f-46e0-9450-0e89060f6bd6" },
   "build": { "command": "npm run build", "output": "dist", "node": "24" },
   "content": {
     "schema": { "source": "decap", "path": "public/admin/config.yml" },
