@@ -1,12 +1,19 @@
 # Migration report
 
-<!-- Written by the migration skill, step by step, from node_modules/@hostsmith/site-kit-astro/skills/migrate-webflow/references/report-template.md. Every section stays: one with nothing to report says so in a line. Step 10 removes these comments. -->
-
 The site Cobbleford Co-Working moved from Webflow to this repository on 2026-10-26, from the exports listed under "Sources". This report lists what moved, what changed, what didn't carry over, and what the owner needs to decide before the site goes to production.
 
 ## For the owner to approve
 
-- [ ] <decision, and where it's described below>
+- [ ] **The 404 page, written anew** in the site's voice, since the export had Webflow's default text: "This page has wandered off." (see "Pages").
+- [ ] **The colors:** none changed for contrast; the theme's error color, which the old site didn't have, is a brick red (see "Colors changed for contrast").
+- [ ] **The grey selected tab** on About, Webflow's own default, kept as the old site showed it (see "Builder defaults kept").
+- [ ] **Space Grotesk,** hosted with the site from the owner's files, under the SIL Open Font License (see "Fonts").
+- [ ] **The map on Contact** loads only when a visitor clicks "Show map", and the post's YouTube video the same way (see "Embeds").
+- [ ] **The forms** (the newsletter and the tour request) don't work until the kit's contact form arrives; the Contact page shows the visit and hours details and the map until then (see "Forms").
+- [ ] **The audience and voice in the brief,** drafted from the old site's copy, confirmed in advance (`.hostsmith/brief.md`).
+- [ ] **The differences from the old site** listed under "Fidelity check" and "Not carried over", left as they are.
+- [ ] **The team photos,** still to come: the cards and member pages show a placeholder until then (see "Missing pieces").
+- [ ] **No alt text was written:** every image had its own (see "Alt text written").
 
 ## Sources
 
@@ -19,6 +26,8 @@ The site Cobbleford Co-Working moved from Webflow to this repository on 2026-10-
 The site has no custom domain, and its `webflow.io` address publishes no sitemap, so there is none. The answers given in advance are `answers.md`, copied to `.hostsmith/snapshot/answers.md`.
 
 The snapshot is in `.hostsmith/snapshot/`, which git ignores. It can be deleted once the owner has approved the site.
+
+The example's own pages, its `news` collection, its placeholder media and its icon were removed once the migration was done.
 
 ## Pages
 
@@ -136,6 +145,7 @@ To use the theme's own styles instead, delete `src/styles/theme/builder-defaults
 - **Utility pages:** the export has `404.html` and `401.html`. Its `404.html` is Webflow's default text, so the 404 page is written anew (see "Pages").
 - **Collections:** Blog Posts and Team each have a template page, `detail_blog.html` and `detail_team.html`, and a CSV. Nothing is missing.
 - **The favicon and the touch icon:** the export had only Webflow's defaults. The owner sent their own (see "Answers").
+- **Typos:** none noticed in the old site's copy, which is carried as it was.
 - **Team photos:** Team has 3 entries without a photo (Hollis Whitcomb, Ines Calloway, Tobias Renn). The owner hasn't sent them yet: the cards and the member pages show a placeholder until they arrive.
 - **What the export never holds:** the CMS content, which comes from the CSVs, and each collection list's settings, which were given in advance (see "Answers").
 
@@ -152,6 +162,16 @@ All of these were given in advance, in `.hostsmith/snapshot/answers.md`:
 - **Team's base path:** `/team`.
 - **Space Grotesk:** the owner's files, `space-grotesk-latin-wght-normal.woff2`, the variable font for weights 300 to 700, and `OFL.txt`. Space Grotesk by Florian Karsten, under the SIL Open Font License 1.1, from Fontsource.
 - **Any other font:** none.
+- **The photos' sources:** Pixabay, under the Pixabay Content License (each listed in `CREDITS.md`).
+- **The logo and the icons:** made for the site from Lucide icons, lucide-static 1.49.0, ISC License.
+- **The owner's icons and Open Graph image:** made for the site, under the same licenses as their sources.
+- **The team photos:** not sent yet; build without them.
+- **Resizing:** use ImageMagick's `magick` if installed, otherwise leave the images at their size. `magick` isn't installed, and no image needed it: every photo is already no wider than twice its widest display width (the largest is 1280 px).
+- **The audience and voice:** confirmed as drafted from the old site.
+- **Who sends requests, and how:** Hollis Whitcomb, Founder, by email. **Who approves changes:** Hollis Whitcomb. **The developer:** the Hostsmith team, through the repository's issues.
+- **The plan's limits:** skip the comparison, and report the size of `dist/`.
+- **Playwright's browser:** go ahead if a download is needed. None was: a Chromium was already installed.
+- **The person's comparison in a browser:** not done in this run.
 - **The production URL:** `https://cobbleford.us.hostsmith.link`, in `src/site.config.ts`.
 - **The primary locale's tag:** `en-US`.
 - **A default Open Graph image:** yes, the owner's `og-image.jpg`, 1200 by 630 pixels, as `/assets/images/cobbleford-og-image.jpg`, the settings' `seo.ogImage`.
@@ -176,8 +196,21 @@ None. The two links to posts in the pages, `/blog/from-woolen-mill-to-workspace`
 
 ## Fidelity check
 
+The check compared each page of the build with the same page of the code export, at 479, 767, 991 and 1440 px, with the site's Space Grotesk on both sides: Home, Membership, About, Blog, Contact, 404, the post "From Woolen Mill to Workspace" and Hollis Whitcomb's page. The CMS areas are empty in the export, so the lists and the templates were checked against the entries instead. Fixed after the first run: the content width, the white "How it works" band, the amenity text size, the testimonial names and roles, the floor tabs' list beside their text, the team band's color, and the map's heading.
+
 | Page | Width | Difference |
 | --- | --- | --- |
+| Every page | all | The footer's newsletter column has no sign-up field (see "Forms"). In the "Visit" column the phone and email come before the hours, and its links are spaced further apart, for touch. |
+| Home | 1440, 991 | "Take a Tour" is a little larger (a section title), and its photo sits a little lower. |
+| Home, About | all | Sections fade up as a whole when they scroll into view, where the old site moved only their headings. |
+| About | all | "Read the full story" is a filled green button, where it was an outlined one. |
+| Contact | all | The tour request form and its card aren't there; the visit, hours and contact groups sit side by side. The map's frame is 21:9, taller than the old 22rem. |
+| 404 | all | New text, with the site's header and footer, where Webflow's page was a bare "Page Not Found". |
+| Blog and team cards, post and member pages | all | They show their content, where the export shows the empty CMS lists and templates. |
+
+`dist/` is 1.7 MB. The plan's limits weren't compared, as given in advance.
+
+The person's comparison of the build with the old site in a browser wasn't done: no one compared the pages in this run (given in advance). It's still to do before the domain moves.
 
 ## To translate
 
