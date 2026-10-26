@@ -463,6 +463,12 @@
  * two from `md` and one below.
  */
 
+/* The content is 80rem wide inside the gutter, as Client-First's
+   padding-global around container-large. */
+.sk-container {
+  max-width: calc(var(--container-site) + 2 * var(--spacing-gutter));
+}
+
 .sk-skip-link {
   padding: 0.5rem 1rem;
   border-radius: var(--radius-input);
@@ -632,6 +638,7 @@
 
 .sk-footer__hours-row {
   justify-content: flex-start;
+  gap: 0 0.375rem;
 }
 
 .sk-footer__bottom {

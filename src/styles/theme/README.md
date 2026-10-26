@@ -20,7 +20,7 @@ To port a design:
 | Header nav from | `lg`, 992 px |
 | Site-local types | `photo-figures`, `plan-cards`, `faq-aside`, `info-groups` |
 
-Port notes: the `surface` tone of `testimonials` sits on the page color, as the old site's section did, and a `cta` card draws its tone on the card, not the section. A list in a `split` or `tabs` body shows the old check list's green ticks.
+Port notes: the `surface` tone of `testimonials` sits on the page color, as the old site's section did, and a `cta` card draws its tone on the card, not the section. A list in a `split` or `tabs` body shows the old check list's green ticks, and a tab panel's list sits beside its text. The `steps` section, and a `split` right after it, are white; a `collection-list` with a header and no link (the team) is on the surface. An `embed`'s title shows only to assistive technology.
 
 ## Files
 

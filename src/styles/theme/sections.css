@@ -1552,6 +1552,13 @@
   padding: 2rem;
 }
 
+.sk-services-grid .sk-card__text {
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
+  font-weight: var(--text-body--font-weight);
+}
+
 .sk-services-grid:has(.sk-card__icon) .sk-section__header {
   @variant lg {
     display: grid;
@@ -1649,7 +1656,12 @@
   }
 }
 
-/* The tour after the steps: one section on the old site. */
+/* The steps and the tour after them: one white section on the old site. */
+.sk-steps,
+.sk-steps + .sk-split {
+  background: var(--color-white);
+}
+
 .sk-steps + .sk-split {
   padding-top: 0;
 }
@@ -1774,6 +1786,7 @@
 
 .sk-testimonials__author {
   flex-direction: column;
+  flex-wrap: nowrap;
   align-items: flex-start;
   gap: 0.25rem;
 }
@@ -1787,6 +1800,7 @@
 }
 
 .sk-testimonials__role {
+  flex-basis: auto;
   padding-left: 0;
 }
 
@@ -1852,6 +1866,11 @@
   }
 }
 
+/* The team, under a centered header, on the surface as the old section. */
+.sk-collection-list:has(.sk-section__header):not(:has(.sk-section__link)) {
+  background: var(--color-surface);
+}
+
 .sk-collection-list .sk-section__header:not(:has(.sk-section__link)) {
   align-items: center;
   margin-inline: auto;
@@ -1870,7 +1889,7 @@
   }
 
   & > .sk-container {
-    max-width: calc(var(--container-site) - 2 * var(--spacing-gutter));
+    max-width: var(--container-site);
     padding: 4rem;
     border-radius: var(--radius-card);
     gap: 2rem 3rem;
@@ -1962,8 +1981,27 @@
   }
 }
 
+/* The panel's text in the left column and its list in the right, as the
+   old pane: the body's paragraphs and list join the panel's grid. */
 .sk-tabs__panel > * {
   grid-column: 1;
+}
+
+.sk-tabs__body {
+  @variant md {
+    display: contents;
+
+    & > :not(ul) {
+      grid-column: 1;
+    }
+
+    & > ul {
+      grid-column: 2;
+      grid-row: 1 / span 4;
+      align-self: start;
+      margin-top: 0;
+    }
+  }
 }
 
 .sk-tabs__body {
@@ -1972,6 +2010,17 @@
   line-height: var(--text-medium--line-height);
   letter-spacing: var(--text-medium--letter-spacing);
   font-weight: var(--text-medium--font-weight);
+}
+
+/* embed: the map, in a rounded frame. Its title names the frame for
+   assistive technology, and shows only to it, as the old frame's title. */
+.sk-embed .sk-section__header {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* embed: the map, in a rounded frame */
@@ -2303,6 +2352,13 @@
   line-height: var(--text-h5--line-height);
   letter-spacing: var(--text-h5--letter-spacing);
   font-weight: var(--text-h5--font-weight);
+}
+
+.info-groups__text {
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
+  font-weight: var(--text-body--font-weight);
 }
 
 .info-groups__rows {
