@@ -21,6 +21,8 @@ export const siteConfig = {
   breadcrumb: false,
   collections: {
     news: { basePath: "/news" },
+    posts: { basePath: "/blog", breadcrumb: false },
+    team: { basePath: "/team", breadcrumb: false },
   },
 } as const;
 

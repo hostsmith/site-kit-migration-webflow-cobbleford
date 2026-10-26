@@ -99,7 +99,7 @@ collections:
                 label: Collection
                 widget: select
                 i18n: true
-                options: [ news ]
+                options: [ posts, team, news ]
               - { name: limit, label: Limit, widget: number, value_type: int, min: 1, required: false, i18n: true }
               - { name: link, label: Link beside the title, widget: object, required: false, fields: *labeled_link, i18n: true }
               - { name: variant, label: Variant, widget: select, options: [ cards, list, featured ], default: cards, required: false, i18n: true }
@@ -129,7 +129,7 @@ collections:
                     widget: select
                     i18n: true
                     required: false
-                    options: [ calendar, check, clock, file-text, hammer, house, mail, map-pin, paint-roller, phone, ruler, shield-check, sparkles, star, users, wrench, square-dot ]
+                    options: [ calendar, check, clock, file-text, hammer, house, mail, map-pin, paint-roller, phone, ruler, shield-check, sparkles, star, users, wrench, booth, dedicated-desk, hot-desk, kitchen, meeting-room, private-office, square-dot ]
                   - { name: image, label: Image, widget: image, required: false, i18n: true }
                   - { name: imageAlt, label: Image alt text, widget: string, required: false, i18n: true }
                   - { name: link, label: Link, widget: string, required: false, i18n: true }
@@ -397,6 +397,90 @@ collections:
               - { name: aspect, label: Aspect ratio, widget: select, options: [ "16:9", "4:3", "1:1", "21:9" ], default: "16:9", required: false, i18n: true }
               - { name: caption, label: Caption, widget: string, required: false, i18n: true }
               - { name: load, label: Loads, widget: select, options: [ click, direct ], default: click, required: false, hint: "click shows a button first, so nothing loads from the provider until the visitor asks. Use direct only when the site's privacy notice names the provider.", i18n: true }
+          - name: photo-figures
+            label: Photo and figures
+            widget: object
+            fields:
+              - *section_id
+              - *section_reveal
+              - { name: eyebrow, label: Eyebrow, widget: string, required: false, i18n: true }
+              - { name: title, label: Title, widget: string, i18n: true }
+              - { name: body, label: Body, widget: markdown, required: false, i18n: true }
+              - { name: image, label: Image, widget: image, i18n: true }
+              - { name: imageAlt, label: Image alt text, widget: string, required: false, i18n: true }
+              - name: stats
+                label: Figures
+                label_singular: Figure
+                widget: list
+                i18n: true
+                min: 2
+                max: 4
+                fields:
+                  - { name: value, label: Figure, widget: string, i18n: true }
+                  - { name: label, label: Label, widget: string, i18n: true }
+          - name: plan-cards
+            label: Plan cards
+            widget: object
+            fields:
+              - *section_id
+              - *section_reveal
+              - name: items
+                label: Plans
+                label_singular: Plan
+                widget: list
+                i18n: true
+                min: 1
+                fields:
+                  - { name: name, label: Name, widget: string, i18n: true }
+                  - { name: price, label: Price, widget: string, i18n: true }
+                  - { name: period, label: Period, widget: string, required: false, i18n: true }
+                  - { name: features, label: What's included, widget: markdown, i18n: true }
+                  - { name: button, label: Button, widget: object, fields: *labeled_link, i18n: true }
+          - name: faq-aside
+            label: Questions beside their heading
+            widget: object
+            fields:
+              - *section_id
+              - *section_reveal
+              - { name: eyebrow, label: Eyebrow, widget: string, required: false, i18n: true }
+              - { name: title, label: Title, widget: string, i18n: true }
+              - { name: intro, label: Intro, widget: text, required: false, i18n: true }
+              - { name: link, label: Link, widget: object, required: false, fields: *labeled_link, i18n: true }
+              - name: items
+                label: Questions
+                label_singular: Question
+                widget: list
+                i18n: true
+                min: 1
+                fields:
+                  - { name: question, label: Question, widget: string, i18n: true }
+                  - { name: answer, label: Answer, widget: markdown, i18n: true }
+          - name: info-groups
+            label: Info groups
+            widget: object
+            fields:
+              - *section_id
+              - *section_reveal
+              - name: items
+                label: Groups
+                label_singular: Group
+                widget: list
+                i18n: true
+                min: 1
+                fields:
+                  - { name: title, label: Heading, widget: string, i18n: true }
+                  - { name: text, label: Text, widget: text, required: false, i18n: true }
+                  - name: rows
+                    label: Rows
+                    label_singular: Row
+                    widget: list
+                    i18n: true
+                    required: false
+                    fields:
+                      - { name: label, label: Label, widget: string, i18n: true }
+                      - { name: value, label: Value, widget: string, i18n: true }
+                  - { name: links, label: Links, label_singular: Link, widget: list, required: false, fields: *labeled_link, i18n: true }
+                  - { name: note, label: Note, widget: text, required: false, i18n: true }
   - name: settings
     label: Settings
     label_singular: Settings
@@ -605,7 +689,49 @@ collections:
           - { name: embedNotice, label: "Embed - notice, with {host}", widget: string, required: false, i18n: true }
           - { name: embedOpen, label: "Embed - link to the content on its site, with {host}", widget: string, required: false, i18n: true }
           - { name: navSubmenu, label: "Navigation - submenu button of a linked item, with {label}", widget: string, required: false, i18n: true }
+          - { name: postsPageTitle, label: Blog post page title, widget: string, hint: "{title} is the post's title", i18n: true }
+          - { name: teamPageTitle, label: Team member page title, widget: string, hint: "{title} is the member's name", i18n: true }
+          - { name: postsBack, label: Blog post back link, widget: string, i18n: true }
+          - { name: postsByline, label: Blog post author line, widget: string, hint: "{author} is the author's name", i18n: true }
+          - { name: teamBack, label: Team member back link, widget: string, i18n: true }
+          - { name: tourTitle, label: Tour call to action title, widget: string, i18n: true }
+          - { name: tourText, label: Tour call to action text, widget: text, i18n: true }
+          - { name: tourButton, label: Tour button, widget: string, i18n: true }
 
+  - name: posts
+    label: Blog posts
+    label_singular: Blog post
+    folder: src/content/posts
+    i18n: true
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: date, label: Published date, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false, i18n: true }
+      - { name: description, label: Summary, widget: text, i18n: true }
+      - { name: image, label: Main image, widget: image, required: false, i18n: true }
+      - { name: imageAlt, label: Main image alt text, widget: string, required: false, i18n: true }
+      - { name: author, label: Author, widget: relation, collection: team, search_fields: [ title ], value_field: "{{slug}}", display_fields: [ title ], required: false, i18n: true }
+      - { name: draft, label: Draft, widget: boolean, required: false, i18n: true }
+      - { name: body, label: Body, widget: markdown, i18n: true }
+  - name: team
+    label: Team
+    label_singular: Team member
+    folder: src/content/team
+    i18n: true
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Name, widget: string, i18n: true }
+      - { name: category, label: Role, widget: string, i18n: true }
+      - { name: description, label: Short bio, widget: text, i18n: true }
+      - { name: image, label: Photo, widget: image, required: false, i18n: true }
+      - { name: imageAlt, label: Photo alt text, widget: string, required: false, i18n: true }
+      - { name: draft, label: Draft, widget: boolean, required: false, i18n: true }
   - name: news
     label: News
     label_singular: News entry

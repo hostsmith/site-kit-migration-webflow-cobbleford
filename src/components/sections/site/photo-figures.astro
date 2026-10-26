@@ -1,0 +1,44 @@
+---
+// photo-figures: a photo beside a dark panel with an eyebrow, a title, a
+// body and two to four figures, as the old home page's "By the numbers".
+// Props: eyebrow, title, body (markdown), image + imageAlt, stats (value,
+// label). It's the kit's split on the dark tone, which split doesn't offer.
+import Title from "@hostsmith/site-kit-astro/components/Title.astro";
+import { sectionFields } from "@hostsmith/site-kit-astro/field";
+import { renderMarkdown } from "@hostsmith/site-kit-astro/markdown";
+
+const { section, entry } = Astro.props;
+const f = sectionFields(entry, section);
+const html = section.body === undefined ? undefined : await renderMarkdown(section.body, `${entry} section "${section.id}" (photo-figures) body`, entry);
+---
+
+<section {...f.root} class="photo-figures">
+  <div class="photo-figures__inner sk-container">
+    <img src={section.image} alt={section.imageAlt} class="photo-figures__media" {...f.field("image")} />
+    <div class="photo-figures__content">
+      {
+        section.eyebrow && (
+          <p class="photo-figures__eyebrow" {...f.field("eyebrow")}>
+            {section.eyebrow}
+          </p>
+        )
+      }
+      <h2 class="photo-figures__title" {...f.field("title")}><Title text={section.title} /></h2>
+      {html && <div class="photo-figures__body sk-prose" {...f.field("body")} set:html={html} />}
+      <ul class="photo-figures__stats">
+        {
+          section.stats.map((stat, i) => (
+            <li class="photo-figures__stat">
+              <p class="photo-figures__value" {...f.field("stats", i, "value")}>
+                {stat.value}
+              </p>
+              <p class="photo-figures__label" {...f.field("stats", i, "label")}>
+                {stat.label}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

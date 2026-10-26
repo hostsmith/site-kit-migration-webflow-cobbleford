@@ -19,13 +19,127 @@ repo: OWNER/REPOSITORY
 #     widget: object
 #     fields:
 #       - { name: title, label: Title, widget: string }
-section_types: []
+section_types:
+  - name: photo-figures
+    label: Photo and figures
+    widget: object
+    fields:
+      - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+      - { name: title, label: Title, widget: string }
+      - { name: body, label: Body, widget: markdown, required: false }
+      - { name: image, label: Image, widget: image }
+      - { name: imageAlt, label: Image alt text, widget: string, required: false }
+      - name: stats
+        label: Figures
+        label_singular: Figure
+        widget: list
+        min: 2
+        max: 4
+        fields:
+          - { name: value, label: Figure, widget: string }
+          - { name: label, label: Label, widget: string }
+  - name: plan-cards
+    label: Plan cards
+    widget: object
+    fields:
+      - name: items
+        label: Plans
+        label_singular: Plan
+        widget: list
+        min: 1
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: price, label: Price, widget: string }
+          - { name: period, label: Period, widget: string, required: false }
+          - { name: features, label: What's included, widget: markdown }
+          - { name: button, label: Button, widget: object, fields: *labeled_link }
+  - name: faq-aside
+    label: Questions beside their heading
+    widget: object
+    fields:
+      - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+      - { name: title, label: Title, widget: string }
+      - { name: intro, label: Intro, widget: text, required: false }
+      - { name: link, label: Link, widget: object, required: false, fields: *labeled_link }
+      - name: items
+        label: Questions
+        label_singular: Question
+        widget: list
+        min: 1
+        fields:
+          - { name: question, label: Question, widget: string }
+          - { name: answer, label: Answer, widget: markdown }
+  - name: info-groups
+    label: Info groups
+    widget: object
+    fields:
+      - name: items
+        label: Groups
+        label_singular: Group
+        widget: list
+        min: 1
+        fields:
+          - { name: title, label: Heading, widget: string }
+          - { name: text, label: Text, widget: text, required: false }
+          - name: rows
+            label: Rows
+            label_singular: Row
+            widget: list
+            required: false
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: value, label: Value, widget: string }
+          - { name: links, label: Links, label_singular: Link, widget: list, required: false, fields: *labeled_link }
+          - { name: note, label: Note, widget: text, required: false }
+
+# The fields of the site's own interface strings, under the settings' `ui`.
+ui:
+  - { name: postsPageTitle, label: Blog post page title, widget: string, hint: "{title} is the post's title" }
+  - { name: teamPageTitle, label: Team member page title, widget: string, hint: "{title} is the member's name" }
+  - { name: postsBack, label: Blog post back link, widget: string }
+  - { name: postsByline, label: Blog post author line, widget: string, hint: "{author} is the author's name" }
+  - { name: teamBack, label: Team member back link, widget: string }
+  - { name: tourTitle, label: Tour call to action title, widget: string }
+  - { name: tourText, label: Tour call to action text, widget: text }
+  - { name: tourButton, label: Tour button, widget: string }
 
 # The site's collections, each item starting with `- name: <name>`: one folder
 # collection per collection in src/site.config.ts, which the collection list
 # section can show. Every collection is translated, so none is a files
 # collection.
 collections:
+  - name: posts
+    label: Blog posts
+    label_singular: Blog post
+    folder: src/content/posts
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Published date, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false }
+      - { name: description, label: Summary, widget: text }
+      - { name: image, label: Main image, widget: image, required: false }
+      - { name: imageAlt, label: Main image alt text, widget: string, required: false }
+      - { name: author, label: Author, widget: relation, collection: team, search_fields: [title], value_field: "{{slug}}", display_fields: [title], required: false }
+      - { name: draft, label: Draft, widget: boolean, required: false }
+      - { name: body, label: Body, widget: markdown }
+  - name: team
+    label: Team
+    label_singular: Team member
+    folder: src/content/team
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Name, widget: string }
+      - { name: category, label: Role, widget: string }
+      - { name: description, label: Short bio, widget: text }
+      - { name: image, label: Photo, widget: image, required: false }
+      - { name: imageAlt, label: Photo alt text, widget: string, required: false }
+      - { name: draft, label: Draft, widget: boolean, required: false }
   - name: news
     label: News
     label_singular: News entry

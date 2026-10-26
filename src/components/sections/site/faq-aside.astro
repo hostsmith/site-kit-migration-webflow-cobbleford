@@ -1,0 +1,56 @@
+---
+// faq-aside: questions and answers beside their heading, which has an intro
+// and a link, as the old membership page's FAQ. Props: eyebrow, title,
+// intro, link, items (question, answer as markdown). The kit's faq, with the
+// heading group beside the list. Each item is a native <details>.
+import Title from "@hostsmith/site-kit-astro/components/Title.astro";
+import { sectionFields } from "@hostsmith/site-kit-astro/field";
+import { renderMarkdown } from "@hostsmith/site-kit-astro/markdown";
+
+const { section, entry } = Astro.props;
+const f = sectionFields(entry, section);
+const answers = await Promise.all(
+  section.items.map((item, i) => renderMarkdown(item.answer, `${entry} section "${section.id}" (faq-aside) items[${i}].answer`, entry)),
+);
+---
+
+<section {...f.root} class="faq-aside">
+  <div class="faq-aside__inner sk-container">
+    <div class="faq-aside__header">
+      {
+        section.eyebrow && (
+          <p class="faq-aside__eyebrow" {...f.field("eyebrow")}>
+            {section.eyebrow}
+          </p>
+        )
+      }
+      <h2 class="faq-aside__title" {...f.field("title")}><Title text={section.title} /></h2>
+      {
+        section.intro && (
+          <p class="faq-aside__intro" {...f.field("intro")}>
+            {section.intro}
+          </p>
+        )
+      }
+      {
+        section.link && (
+          <a href={section.link.link} class="sk-button sk-button--secondary faq-aside__link" {...f.field("link", "label")}>
+            {section.link.label}
+          </a>
+        )
+      }
+    </div>
+    <div class="faq-aside__list">
+      {
+        section.items.map((item, i) => (
+          <details class="faq-aside__item">
+            <summary class="faq-aside__question" {...f.field("items", i, "question")}>
+              {item.question}
+            </summary>
+            <div class="faq-aside__answer sk-prose" {...f.field("items", i, "answer")} set:html={answers[i]} />
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+---
+// Detail template of the posts collection, Webflow's Blog Posts: one post at
+// /blog/<slug>, ported from detail_blog.html. A header on the surface with
+// the link back to the blog, the title, the summary and the date and author,
+// then the main image and the body in a narrow column, then the tour call to
+// action, which is the `cta` section's markup with its text from interface
+// strings. The body uses the theme's sk-prose; a video link alone in a
+// paragraph renders as an embed.
+import Title from "@hostsmith/site-kit-astro/components/Title.astro";
+import { field } from "@hostsmith/site-kit-astro/field";
+import { assertNoH1 } from "@hostsmith/site-kit-astro/markdown";
+import { getSettings } from "@hostsmith/site-kit-astro/settings";
+import { getUi } from "@hostsmith/site-kit-astro/ui";
+import { getEntry, render, type CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"posts">;
+  locale?: string;
+}
+
+const { entry, locale } = Astro.props;
+const { title, date, description, image, imageAlt, author } = entry.data;
+const ref = `posts/${entry.id}`;
+const settings = await getSettings(locale);
+const ui = await getUi(locale);
+const { Content, headings } = await render(entry);
+assertNoH1(headings, entry.filePath ?? ref);
+const dateFormat = new Intl.DateTimeFormat(settings.language, { dateStyle: "long", timeZone: "UTC" });
+const member = author ? await getEntry("team", `${author}.${locale ?? "en"}`) : undefined;
+if (author && !member) throw new Error(`${entry.filePath ?? ref}: author "${author}" isn't a team member's slug`);
+---
+
+<article>
+  <header class="bg-surface px-gutter py-section-medium">
+    <div class="mx-auto flex max-w-small flex-col items-start gap-6">
+      <a href="/blog" class="post__back" {...ui.field("postsBack")}>{ui.text("postsBack")}</a>
+      <h1 class="text-h2" {...field(ref, "title")}><Title text={title} /></h1>
+      <p class="text-large text-muted" {...field(ref, "description")}>{description}</p>
+      <p class="flex flex-wrap gap-2 text-small text-muted">
+        <time datetime={date} {...field(ref, "date")}>{dateFormat.format(new Date(date))}</time>
+        {member && <span {...ui.field("postsByline")}>{ui.text("postsByline", { author: member.data.title })}</span>}
+      </p>
+    </div>
+  </header>
+  <div class="px-gutter py-section">
+    <div class="mx-auto max-w-small">
+      {
+        image && (
+          <img src={image} alt={imageAlt} class="mb-12 block h-128 w-full rounded-card bg-surface object-cover max-md:mb-8 max-md:h-64" {...field(ref, "image")} />
+        )
+      }
+      <div class="sk-prose post__body" {...field(ref, "body")}>
+        <Content />
+      </div>
+    </div>
+  </div>
+</article>
+<section class="sk-section sk-cta sk-cta--card sk-tone-accent">
+  <div class="sk-container">
+    <div class="sk-section__header">
+      <h2 class="sk-section__title" {...ui.field("tourTitle")}>{ui.text("tourTitle")}</h2>
+      <p class="sk-section__intro" {...ui.field("tourText")}>{ui.text("tourText")}</p>
+    </div>
+    <div class="sk-buttons">
+      <a href="/contact" class="sk-button sk-button--primary" {...ui.field("tourButton")}>{ui.text("tourButton")}</a>
+    </div>
+  </div>
+</section>

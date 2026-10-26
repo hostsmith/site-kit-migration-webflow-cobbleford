@@ -1,0 +1,40 @@
+---
+// Detail template of the team collection, Webflow's Team: one member at
+// /team/<slug>, ported from detail_team.html. The photo beside the link back
+// to the team, the role, the name, the short bio and the tour button. Until
+// a member has a photo, a placeholder holds its place, as the old page's
+// empty image did.
+import Title from "@hostsmith/site-kit-astro/components/Title.astro";
+import { field } from "@hostsmith/site-kit-astro/field";
+import { getUi } from "@hostsmith/site-kit-astro/ui";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"team">;
+  locale?: string;
+}
+
+const { entry, locale } = Astro.props;
+const { title, category, description, image, imageAlt } = entry.data;
+const ref = `team/${entry.id}`;
+const ui = await getUi(locale);
+---
+
+<article class="px-gutter py-section">
+  <div class="mx-auto grid max-w-site items-start gap-8 lg:grid-cols-5 lg:gap-16">
+    {
+      image ? (
+        <img src={image} alt={imageAlt} class="block h-112 w-full rounded-card bg-surface object-cover max-md:h-80 lg:col-span-2" {...field(ref, "image")} />
+      ) : (
+        <div class="h-112 rounded-card bg-surface max-md:h-80 lg:col-span-2" aria-hidden="true" />
+      )
+    }
+    <div class="flex flex-col items-start gap-6 lg:col-span-3">
+      <a href="/about" class="post__back" {...ui.field("teamBack")}>{ui.text("teamBack")}</a>
+      <p class="text-eyebrow uppercase text-brand" {...field(ref, "category")}>{category}</p>
+      <h1 class="text-h2" {...field(ref, "title")}><Title text={title} /></h1>
+      <p class="text-large text-muted" {...field(ref, "description")}>{description}</p>
+      <a href="/contact" class="sk-button sk-button--primary" {...ui.field("tourButton")}>{ui.text("tourButton")}</a>
+    </div>
+  </div>
+</article>

@@ -90,3 +90,11 @@ ui:
   embedNotice: "Loads content from {host}"
   embedOpen: "Open on {host}"
   navSubmenu: "{label} submenu"
+  postsPageTitle: "{title} | Cobbleford Co-Working"
+  teamPageTitle: "{title} | Cobbleford Co-Working"
+  postsBack: ← All articles
+  postsByline: "by {author}"
+  teamBack: ← Meet the team
+  tourTitle: Come and see the mill for yourself
+  tourText: Drop by any weekday between 9am and 4pm or book a time that suits you. Every tour comes with a free day pass.
+  tourButton: Book a Tour

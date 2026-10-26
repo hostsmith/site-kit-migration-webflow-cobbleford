@@ -2011,3 +2011,378 @@
       transform 0.7s ease;
   }
 }
+
+/* Site-local types (src/components/sections/site/) */
+
+/* photo-figures: "By the numbers", a photo beside a green-dark panel */
+.photo-figures {
+  padding-block: var(--spacing-section);
+  background: var(--color-green-dark);
+  color: var(--color-bg);
+
+  & :focus-visible {
+    outline-color: var(--color-brown-light);
+  }
+}
+
+.photo-figures__inner {
+  display: grid;
+  align-items: center;
+  gap: 3rem 4rem;
+
+  @variant lg {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @variant max-lg {
+    gap: 3rem;
+  }
+}
+
+.photo-figures__media {
+  display: block;
+  width: 100%;
+  height: 34rem;
+  border-radius: var(--radius-card);
+  background: var(--color-accent);
+  object-fit: cover;
+
+  @variant max-lg {
+    height: 24rem;
+  }
+
+  @variant max-md {
+    height: 18rem;
+  }
+}
+
+.photo-figures__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.photo-figures__eyebrow {
+  color: var(--color-brown-light);
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  font-weight: var(--text-eyebrow--font-weight);
+  text-transform: uppercase;
+}
+
+.photo-figures__title {
+  max-width: 46rem;
+  font-size: var(--text-h2);
+  line-height: var(--text-h2--line-height);
+  letter-spacing: var(--text-h2--letter-spacing);
+  font-weight: var(--text-h2--font-weight);
+
+  & .sk-highlight {
+    color: var(--color-brown-light);
+  }
+}
+
+.photo-figures__body {
+  color: var(--color-on-dark);
+  font-size: var(--text-medium);
+  line-height: var(--text-medium--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: var(--text-medium--font-weight);
+}
+
+.photo-figures__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.photo-figures__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.photo-figures__value {
+  color: var(--color-bg);
+  font-size: var(--text-display);
+  line-height: var(--text-display--line-height);
+  letter-spacing: var(--text-display--letter-spacing);
+  font-weight: var(--text-display--font-weight);
+}
+
+.photo-figures__label {
+  color: var(--color-on-dark);
+}
+
+/* plan-cards: the membership plans, three across from `lg` */
+.plan-cards {
+  padding-block: var(--spacing-section);
+}
+
+.plan-cards__list {
+  display: grid;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @variant lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.plan-cards__card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-white);
+}
+
+.plan-cards__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.plan-cards__name {
+  font-size: var(--text-h4);
+  line-height: var(--text-h4--line-height);
+  letter-spacing: var(--text-h4--letter-spacing);
+  font-weight: var(--text-h4--font-weight);
+}
+
+.plan-cards__price-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.plan-cards__price {
+  font-size: var(--text-display);
+  line-height: var(--text-display--line-height);
+  letter-spacing: var(--text-display--letter-spacing);
+  font-weight: var(--text-display--font-weight);
+}
+
+.plan-cards__period {
+  color: var(--color-muted);
+}
+
+.plan-cards__features {
+  flex-grow: 1;
+  color: var(--color-muted);
+
+  & > * + * {
+    margin-top: 0.625rem;
+  }
+}
+
+.plan-cards__button {
+  width: 100%;
+}
+
+/* faq-aside: the heading beside the questions, on white */
+.faq-aside {
+  padding-block: var(--spacing-section);
+  background: var(--color-white);
+}
+
+.faq-aside__inner {
+  display: grid;
+  align-items: start;
+  gap: 2rem 4rem;
+
+  @variant lg {
+    grid-template-columns: 1fr 1.6fr;
+  }
+}
+
+.faq-aside__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 46rem;
+}
+
+.faq-aside__eyebrow {
+  color: var(--color-brand);
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  font-weight: var(--text-eyebrow--font-weight);
+  text-transform: uppercase;
+}
+
+.faq-aside__title {
+  font-size: var(--text-h2);
+  line-height: var(--text-h2--line-height);
+  letter-spacing: var(--text-h2--letter-spacing);
+  font-weight: var(--text-h2--font-weight);
+}
+
+.faq-aside__intro {
+  color: var(--color-muted);
+  font-size: var(--text-medium);
+  line-height: var(--text-medium--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: var(--text-medium--font-weight);
+}
+
+.faq-aside__link {
+  margin-top: 0.5rem;
+}
+
+.faq-aside__list {
+  min-width: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.faq-aside__item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-aside__question {
+  display: list-item;
+  min-height: 2.75rem;
+  padding-block: 1.5rem;
+  list-style-position: inside;
+  cursor: pointer;
+  font-size: var(--text-medium);
+  line-height: var(--text-h6--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: 600;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+.faq-aside__answer {
+  padding-bottom: 1.5rem;
+  color: var(--color-muted);
+}
+
+/* info-groups: the contact page's visit, hours and contact details */
+.info-groups {
+  padding-block: var(--spacing-section);
+}
+
+.info-groups__list {
+  display: grid;
+  gap: 2rem 4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @variant md {
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  }
+}
+
+.info-groups__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.info-groups__title {
+  font-size: var(--text-h5);
+  line-height: var(--text-h5--line-height);
+  letter-spacing: var(--text-h5--letter-spacing);
+  font-weight: var(--text-h5--font-weight);
+}
+
+.info-groups__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0;
+}
+
+.info-groups__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+
+  & dd {
+    margin: 0;
+  }
+}
+
+.info-groups__links {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.info-groups__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--color-accent);
+
+  &:hover {
+    color: var(--color-green-dark);
+  }
+}
+
+.info-groups__note {
+  color: var(--color-muted);
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: var(--text-small--font-weight);
+}
+
+/* The collection templates (src/components/collections/): the green back
+   link above a post's or a member's title, and a post's body in the old rich
+   text's size. */
+.post__back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--color-accent);
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.post__body {
+  font-size: var(--text-medium);
+  line-height: var(--text-medium--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: var(--text-medium--font-weight);
+
+  & > * + * {
+    margin-top: 0.625rem;
+  }
+
+  & > h2,
+  & > h3 {
+    margin-top: 1.25rem;
+  }
+}
