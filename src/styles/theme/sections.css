@@ -1335,3 +1335,679 @@
   text-decoration: underline;
   text-underline-offset: 0.15em;
 }
+
+/*
+ * The Cobbleford port: the old site's look on the rules above, from its
+ * components (section-header_*, button, home-*_*, about-*_*, blog-card_*,
+ * cta_*, contact_map-*). Cards are white on the cream page or the
+ * cream-dark surface, with large rounded corners; images are rounded and
+ * cropped to a fixed height per breakpoint; buttons are pills; eyebrows and
+ * highlighted words are brown.
+ */
+
+/* Shared parts */
+.sk-section__header {
+  gap: 1rem;
+  max-width: 46rem;
+  margin-bottom: 3rem;
+}
+
+.sk-section__intro {
+  color: var(--color-muted);
+  font-size: var(--text-medium);
+  line-height: var(--text-medium--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: var(--text-medium--font-weight);
+}
+
+.sk-eyebrow {
+  color: var(--color-brand);
+}
+
+.sk-button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-accent);
+  font-size: var(--text-body);
+  line-height: var(--text-h6--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
+  font-weight: 600;
+  text-align: center;
+}
+
+.sk-button--primary {
+  &:hover {
+    border-color: var(--color-green-dark);
+    background: var(--color-green-dark);
+  }
+}
+
+.sk-button--secondary,
+.sk-section__link {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+
+  &:hover {
+    background: var(--color-accent);
+    color: var(--color-accent-fg);
+  }
+}
+
+/* The link after a section's title is a secondary button. */
+.sk-section__link {
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-button);
+  font-size: var(--text-body);
+  line-height: var(--text-h6--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sk-card {
+  border-radius: var(--radius-card);
+  background: var(--color-white);
+}
+
+.sk-card__body {
+  gap: 0.75rem;
+}
+
+.sk-card__text {
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: var(--text-small--font-weight);
+}
+
+.sk-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sk-card--linked {
+  &:hover {
+    border-color: var(--color-accent);
+  }
+
+  &:has(.sk-card__title a:focus-visible) {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+
+  & .sk-card__title a:focus-visible {
+    outline: none;
+  }
+}
+
+.sk-card__icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: var(--color-tint);
+  color: var(--color-accent);
+
+  & .sk-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* Tones: dark sections are green-dark, the accent the green call to action. */
+.sk-tone-dark {
+  background: var(--color-green-dark);
+
+  & .sk-eyebrow,
+  & .sk-highlight {
+    color: var(--color-brown-light);
+    text-decoration: none;
+  }
+}
+
+.sk-tone-accent {
+  color: var(--color-bg);
+
+  & .sk-button--primary {
+    border-color: var(--color-bg);
+    background: var(--color-bg);
+    color: var(--color-green-dark);
+
+    &:hover {
+      border-color: var(--color-white);
+      background: var(--color-white);
+    }
+  }
+
+  & :focus-visible {
+    outline-color: var(--color-brown-light);
+  }
+}
+
+/* hero: the opening with its image right, and the page headers */
+.sk-hero__content {
+  gap: 1.5rem;
+}
+
+.sk-hero__subtitle {
+  font-size: var(--text-large);
+  line-height: var(--text-large--line-height);
+  letter-spacing: var(--text-large--letter-spacing);
+  font-weight: var(--text-large--font-weight);
+}
+
+.sk-hero--image-left,
+.sk-hero--image-right {
+  & > .sk-container {
+    gap: 3rem 4rem;
+
+    @variant md {
+      grid-template-columns: 1fr;
+    }
+
+    @variant lg {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+
+  & .sk-hero__media {
+    height: 36rem;
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+
+    @variant max-lg {
+      height: 28rem;
+    }
+
+    @variant max-md {
+      height: 20rem;
+    }
+  }
+}
+
+.sk-hero--page {
+  padding-block: var(--spacing-section-medium);
+  background: var(--color-surface);
+
+  & .sk-hero__content {
+    max-width: 50rem;
+  }
+
+  & .sk-hero__subtitle {
+    color: var(--color-muted);
+  }
+
+  & .sk-hero__media {
+    border-radius: var(--radius-card);
+  }
+}
+
+/* services-grid: the amenities, with icons, header beside its intro, and the
+   values, without icons, two by two under a centered header. */
+.sk-services-grid .sk-card {
+  border: 0;
+}
+
+.sk-services-grid .sk-card__body {
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.sk-services-grid:has(.sk-card__icon) .sk-section__header {
+  @variant lg {
+    display: grid;
+    grid-template-columns: minmax(0, 46rem) minmax(0, 30rem);
+    grid-template-areas:
+      "eyebrow intro"
+      "title intro"
+      "title link";
+    justify-content: space-between;
+    align-items: end;
+    gap: 1rem 3rem;
+    max-width: none;
+
+    & .sk-eyebrow {
+      grid-area: eyebrow;
+    }
+
+    & .sk-section__title {
+      grid-area: title;
+      align-self: start;
+    }
+
+    & .sk-section__intro {
+      grid-area: intro;
+    }
+
+    & .sk-section__link {
+      grid-area: link;
+      justify-self: start;
+    }
+  }
+
+  & .sk-section__intro {
+    max-width: 30rem;
+    margin-top: 0.5rem;
+  }
+}
+
+.sk-services-grid:not(:has(.sk-card__icon)) {
+  & .sk-section__header {
+    align-items: center;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  & .sk-services-grid__list {
+    @variant md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  & .sk-card {
+    border-top: 4px solid var(--color-accent);
+    border-radius: var(--radius-tag);
+  }
+
+  & .sk-card__body {
+    gap: 0.75rem;
+  }
+}
+
+/* steps: white cards with brown two-digit numbers, three across from `lg` */
+.sk-steps .sk-section__header,
+.sk-testimonials .sk-section__header {
+  align-items: center;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.sk-steps__list {
+  gap: 1.5rem;
+
+  @variant md {
+    grid-template-columns: 1fr;
+  }
+
+  @variant lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sk-steps__item {
+  gap: 0.75rem;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-white);
+
+  &::before {
+    color: var(--color-brand);
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    letter-spacing: var(--text-h3--letter-spacing);
+    font-weight: var(--text-h3--font-weight);
+  }
+}
+
+/* The tour after the steps: one section on the old site. */
+.sk-steps + .sk-split {
+  padding-top: 0;
+}
+
+/* split: the tour and the story, a rounded image beside the text */
+.sk-split > .sk-container {
+  gap: 2rem 4rem;
+
+  @variant md {
+    grid-template-columns: 1fr;
+  }
+
+  @variant lg {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sk-split__media {
+  height: 32rem;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+
+  @variant max-lg {
+    height: 28rem;
+  }
+
+  @variant max-md {
+    height: 20rem;
+  }
+}
+
+.sk-split__content {
+  gap: 1.5rem;
+}
+
+.sk-split__body {
+  color: var(--color-muted);
+  font-size: var(--text-medium);
+  line-height: var(--text-medium--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: var(--text-medium--font-weight);
+}
+
+.sk-split__link {
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-button);
+  background: var(--color-accent);
+  color: var(--color-accent-fg);
+  font-size: var(--text-body);
+  line-height: var(--text-h6--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    border-color: var(--color-green-dark);
+    background: var(--color-green-dark);
+  }
+}
+
+/* A list in a split's or a tab's body is the old check list: a green tick
+   before each item. */
+.sk-split__body ul,
+.sk-tabs__body ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 0;
+  list-style: none;
+  color: var(--color-fg);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
+  font-weight: var(--text-body--font-weight);
+
+  & li {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  & li + li {
+    margin-top: 0;
+  }
+
+  & li::before {
+    content: "✓" / "";
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+}
+
+/* testimonials: white cards on the page, three across from `lg`. The
+   surface tone sits on the page color here, as the old section did. */
+.sk-testimonials.sk-tone-surface {
+  background: var(--color-bg);
+}
+
+.sk-testimonials--grid .sk-testimonials__list {
+  @variant lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sk-testimonials__item {
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2rem;
+  border: 0;
+  border-radius: var(--radius-card);
+  background: var(--color-white);
+  color: var(--color-fg);
+}
+
+.sk-testimonials__quote {
+  font-size: var(--text-quote);
+  line-height: var(--text-quote--line-height);
+  letter-spacing: var(--text-quote--letter-spacing);
+  font-weight: var(--text-quote--font-weight);
+}
+
+.sk-testimonials__author {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.sk-testimonials__placeholder {
+  display: none;
+}
+
+.sk-testimonials__name {
+  font-weight: 600;
+}
+
+.sk-testimonials__role {
+  padding-left: 0;
+}
+
+/* collection-list: the blog cards and the team cards. The date shows above
+   the title and a team member's role under the name, as on the old cards,
+   and the whole card is the link. */
+.sk-collection-list .sk-card__media {
+  height: 14rem;
+  aspect-ratio: auto;
+  background: var(--color-surface);
+}
+
+.sk-collection-list .sk-card:not(:has(.sk-card__media))::before {
+  content: "";
+  display: block;
+  height: 20rem;
+  background: var(--color-surface);
+}
+
+.sk-collection-list .sk-card__meta {
+  order: -1;
+}
+
+.sk-collection-list .sk-card__category {
+  order: 1;
+  margin-top: -0.25rem;
+  color: var(--color-brand);
+}
+
+.sk-collection-list .sk-card__text {
+  order: 2;
+}
+
+.sk-collection-list .sk-card__more {
+  display: none;
+}
+
+/* A header with a link beside it, as "From the blog"; without one, centered,
+   as "The team". */
+.sk-collection-list .sk-section__header:has(.sk-section__link) {
+  @variant md {
+    display: grid;
+    grid-template-columns: minmax(0, 46rem) auto;
+    grid-template-areas:
+      "eyebrow link"
+      "title link";
+    justify-content: space-between;
+    align-items: end;
+    gap: 1rem 2rem;
+    max-width: none;
+
+    & .sk-eyebrow {
+      grid-area: eyebrow;
+    }
+
+    & .sk-section__title {
+      grid-area: title;
+    }
+
+    & .sk-section__link {
+      grid-area: link;
+    }
+  }
+}
+
+.sk-collection-list .sk-section__header:not(:has(.sk-section__link)) {
+  align-items: center;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* cta: a green card within the page, the text beside the button from `lg` */
+.sk-cta--card {
+  padding-block: var(--spacing-section-medium);
+  padding-inline: var(--spacing-gutter);
+
+  &.sk-tone-accent,
+  &.sk-tone-dark,
+  &.sk-tone-surface {
+    background: var(--color-bg);
+  }
+
+  & > .sk-container {
+    max-width: calc(var(--container-site) - 2 * var(--spacing-gutter));
+    padding: 4rem;
+    border-radius: var(--radius-card);
+    gap: 2rem 3rem;
+
+    @variant lg {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @variant max-md {
+      padding: 2rem;
+    }
+  }
+
+  &.sk-tone-accent > .sk-container {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  &.sk-tone-dark > .sk-container {
+    background: var(--color-green-dark);
+    color: var(--color-bg);
+  }
+
+  &.sk-tone-surface > .sk-container {
+    background: var(--color-surface);
+  }
+
+  & .sk-section__header {
+    max-width: 40rem;
+  }
+}
+
+.sk-cta .sk-section__title {
+  font-size: var(--text-h3);
+  line-height: var(--text-h3--line-height);
+  letter-spacing: var(--text-h3--letter-spacing);
+  font-weight: var(--text-h3--font-weight);
+}
+
+.sk-cta .sk-section__intro {
+  color: inherit;
+}
+
+.sk-cta .sk-buttons {
+  flex-shrink: 0;
+}
+
+/* tabs: the floors, as pills over a white panel */
+.sk-tabs__list:not([hidden]) {
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  border-bottom: 0;
+}
+
+.sk-tabs__tab {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-button);
+  color: var(--color-accent);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
+  font-weight: 600;
+
+  &:hover {
+    background: var(--color-surface);
+  }
+
+  &[aria-selected="true"] {
+    border-color: var(--color-accent);
+    font-weight: 600;
+  }
+}
+
+.sk-tabs__panel:not([hidden]) {
+  gap: 1rem 3rem;
+  padding: 3rem;
+  border-radius: var(--radius-panel);
+  background: var(--color-white);
+
+  @variant md {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @variant max-md {
+    padding: 1.5rem;
+  }
+}
+
+.sk-tabs__panel > * {
+  grid-column: 1;
+}
+
+.sk-tabs__body {
+  color: var(--color-muted);
+  font-size: var(--text-medium);
+  line-height: var(--text-medium--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: var(--text-medium--font-weight);
+}
+
+/* embed: the map, in a rounded frame */
+.sk-embed {
+  padding-block: var(--spacing-section-small);
+}
+
+.sk-embed__frame {
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.sk-embed__button:not([hidden]) {
+  border-radius: var(--radius-button);
+}
+
+.sk-embed__link {
+  color: var(--color-accent);
+}
+
+.sk-embed__caption {
+  margin-top: 0.75rem;
+  color: var(--color-muted);
+  text-align: left;
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: var(--text-small--font-weight);
+}
+
+/* The entrance of the old section headers: 15% up, over 0.7 s. */
+[data-sk-ready] [data-reveal] {
+  @variant motion-safe {
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s ease;
+  }
+}

@@ -2,6 +2,8 @@
 
 The look of the `webflow` example: structural only. It gives every hook in the kit's `HOOKS.md` (`node_modules/@hostsmith/site-kit-astro/HOOKS.md`) the rules it needs to lay out, work and stay accessible, in grays and system fonts, with no decoration. Its breakpoints, text roles and element defaults follow Webflow's, so a port of a Webflow design restyles parts that already work.
 
+This copy is ported to the design of Cobbleford Co-Working's Webflow site: its colors in `presets/colors/cobbleford.css`, Space Grotesk and its text scale in `fonts.css` and `tokens/type.css`, its spacing in `tokens/space.css`, and its look in the "Cobbleford port" blocks at the end of `layout.css`, `sections.css` and `prose.css`.
+
 To port a design:
 
 1. Add the Webflow site's colors as a preset in `presets/colors/`, with the names below, and point `tokens/colors.css` at it.
@@ -16,6 +18,9 @@ To port a design:
 | Section types | `hero`, `rich-text`, `collection-list`, `services-grid`, `gallery`, `testimonials`, `faq`, `cta`, `hours-location`, `trust-bar`, `stats`, `steps`, `split`, `team`, `pricing-list`, `tabs`, `slider`, `embed` |
 | Parts | `highlight`, `nested-nav`, `lightbox`, `video`, `reveal` |
 | Header nav from | `lg`, 992 px |
+| Site-local types | `photo-figures`, `plan-cards`, `faq-aside`, `info-groups` |
+
+Port notes: the `surface` tone of `testimonials` sits on the page color, as the old site's section did, and a `cta` card draws its tone on the card, not the section. A list in a `split` or `tabs` body shows the old check list's green ticks.
 
 ## Files
 
@@ -31,6 +36,7 @@ To port a design:
 | `layout.css` | skip link, header, menu and submenus, breadcrumb, footer | no |
 | `sections.css` | every section type, variant and tone, the shared parts, and the interactive parts | no |
 | `prose.css` | rendered markdown (`sk-prose`) | no |
+| `builder-defaults.css` | Webflow's defaults the old site showed: the selected tab's grey | no |
 
 `src/styles/global.css` imports them in this order, with `base.css` in Tailwind's `base` layer and the last three in its `components` layer, so utilities in the site's own markup win over them. `src/styles/site.css` comes last and isn't part of the theme.
 
@@ -78,13 +84,13 @@ A text utility such as `text-h2` sets all four of a role's properties. A rule in
 
 | Scheme | File | |
 | --- | --- | --- |
-| `webflow/neutral` | `presets/colors/neutral.css` | grays only, the default |
+| `cobbleford` | `presets/colors/cobbleford.css` | the Cobbleford Co-Working Webflow site's colors: cream, ink, brown and green |
 
 Every preset defines the same `--color-*` names. For the site's own colors, add a preset with the same names, and point `tokens/colors.css` at it. `npm run check:styles` checks every preset against the others and against the contrast pairs below.
 
 ## Contrast pairs
 
-The text and background pairs the theme's rules use, and the WCAG AA minimum each needs: 4.5 for text, 3 for text at 24 px and larger. Highlighted words are `--color-brand` on the page and on surfaces, and the text color on dark and accent. `npm run check:styles` checks every pair in every preset. A rule that puts a new pair together adds its row here.
+The text and background pairs the theme's rules use, and the WCAG AA minimum each needs: 4.5 for text, 3 for text at 24 px and larger. Highlighted words are `--color-brand` on the page and on surfaces, `--color-brown-light` on green-dark, and the text color on the accent. Cards are `--color-white` on the page and on surfaces; dark sections and the footer are `--color-green-dark`. `npm run check:styles` checks every pair in every preset. A rule that puts a new pair together adds its row here.
 
 | Text | Background | Minimum |
 | --- | --- | --- |
@@ -100,3 +106,15 @@ The text and background pairs the theme's rules use, and the WCAG AA minimum eac
 | `--color-brand` | `--color-bg` | 4.5 |
 | `--color-brand` | `--color-surface` | 4.5 |
 | `--color-error` | `--color-surface` | 4.5 |
+| `--color-fg` | `--color-white` | 4.5 |
+| `--color-muted` | `--color-white` | 4.5 |
+| `--color-brand` | `--color-white` | 3 |
+| `--color-accent` | `--color-bg` | 4.5 |
+| `--color-accent` | `--color-surface` | 4.5 |
+| `--color-accent` | `--color-builder-tab-current` | 4.5 |
+| `--color-bg` | `--color-accent` | 4.5 |
+| `--color-green-dark` | `--color-bg` | 4.5 |
+| `--color-bg` | `--color-green-dark` | 4.5 |
+| `--color-on-dark` | `--color-green-dark` | 4.5 |
+| `--color-brown-light` | `--color-green-dark` | 4.5 |
+| `--color-accent-fg` | `--color-green-dark` | 4.5 |

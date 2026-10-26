@@ -1,7 +1,16 @@
 /*
- * The theme's fonts. The structural theme uses system fonts, so it loads
- * none. A port adds the Webflow site's fonts here as @font-face rules for
- * files in public/assets/fonts/, each with its license next to it, and names
- * them in tokens/type.css. Never load a font from a third-party CDN: that
- * sends visitor IP addresses to its host.
+ * The theme's fonts, from public/assets/fonts/, each with its license next to
+ * it, and named in tokens/type.css. Never load a font from a third-party CDN:
+ * that sends visitor IP addresses to its host.
+ *
+ * Space Grotesk by Florian Karsten, the variable font for weights 300 to 700,
+ * from Fontsource, under the SIL Open Font License 1.1 (OFL.txt).
  */
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}

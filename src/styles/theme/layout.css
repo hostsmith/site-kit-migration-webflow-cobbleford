@@ -453,3 +453,200 @@
 .sk-footer__block--copyright {
   display: block;
 }
+
+/*
+ * The Cobbleford port: the old navbar and footer (navbar_*, footer_*), on
+ * the rules above. The header sticks to the top, on the page color, with the
+ * logo, the nav and a small pill button in one row from `lg`. Below it, a
+ * "Menu" pill opens a panel of large links with rules between them and the
+ * button at full width. The footer is green-dark, in four columns from `lg`,
+ * two from `md` and one below.
+ */
+
+.sk-skip-link {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-input);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sk-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  & > .sk-container {
+    min-height: 4.5rem;
+    column-gap: 2rem;
+  }
+}
+
+.sk-header__logo {
+  height: 2.75rem;
+}
+
+.sk-nav__link {
+  color: var(--color-fg);
+  font-weight: 500;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+
+  &[aria-current="page"] {
+    text-decoration: none;
+  }
+}
+
+/* The menu button is a pill with its label, as the old "Menu" button. */
+.sk-header__menu-button {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--color-fg);
+  color: var(--color-fg);
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: 600;
+
+  &:hover {
+    background: var(--color-fg);
+    color: var(--color-bg);
+  }
+
+  & .sk-icon {
+    display: none;
+  }
+}
+
+.sk-header__menu-label {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip-path: none;
+}
+
+.sk-header__actions .sk-button {
+  padding: 0.5rem 1rem;
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: 600;
+}
+
+/* Below `lg`: the panel's links large, with a rule under each, and the
+   button at full width. */
+.sk-menu {
+  @variant max-lg {
+    padding-block: 0.5rem 2rem;
+
+    & .sk-nav__link {
+      padding-block: 0.75rem;
+      border-bottom: 1px solid var(--color-border);
+      font-size: var(--text-large);
+      line-height: var(--text-large--line-height);
+      letter-spacing: var(--text-large--letter-spacing);
+      font-weight: 500;
+    }
+
+    & .sk-header__actions {
+      align-items: stretch;
+      margin-top: 1.5rem;
+    }
+
+    & .sk-header__actions .sk-button {
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+      font-size: var(--text-body);
+      line-height: var(--text-body--line-height);
+      letter-spacing: var(--text-body--letter-spacing);
+      font-weight: 600;
+    }
+  }
+
+  @variant lg {
+    & .sk-nav__list {
+      gap: 0 2rem;
+    }
+  }
+}
+
+/* Footer */
+.sk-footer {
+  padding-block: var(--spacing-section-medium);
+  background: var(--color-green-dark);
+  color: var(--color-bg);
+
+  & > .sk-container {
+    column-gap: 3rem;
+    row-gap: 0;
+
+    @variant md {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @variant lg {
+      grid-template-columns: 1.3fr 1fr 0.8fr 1.4fr;
+    }
+  }
+
+  & :focus-visible {
+    outline-color: var(--color-brown-light);
+  }
+}
+
+.sk-footer__group {
+  gap: 0.75rem;
+  padding-bottom: 3rem;
+}
+
+.sk-footer__block {
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.sk-footer__block--brand {
+  gap: 1rem;
+}
+
+.sk-footer__logo {
+  height: 2.75rem;
+}
+
+.sk-footer__title {
+  color: var(--color-bg);
+}
+
+.sk-footer__link {
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-bg);
+    text-decoration: underline;
+  }
+}
+
+.sk-footer__contact {
+  gap: 0.75rem;
+}
+
+.sk-footer__hours-row {
+  justify-content: flex-start;
+}
+
+.sk-footer__bottom {
+  gap: 0.5rem 2rem;
+  border-top-color: var(--color-accent);
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: var(--text-small--font-weight);
+
+  @variant max-md {
+    flex-direction: column;
+  }
+}
+
+.sk-footer__bottom .sk-footer__text {
+  color: var(--color-on-dark);
+}
