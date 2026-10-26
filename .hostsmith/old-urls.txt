@@ -1,16 +1,15 @@
 # Paths of the old site that this site keeps, one per line.
 # `npm run check:urls` fails when one of them has no page in the build output.
-# These are the example's pages; a port replaces the list with the Webflow
-# site's own.
+# The Webflow site's pages, from its code export of 2026-10-24, and its
+# published CMS items (Blog Posts at /blog, Team at /team).
 /
-/heroes
-/text
-/media
-/cards
-/interactive
-/interactive/embeds
-/interactive/reveal
-/news
-/news/collection-entry
-/news/another-entry
+/about
+/membership
+/blog
 /contact
+/blog/from-woolen-mill-to-workspace
+/blog/inside-our-community-calendar
+/blog/hot-desk-dedicated-desk-or-private-office
+/team/hollis-whitcomb
+/team/ines-calloway
+/team/tobias-renn
