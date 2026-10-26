@@ -13,3 +13,5 @@ npm run build   # writes the static site to dist/
 The business facts, audience, voice and contacts are in `.hostsmith/brief.md`. Agents start with `AGENTS.md`. Third-party files, such as the font and the photos, are listed in `CREDITS.md`.
 
 The kit isn't affiliated with Webflow. The site holds no Webflow code, class names or files from a Webflow export.
+
+In the migration report, `<site>` stands for the Webflow site's name in the export's file names.
