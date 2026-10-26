@@ -8,13 +8,17 @@
 // and its tag sets the pages' language.
 //
 // Each collection's base path is part of every entry URL, every link to an
-// entry and the sitemap. Hostsmith has no redirects, so a ported Webflow site
-// keeps its collection's path, such as Webflow's "/post" or the site's own
-// "/blog". A base path starts with "/", has no trailing slash and may have
+// entry and the sitemap. Hostsmith has no redirects, so the ported Webflow
+// site keeps its collections' paths: Blog Posts at "/blog" and Team at
+// "/team". A base path starts with "/", has no trailing slash and may have
 // several segments.
+//
+// The Webflow site had no breadcrumb, only "Back" links on its templates, so
+// the kit's breadcrumb is off for the pages and for each collection.
 export const siteConfig = {
   url: "https://cobbleford.us.hostsmith.link",
   locales: [{ code: "en", tag: "en-US" }],
+  breadcrumb: false,
   collections: {
     news: { basePath: "/news" },
   },

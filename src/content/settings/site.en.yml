@@ -1,95 +1,73 @@
-name: Site name
+name: Cobbleford Co-Working
 logo:
-  image: /assets/images/logo.svg
-  alt: Site name
-# Two items with children, as Webflow's Dropdown: one without a link of its
-# own, whose button carries its label, and one with a link and a button
-# beside it.
+  image: /assets/images/cobbleford-logo.svg
+  alt: Cobbleford Co-Working
 nav:
-  - label: Home
-    link: /
-  - label: Sections
-    children:
-      - label: Heroes
-        link: /heroes
-      - label: Text
-        link: /text
-      - label: Media
-        link: /media
-      - label: Cards
-        link: /cards
-  - label: Interactive
-    link: /interactive
-    children:
-      - label: Embeds
-        link: /interactive/embeds
-      - label: Reveal
-        link: /interactive/reveal
-  - label: News
-    link: /news
+  - label: Membership
+    link: /membership
+  - label: About
+    link: /about
+  - label: Blog
+    link: /blog
+  - label: Contact
+    link: /contact
 header:
   actions:
-    - type: phone
-      number: "+1 555 0100"
-      callLabel: Call
-    - type: link
-      label: Header link
-      link: /news
     - type: button
-      label: Header button
+      label: Book a Tour
       link: /contact
       style: primary
-    - type: locales
 footer:
   blocks:
     - type: brand
-      text: The footer's brand block, with its own reversed logo.
-      logo: /assets/images/logo-reversed.svg
-      logoAlt: Site name
-    - type: links
-      title: Sections
-      links:
-        - label: Heroes
-          link: /heroes
-        - label: Text
-          link: /text
-        - label: Media
-          link: /media
-        - label: Cards
-          link: /cards
+      text: Hot desks, dedicated desks and private offices in a restored 1920s woolen mill on the river.
+      logo: /assets/images/cobbleford-logo-reversed.svg
+      logoAlt: Cobbleford Co-Working
     - type: contact
-      title: Contact block
-      address: |-
-        1 Example Street
-        Example City
-      phone: "+1 555 0100"
-      email: hello@example.com
+      title: Visit
+      address: "{address}"
+      phone: "{phone}"
+      email: "{email}"
     - type: hours
-      title: Hours block
-      rows:
-        - days: Monday to Friday
-          time: 9:00 AM - 5:00 PM
-        - days: Saturday and Sunday
-          time: Closed
-    - type: text
-      title: Text block
-      text: A paragraph in a group of its own.
-      withPrevious: false
-    - type: locales
       withPrevious: true
-  bottom:
-    - type: copyright
-      text: The copyright block
+      rows:
+        - days: Mon-Fri
+          time: 8am - 6pm
+        - days: Sat
+          time: 9am - 1pm
     - type: links
+      title: Explore
       links:
+        - label: Membership
+          link: /membership
+        - label: About
+          link: /about
+        - label: Blog
+          link: /blog
         - label: Contact
           link: /contact
-        - label: News
-          link: /news
+    - type: text
+      title: Newsletter
+      text: Community events, open house dates and member perks, once a month.
+  bottom:
+    - type: copyright
+      text: Cobbleford Co-Working.
+    - type: text
+      text: Cobbleford Co-Working is a fictional business, made for a demo.
 seo:
-  description: The kit's webflow example, the starting point for porting a Webflow design onto the site kit.
+  description: Hot desks, dedicated desks and private offices in a restored 1920s woolen mill on the river, five minutes from Main Street. Your first day is on us.
+  ogImage: /assets/images/cobbleford-og-image.jpg
+facts:
+  - name: phone
+    value: (802) 555-0147
+  - name: email
+    value: hello@cobbleford.example
+  - name: address
+    value: |-
+      214 Millrace Road
+      Cobbleford
 ui:
-  skipLink: Skip to content
+  skipLink: Skip to main content
   menu: Menu
   readMore: Read more
   mainNav: Main
