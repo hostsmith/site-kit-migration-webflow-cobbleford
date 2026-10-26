@@ -20,7 +20,6 @@ export const siteConfig = {
   locales: [{ code: "en", tag: "en-US" }],
   breadcrumb: false,
   collections: {
-    news: { basePath: "/news" },
     posts: { basePath: "/blog", breadcrumb: false },
     team: { basePath: "/team", breadcrumb: false },
   },

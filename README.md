@@ -1,6 +1,8 @@
-# Site
+# Cobbleford Co-Working
 
-This site is built with the [Hostsmith site kit](https://github.com/hostsmith/site-kit-astro), on [Astro](https://astro.build), from the kit's `webflow` example: the starting point for porting a Webflow design onto the kit. Its content is in `src/content/`, as Markdown and YAML.
+The website of Cobbleford Co-Working, a coworking space in a restored 1920s woolen mill: hot desks, dedicated desks and private offices, member events and tours. It moved here from Webflow on 2026-10-26; `.hostsmith/migration-report.md` says what moved, what changed and what the owner still has to approve.
+
+The site is built with the [Hostsmith site kit](https://github.com/hostsmith/site-kit-astro), on [Astro](https://astro.build), from the kit's `webflow` example. Its content is in `src/content/`, as Markdown and YAML: the pages, the blog posts (`posts`, at `/blog`), the team (`team`, at `/team`) and the settings. Its look is the theme in `src/styles/theme/`, ported from the Webflow design.
 
 ```bash
 npm ci
@@ -8,10 +10,6 @@ npm run dev     # local preview with live reload
 npm run build   # writes the static site to dist/
 ```
 
-The example shows every section type of the kit, with each variant and tone, and every part that replaces one of Webflow's built-in elements: tabs, sliders, embeds that load on a click, a gallery's lightbox, background video, dropdowns in the nav, entrance animations and highlighted words in titles. Its theme, in `src/styles/theme/`, is structural: grays and system fonts, Webflow's breakpoints and element defaults, and only the rules each part needs to work and stay accessible. A port puts the Webflow site's colors, fonts and spacing into its tokens and restyles the parts, as `src/styles/theme/README.md` describes. Its content names the part each section shows, and a port replaces it.
+The business facts, audience, voice and contacts are in `.hostsmith/brief.md`. Agents start with `AGENTS.md`. Third-party files, such as the font and the photos, are listed in `CREDITS.md`.
 
-The kit isn't affiliated with Webflow. The example holds no Webflow code, class names or files from a Webflow export.
-
-The kit's README explains how content works, what this repository holds, and how to take kit updates. Agents start with `AGENTS.md`.
-
-The code from the kit's `webflow` example is under [MIT-0](https://github.com/hostsmith/site-kit-astro/blob/main/examples/LICENSE), so the site owes no notice for it. Its images and video were made for the example, so `CREDITS.md` lists no third-party files until the site adds some.
+The kit isn't affiliated with Webflow. The site holds no Webflow code, class names or files from a Webflow export.

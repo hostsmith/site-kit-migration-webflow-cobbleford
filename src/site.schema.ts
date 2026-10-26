@@ -87,7 +87,7 @@ export const siteUi: Record<string, UiString> = {
 
 // The site's collections, each declared by its schema, as a Webflow CMS
 // collection maps onto one. The kit loads it from src/content/<name>/, one
-// file per entry and locale, such as src/content/news/collection-entry.en.md.
+// file per entry and locale, such as src/content/posts/<slug>.en.md.
 // Each one also needs a base path in src/site.config.ts, a detail template in
 // src/components/collections/ and a Decap folder collection in
 // config.site.yml.
@@ -117,18 +117,6 @@ export const siteCollections = {
         category: z.string().min(1),
         // The short bio: the cards' text and the page's meta description.
         description: z.string().min(1),
-        image: mediaPath.optional(),
-        imageAlt: z.string().min(1).optional(),
-        draft: z.boolean().optional(),
-      })
-      .superRefine(requireAlt("image", "imageAlt")),
-  },
-  news: {
-    schema: z
-      .strictObject({
-        title: z.string().min(1),
-        date: isoDate,
-        description: z.string().min(1).optional(),
         image: mediaPath.optional(),
         imageAlt: z.string().min(1).optional(),
         draft: z.boolean().optional(),
