@@ -16,6 +16,10 @@ export const siteConfig = {
   url: "https://cobbleford.us.hostsmith.link",
   locales: [{ code: "en", tag: "en-US" }],
   collections: {
+    // Webflow's Blog Posts and Team. Their templates have only a back link,
+    // no trail of links home, so neither shows the breadcrumb.
+    posts: { basePath: "/blog", breadcrumb: false },
+    team: { basePath: "/team", breadcrumb: false },
     news: { basePath: "/news" },
   },
   // Webflow has no breadcrumb element, and no page of the old site showed a
