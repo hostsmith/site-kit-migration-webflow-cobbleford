@@ -154,6 +154,10 @@ All answers below were given in advance, in `.hostsmith/snapshot/answers.md`, an
 - **The owner's icons and Open Graph image:** made for the site, from the logo's lamp tile and from `cobbleford-open-plan.jpg`, under the same licenses as their sources. (given in advance)
 - **The team photos:** not sent yet. The site builds without them (see "Missing pieces"). (given in advance)
 - **Resizing:** use ImageMagick's `magick` if it's installed, otherwise leave the images at their size and list them. (given in advance) See "Media" under "Not carried over".
+- **The drafted audience and voice:** confirmed as drafted from the old site, in `.hostsmith/brief.md`. (given in advance)
+- **Who sends requests, and how:** Hollis Whitcomb, Founder, by email. (given in advance)
+- **Who approves changes:** Hollis Whitcomb. (given in advance)
+- **The developer:** the Hostsmith team, through the repository's issues. (given in advance)
 - **Typos and copy:** keep the text exactly as it is, and list any typo in the report. No typo was found. (given in advance)
 - **Space Grotesk:** use the owner's files, `fonts/space-grotesk-latin-wght-normal.woff2` (the variable font for weights 300 to 700) and its license, `fonts/OFL.txt`: Space Grotesk by Florian Karsten, SIL Open Font License 1.1, from Fontsource. (given in advance)
 - **Any other font:** the site uses none. (given in advance)
