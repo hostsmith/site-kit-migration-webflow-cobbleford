@@ -84,7 +84,7 @@ To use the theme's own styles instead, delete `src/styles/theme/builder-defaults
 
 - **Font:** the export's `@font-face` for Space Grotesk points at no file (`url('../images/')`): Webflow's export leaves out uploaded fonts. The owner supplied the file (see "Fonts").
 - **404 page:** the export's `404.html` is Webflow's default ("404", "Page Not Found", "The page you are looking for doesn't exist or has been moved"), so the 404 page is written anew (see "Pages").
-- **Favicon and touch icon:** the export's `favicon.ico` and `webclip.png` are Webflow's own defaults. The owner supplied the site's own.
+- **Favicon and touch icon:** the export's `favicon.ico` and `webclip.png` are Webflow's own defaults, showing Webflow's logo, and weren't carried. The owner supplied the site's own, which are in place.
 - **Collection list settings:** the export doesn't hold them (sort, limit, filters). They were given in advance (see "Answers").
 
 ## Answers
@@ -98,6 +98,12 @@ All answers below were given in advance, in `.hostsmith/snapshot/answers.md`, an
 - **Missing CSV exports:** none. Blog Posts and Team are the only collections, and both CSVs are given. (given in advance)
 - **Blog Posts' base path:** `/blog`. (given in advance)
 - **Team's base path:** `/team`. (given in advance)
+- **Space Grotesk:** use the owner's files, `fonts/space-grotesk-latin-wght-normal.woff2` (the variable font for weights 300 to 700) and its license, `fonts/OFL.txt`: Space Grotesk by Florian Karsten, SIL Open Font License 1.1, from Fontsource. (given in advance)
+- **Any other font:** the site uses none. (given in advance)
+- **The production URL:** `https://cobbleford.us.hostsmith.link`, in `src/site.config.ts`. (given in advance)
+- **The primary locale's tag:** `en-US`. (given in advance)
+- **A default Open Graph image:** yes, the owner's `og-image.jpg`, 1200 by 630 pixels, for every page without its own: `/assets/images/cobbleford-og.jpg`, as `seo.ogImage`. (given in advance)
+- **The favicon and the touch icon:** the export's `favicon.ico` and `webclip.png` are Webflow's own defaults (SHA-1 `743a2c39…` and `8f20cc5b…`), so they weren't carried. The owner's `favicon.ico` and `apple-touch-icon.png` are `public/favicon.ico` and `public/apple-touch-icon.png`. (given in advance)
 
 ## Alt text written
 

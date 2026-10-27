@@ -13,11 +13,14 @@
 // "/blog". A base path starts with "/", has no trailing slash and may have
 // several segments.
 export const siteConfig = {
-  url: "https://www.example.com",
+  url: "https://cobbleford.us.hostsmith.link",
   locales: [{ code: "en", tag: "en-US" }],
   collections: {
     news: { basePath: "/news" },
   },
+  // Webflow has no breadcrumb element, and no page of the old site showed a
+  // trail of links home.
+  breadcrumb: false,
 } as const;
 
 export type CollectionName = keyof typeof siteConfig.collections;
