@@ -11,64 +11,11 @@
     "format": "<collection>/<entry id>#<path>"
   },
   "collections": {
-    "news": {
-      "type": "folder",
-      "editable": true,
-      "path": "src/content/news",
-      "pattern": "*.md",
-      "format": "markdown",
-      "locales": {
-        "default": "en",
-        "codes": [
-          "en"
-        ],
-        "structure": "multiple_files"
-      },
-      "fields": {
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string",
-            "minLength": 1,
-            "x-widget": "string"
-          },
-          "date": {
-            "x-widget": "datetime",
-            "type": "string",
-            "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d+)?)?(Z|[+-]\\d{2}:\\d{2})?)?$"
-          },
-          "description": {
-            "type": "string",
-            "minLength": 1,
-            "x-widget": "string"
-          },
-          "image": {
-            "type": "string",
-            "pattern": "^\\/assets\\/\\S+$",
-            "x-widget": "image"
-          },
-          "imageAlt": {
-            "type": "string",
-            "minLength": 1,
-            "x-widget": "string"
-          },
-          "draft": {
-            "type": "boolean",
-            "x-widget": "boolean"
-          }
-        },
-        "required": [
-          "title",
-          "date"
-        ],
-        "additionalProperties": false
-      }
-    },
     "pages": {
       "type": "folder",
       "editable": true,
       "path": "src/content/pages",
-      "pattern": "**/*.md",
+      "pattern": "*.md",
       "format": "markdown",
       "locales": {
         "default": "en",
@@ -328,8 +275,7 @@
                       "type": "string",
                       "enum": [
                         "posts",
-                        "team",
-                        "news"
+                        "team"
                       ],
                       "x-widget": "select"
                     },
@@ -476,8 +422,7 @@
                               "hot-desk",
                               "kitchen",
                               "meeting-room",
-                              "private-office",
-                              "square-dot"
+                              "private-office"
                             ],
                             "x-widget": "select"
                           },

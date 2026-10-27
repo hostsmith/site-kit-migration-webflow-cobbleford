@@ -123,16 +123,4 @@ export const siteCollections = {
       })
       .superRefine(requireAlt("image", "imageAlt")),
   },
-  news: {
-    schema: z
-      .strictObject({
-        title: z.string().min(1),
-        date: isoDate,
-        description: z.string().min(1).optional(),
-        image: mediaPath.optional(),
-        imageAlt: z.string().min(1).optional(),
-        draft: z.boolean().optional(),
-      })
-      .superRefine(requireAlt("image", "imageAlt")),
-  },
 };

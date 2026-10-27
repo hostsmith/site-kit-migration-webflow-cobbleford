@@ -99,7 +99,7 @@ collections:
                 label: Collection
                 widget: select
                 i18n: true
-                options: [ posts, team, news ]
+                options: [ posts, team ]
               - { name: limit, label: Limit, widget: number, value_type: int, min: 1, required: false, i18n: true }
               - { name: link, label: Link beside the title, widget: object, required: false, fields: *labeled_link, i18n: true }
               - { name: variant, label: Variant, widget: select, options: [ cards, list, featured ], default: cards, required: false, i18n: true }
@@ -129,7 +129,7 @@ collections:
                     widget: select
                     i18n: true
                     required: false
-                    options: [ calendar, check, clock, file-text, hammer, house, mail, map-pin, paint-roller, phone, ruler, shield-check, sparkles, star, users, wrench, booth, dedicated-desk, hot-desk, kitchen, meeting-room, private-office, square-dot ]
+                    options: [ calendar, check, clock, file-text, hammer, house, mail, map-pin, paint-roller, phone, ruler, shield-check, sparkles, star, users, wrench, booth, dedicated-desk, hot-desk, kitchen, meeting-room, private-office ]
                   - { name: image, label: Image, widget: image, required: false, i18n: true }
                   - { name: imageAlt, label: Image alt text, widget: string, required: false, i18n: true }
                   - { name: link, label: Link, widget: string, required: false, i18n: true }
@@ -743,20 +743,3 @@ collections:
       - { name: description, label: Short bio, widget: text, required: false, i18n: true }
       - { name: image, label: Photo, widget: image, required: false, i18n: true }
       - { name: imageAlt, label: Photo alt text, widget: string, required: false, i18n: true }
-  - name: news
-    label: News
-    label_singular: News entry
-    folder: src/content/news
-    i18n: true
-    extension: md
-    format: frontmatter
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { name: title, label: Title, widget: string, i18n: true }
-      - { name: date, label: Date, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false, i18n: true }
-      - { name: description, label: Description, widget: text, required: false, i18n: true }
-      - { name: image, label: Image, widget: image, required: false, i18n: true }
-      - { name: imageAlt, label: Image alt text, widget: string, required: false, i18n: true }
-      - { name: draft, label: Draft, widget: boolean, required: false, i18n: true }
-      - { name: body, label: Body, widget: markdown, i18n: true }

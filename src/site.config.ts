@@ -20,7 +20,6 @@ export const siteConfig = {
     // no trail of links home, so neither shows the breadcrumb.
     posts: { basePath: "/blog", breadcrumb: false },
     team: { basePath: "/team", breadcrumb: false },
-    news: { basePath: "/news" },
   },
   // Webflow has no breadcrumb element, and no page of the old site showed a
   // trail of links home.

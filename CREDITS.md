@@ -2,7 +2,7 @@
 
 Third-party files in this site, such as photos and fonts, with their sources and licenses. The license of the site's code doesn't cover them.
 
-The files below come from third parties. The kit's `webflow` example's own files were made for it, under MIT-0 like its code.
+The files below come from third parties.
 
 ## Fonts
 
@@ -39,7 +39,7 @@ Made for the site from [Lucide](https://lucide.dev) icons, lucide-static 1.49.0,
 
 ## Icons
 
-The kit's icons come from the site kit, which takes them from [Lucide](https://lucide.dev) under the ISC license. The notice is in the kit package's `LICENSE`. The site's own icon, `src/icons/square-dot.svg`, was made for the example.
+The kit's icons come from the site kit, which takes them from [Lucide](https://lucide.dev) under the ISC license. The notice is in the kit package's `LICENSE`. The site's own icons are listed above.
 
 ## Embedded content
 
