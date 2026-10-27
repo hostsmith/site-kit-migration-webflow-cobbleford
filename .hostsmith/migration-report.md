@@ -63,6 +63,12 @@ Webflow elements replaced by kit parts:
 
 ## Collections
 
+- **`posts`** (Webflow's Blog Posts), at `/blog`: 4 entries, 1 of them a draft ("Getting the Mill Ready for Winter", `draft: true`, no page). Fields: `title` (Name), `date` (Published Date), `description` (Summary), `image` and `imageAlt` (Main Image, Main Image Alt), `author` (a Team slug), `draft`, and the body (Body, as Markdown). Title pattern `{title} | Cobbleford Co-Working` (`postsPageTitle`); description: the Summary, as `description`. Breadcrumb: off (`breadcrumb: false`): the template has only the "← All articles" link. The author shows as the member's name after "by", without a link.
+- **`team`** (Webflow's Team), at `/team`: 3 entries, no drafts. Fields: `title` (Name), `category` (Role, labelled "Role" in the CMS, so the collection list's cards show it), `description` (Short Bio), `image` and `imageAlt` (Photo, empty in every row). Title pattern `{title} | Cobbleford Co-Working` (`teamPageTitle`); description: the Short Bio, as `description`. Breadcrumb: off: the template has only the "← Meet the team" link.
+- **Lists:** Home shows the 3 newest published posts, Blog every published post, both newest first by `date`. About shows all three team members, in the CSV's order, which is also their alphabetical order, each card linking to the member's page. No list has a filter.
+- **Site-wide breadcrumb:** off (`breadcrumb: false` in `src/site.config.ts`): no page is in a folder, and Webflow has no breadcrumb element.
+- **Facts in the bodies:** the email, the phone number, the street address and the plan prices are written as `{email}`, `{phone}`, `{street}` and `{hotDeskPrice}` and the like, so a change in the settings reaches the posts too.
+
 ## Interactions
 
 - **`i-ad0d0a50`** (IX3, site-wide): every `section-header_component` (the eyebrow and heading above a section) faded up by 15% as it scrolled into view (top at 85% of the viewport, 0.7 s, played once), skipped to the end under reduced motion. Its class is on the section headers of Home (5: steps, amenities, testimonials, numbers, blog), Membership (1: FAQ), About (4: story, values, floors, team) and Contact (1: the tour request form's header). Carried as `reveal: fade-up` on those 10 sections (the Contact one went with its form), with the theme's transition at the old 0.7 s, skipped under reduced motion. The whole section fades up, where the old site moved only its header. Webflow's inline style that hid the headers until its script ran isn't carried.
@@ -116,9 +122,12 @@ To use the theme's own styles instead, delete `src/styles/theme/builder-defaults
 
 ## Missing pieces
 
+- **Media sizes:** `magick` isn't installed on the machine that ran the migration, so no image was resized. None needed it: the widest, `cobbleford-cafe-room.jpg` and `cobbleford-laptops-coffee.jpg`, are 1280 px wide, under twice their widest display (about 930 px, below 992 px). `cobbleford-meeting.jpg` is 600 px wide and shows up to about 930 px wide below 992 px, so it looks soft there, as on the old site: a larger copy from the owner would help.
+
 - **Font:** the export's `@font-face` for Space Grotesk points at no file (`url('../images/')`): Webflow's export leaves out uploaded fonts. The owner supplied the file (see "Fonts").
 - **404 page:** the export's `404.html` is Webflow's default ("404", "Page Not Found", "The page you are looking for doesn't exist or has been moved"), so the 404 page is written anew (see "Pages").
 - **Favicon and touch icon:** the export's `favicon.ico` and `webclip.png` are Webflow's own defaults, showing Webflow's logo, and weren't carried. The owner supplied the site's own, which are in place.
+- **Team photos:** the 3 team entries have no photo (Team: 3 entries without a photo). The owner hasn't sent them yet: the cards on About show no image, and each member's page shows an empty photo area, until they arrive.
 - **Collection list settings:** the export doesn't hold them (sort, limit, filters). They were given in advance (see "Answers").
 
 ## Answers
@@ -132,6 +141,20 @@ All answers below were given in advance, in `.hostsmith/snapshot/answers.md`, an
 - **Missing CSV exports:** none. Blog Posts and Team are the only collections, and both CSVs are given. (given in advance)
 - **Blog Posts' base path:** `/blog`. (given in advance)
 - **Team's base path:** `/team`. (given in advance)
+- **Blog Posts' template patterns:** title `{Name} | Cobbleford Co-Working`, description the `Summary`. (given in advance)
+- **Team's template patterns:** title `{Name} | Cobbleford Co-Working`, description the `Short Bio`. (given in advance)
+- **What the author reference shows:** the team member's `Name`, as text after "by", with no link. (given in advance)
+- **The home page's blog list:** the 3 newest published posts, newest first, by `Published Date`. (given in advance)
+- **The Blog page's list:** every published post, newest first, by `Published Date`. (given in advance)
+- **The About page's team list:** all three team members, in the CSV's order (Hollis Whitcomb, Ines Calloway, Tobias Renn), each card linking to the member's page under `/team`. (given in advance)
+- **Filters:** no list has one. (given in advance)
+- **The Contact page's map embed:** load it on a click. (given in advance)
+- **The photos' sources:** all four from Pixabay, under the Pixabay Content License (commercial use without attribution): `cobbleford-open-plan.jpg` (simonrtr120, 10235505, cropped), `cobbleford-cafe-room.jpg` (uh_yeah_20101995, 4660847), `cobbleford-laptops-coffee.jpg` (life-of-pix, 569121), `cobbleford-meeting.jpg` (sakibmia24, 10503595, cropped). Listed in `CREDITS.md`. (given in advance)
+- **The logo and the icons:** made for the site from Lucide icons, lucide-static 1.49.0, ISC License: the logo from `lamp-desk`, the amenity icons from `laptop`, `monitor`, `door-closed`, `users`, `mic` and `coffee`. (given in advance)
+- **The owner's icons and Open Graph image:** made for the site, from the logo's lamp tile and from `cobbleford-open-plan.jpg`, under the same licenses as their sources. (given in advance)
+- **The team photos:** not sent yet. The site builds without them (see "Missing pieces"). (given in advance)
+- **Resizing:** use ImageMagick's `magick` if it's installed, otherwise leave the images at their size and list them. (given in advance) See "Media" under "Not carried over".
+- **Typos and copy:** keep the text exactly as it is, and list any typo in the report. No typo was found. (given in advance)
 - **Space Grotesk:** use the owner's files, `fonts/space-grotesk-latin-wght-normal.woff2` (the variable font for weights 300 to 700) and its license, `fonts/OFL.txt`: Space Grotesk by Florian Karsten, SIL Open Font License 1.1, from Fontsource. (given in advance)
 - **Any other font:** the site uses none. (given in advance)
 - **The production URL:** `https://cobbleford.us.hostsmith.link`, in `src/site.config.ts`. (given in advance)
