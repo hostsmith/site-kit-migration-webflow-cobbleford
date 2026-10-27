@@ -542,22 +542,24 @@
     & .sk-eyebrow {
       grid-column: 1;
       grid-row: 1;
+      align-self: end;
     }
 
     & .sk-section__title {
       grid-column: 1;
-      grid-row: 2 / 4;
+      grid-row: 2;
     }
 
     & .sk-section__intro {
       grid-column: 2;
-      grid-row: 2;
+      grid-row: 1;
     }
 
     & .sk-section__link {
       grid-column: 2;
-      grid-row: 3;
+      grid-row: 2;
       justify-self: start;
+      margin-top: 0.5rem;
     }
   }
 }
@@ -2180,4 +2182,23 @@
   line-height: var(--text-small--line-height);
   letter-spacing: var(--text-small--letter-spacing);
   font-weight: var(--text-small--font-weight);
+}
+
+/* A collection list's header without a link is centered, as the old team
+   header. */
+.sk-collection-list .sk-section__header:not(:has(.sk-section__link)) {
+  align-items: center;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* The old map showed no heading: the embed's title, which names its frame,
+   stays for screen readers only. */
+.sk-embed .sk-section__header {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }

@@ -356,6 +356,12 @@
       align-items: center;
       margin: 0;
     }
+
+    /* The old navbar: the links centered between the logo and the button. */
+    & .sk-nav,
+    & .sk-header__actions {
+      margin-left: auto;
+    }
   }
 }
 

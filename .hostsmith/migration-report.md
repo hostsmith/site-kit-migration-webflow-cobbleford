@@ -158,6 +158,9 @@ All answers below were given in advance, in `.hostsmith/snapshot/answers.md`, an
 - **Who sends requests, and how:** Hollis Whitcomb, Founder, by email. (given in advance)
 - **Who approves changes:** Hollis Whitcomb. (given in advance)
 - **The developer:** the Hostsmith team, through the repository's issues. (given in advance)
+- **The plan's limits:** skip the comparison with the plan's limits, and report the size of `dist/`: 1.8 MB with the example's pages, before step 11, and its final size under "Size". (given in advance)
+- **Playwright's browser:** go ahead if a download is needed. None was: Playwright's Chromium was already on the machine. (given in advance)
+- **The person's comparison in a browser:** no one compares the pages in this run: recorded as not done. (given in advance)
 - **Typos and copy:** keep the text exactly as it is, and list any typo in the report. No typo was found. (given in advance)
 - **Space Grotesk:** use the owner's files, `fonts/space-grotesk-latin-wght-normal.woff2` (the variable font for weights 300 to 700) and its license, `fonts/OFL.txt`: Space Grotesk by Florian Karsten, SIL Open Font License 1.1, from Fontsource. (given in advance)
 - **Any other font:** the site uses none. (given in advance)
@@ -179,12 +182,67 @@ Every internal link in the export's pages and the CSVs' rich text points at a pa
 
 ## Fidelity check
 
+The check ran: `fidelity.mjs` with Playwright 1.64.0 and its Chromium, each page of the build against the same page of the export, at 479, 767, 991 and 1440 px, with the site's Space Grotesk given to the export too. Every picture on the checklist was opened and ticked. The fixes it led to (the stats band's image, the amenities header, the nav's position, the map's title, the team header) were made, and the check ran again before the final review.
+
 **Compared:**
 
-**Not compared:**
+- home, 479 px: overview
+- home, 767 px: overview
+- home, 991 px: overview
+- home, 1440 px: overview
+- membership, 479 px: overview
+- membership, 767 px: overview
+- membership, 991 px: overview
+- membership, 1440 px: overview
+- about, 479 px: overview
+- about, 767 px: overview
+- about, 991 px: overview
+- about, 1440 px: overview
+- blog, 479 px: overview
+- blog, 767 px: overview
+- blog, 991 px: overview
+- blog, 1440 px: overview
+- contact, 479 px: overview
+- contact, 767 px: overview
+- contact, 991 px: overview
+- contact, 1440 px: overview
+- 404, 479 px: overview
+- 404, 767 px: overview
+- 404, 991 px: overview
+- 404, 1440 px: overview
+- blog-from-woolen-mill-to-workspace, 479 px: overview
+- blog-from-woolen-mill-to-workspace, 767 px: overview
+- blog-from-woolen-mill-to-workspace, 991 px: overview
+- blog-from-woolen-mill-to-workspace, 1440 px: overview
+- team-hollis-whitcomb, 479 px: overview
+- team-hollis-whitcomb, 767 px: overview
+- team-hollis-whitcomb, 991 px: overview
+- team-hollis-whitcomb, 1440 px: overview
+- home, 479 px: first slice (header)
+- home, 479 px: end (footer)
+- home, 767 px: first slice (header)
+- home, 767 px: end (footer)
+- home, 991 px: first slice (header)
+- home, 991 px: end (footer)
+- home, 1440 px: first slice (header)
+- home, 1440 px: end (footer)
+
+**Not compared:** None.
 
 | Page | Width | Difference |
 | --- | --- | --- |
+| Home, Blog | all | The blog lists are empty in the export (CMS areas); the build shows the posts, checked against the entries: 3 newest on Home, all 3 published on Blog, newest first. |
+| About | all | The team list is empty in the export; the build shows the three members, with name, role and short bio, but no photo area until the photos arrive. The team section is on the page color, where the old one was on the darker cream: `collection-list` has no tone. |
+| Home | 1440 | The amenities header: the intro and the "See Plans" button sit to the right of the title, as before, but aligned a little differently. |
+| Contact | all | The tour request form isn't carried (see "Forms"), so the contact details sit in three columns (two at 768-991 px, one below) where they were one column beside the form. The map is a placeholder with a "Show map" button until the visitor clicks, and at 21:9 it's shorter than the old 22rem frame on narrow screens. |
+| Footer, every page | all | The newsletter form isn't carried; its column keeps its title and text. The links have 44 px tall touch targets, so the columns are a little taller. |
+| Blog post, team member pages | all | The export's templates are empty (CMS areas); the build shows each entry's fields where the template bound them. |
+| 404 | all | Written anew as a page header in the site's look, with the header and footer, where Webflow's default was a bare centered message. |
+| Every page | all | The whole section fades up as it enters the view, where the old site moved only its header. The screenshots run under reduced motion, where neither moves. |
+| Blog posts | all | Links in the body are in the text color, underlined, where the old site showed the browser's default blue. |
+| Every page | all | Phone links are `tel:8025550147`, where the old site's were `tel:+18025550147`. |
+
+**The person's comparison:** not done. No one compared the pages with the old site in a browser in this run (given in advance). The owner should do it on the preview site before approving.
 
 ## To translate
 
