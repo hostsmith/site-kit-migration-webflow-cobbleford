@@ -62,27 +62,46 @@
   gap: 1rem;
 }
 
+/* The old `button`: a green pill, deep green on hover. `is-secondary` is
+   its outline, filled on hover. */
 .sk-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
   padding: 0.75rem 1.5rem;
-  border: 1px solid transparent;
+  border: 2px solid var(--color-accent);
   border-radius: var(--radius-button);
+  font-size: var(--text-body);
+  line-height: var(--text-h6--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
   font-weight: 600;
+  text-align: center;
   text-decoration: none;
+
+  &:focus-visible {
+    outline-offset: 3px;
+  }
 }
 
 .sk-button--primary {
   background: var(--color-accent);
   color: var(--color-accent-fg);
+
+  &:hover {
+    border-color: var(--color-green-dark);
+    background: var(--color-green-dark);
+  }
 }
 
 .sk-button--secondary {
-  border-color: currentColor;
   background: transparent;
-  color: inherit;
+  color: var(--color-accent);
+
+  &:hover {
+    background: var(--color-accent);
+    color: var(--color-accent-fg);
+  }
 }
 
 .sk-card {

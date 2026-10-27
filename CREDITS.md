@@ -2,7 +2,13 @@
 
 Third-party files in this site, such as photos and fonts, with their sources and licenses. The license of the site's code doesn't cover them.
 
-This list has no third-party files yet. The images under `public/assets/images/`, the logos among them, and the video under `public/assets/video/` were made for the kit's `webflow` example, under MIT-0 like its code. The theme uses the visitor's system fonts, so the site ships none. When the site adds a photo, a font or an icon from a third party, list it here with its source and license, and keep a font's license text next to it.
+The files below come from third parties. The kit's `webflow` example's own files were made for it, under MIT-0 like its code.
+
+## Fonts
+
+| File | Font | Source | License |
+| --- | --- | --- | --- |
+| `public/assets/fonts/space-grotesk-latin-wght-normal.woff2` | Space Grotesk, variable, weights 300 to 700, by Florian Karsten | [Fontsource](https://fontsource.org/fonts/space-grotesk), sent by the owner | SIL Open Font License 1.1, text in `public/assets/fonts/OFL.txt` |
 
 ## Icons
 

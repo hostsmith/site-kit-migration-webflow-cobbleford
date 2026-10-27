@@ -19,4 +19,5 @@
 @import "./theme/layout.css" layer(components);
 @import "./theme/sections.css" layer(components);
 @import "./theme/prose.css" layer(components);
+@import "./theme/builder-defaults.css" layer(components);
 @import "./site.css";

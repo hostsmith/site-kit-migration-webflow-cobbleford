@@ -1,7 +1,7 @@
 /*
- * The structural theme's type: system fonts, and a text scale shaped like
- * Client-First's, the class system most Webflow sites use. A port replaces
- * the values with the Webflow site's variables, and the fonts in fonts.css.
+ * The type of the Cobbleford Webflow site, from its `--_typography---*`
+ * variables: Space Grotesk for everything, semibold headings with tight
+ * lines and tracking, and a body size of 17 px on a 1.6 line height.
  *
  * Each text role has a size, a line height, a letter spacing and a weight.
  * The text-h2 utility sets all four; a rule in the theme's CSS reads all four
@@ -10,7 +10,7 @@
  * fonts and sizes are reset, so text-sm or font-sans render nothing.
  *
  * Below `lg` and `md` (tokens/space.css), the larger sizes shrink in :root
- * rules, as a Webflow site's variables change at 991 and 767 pixels.
+ * rules, as the Webflow site's variables change at 991 and 767 pixels.
  * Utilities that read them follow.
  */
 
@@ -18,82 +18,86 @@
   --font-*: initial;
   --text-*: initial;
 
-  --font-heading: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 
-  --text-display: 4.5rem;
-  --text-display--line-height: 1.1;
-  --text-display--letter-spacing: 0;
-  --text-display--font-weight: 700;
-  --text-h1: 3.5rem;
-  --text-h1--line-height: 1.2;
-  --text-h1--letter-spacing: 0;
-  --text-h1--font-weight: 700;
+  /* size-display: the big figures and prices */
+  --text-display: 3.5rem;
+  --text-display--line-height: 1.15;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 600;
+  --text-h1: 4.25rem;
+  --text-h1--line-height: 1.15;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 600;
   --text-h2: 3rem;
-  --text-h2--line-height: 1.2;
-  --text-h2--letter-spacing: 0;
-  --text-h2--font-weight: 700;
-  --text-h3: 2rem;
-  --text-h3--line-height: 1.2;
-  --text-h3--letter-spacing: 0;
-  --text-h3--font-weight: 700;
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 600;
+  --text-h3: 2.25rem;
+  --text-h3--line-height: 1.15;
+  --text-h3--letter-spacing: -0.02em;
+  --text-h3--font-weight: 600;
   --text-h4: 1.5rem;
-  --text-h4--line-height: 1.4;
+  --text-h4--line-height: 1.15;
   --text-h4--letter-spacing: 0;
-  --text-h4--font-weight: 700;
+  --text-h4--font-weight: 600;
   --text-h5: 1.25rem;
-  --text-h5--line-height: 1.5;
+  --text-h5--line-height: 1.15;
   --text-h5--letter-spacing: 0;
-  --text-h5--font-weight: 700;
-  --text-h6: 1rem;
-  --text-h6--line-height: 1.5;
+  --text-h5--font-weight: 600;
+  --text-h6: 1.0625rem;
+  --text-h6--line-height: 1.15;
   --text-h6--letter-spacing: 0;
-  --text-h6--font-weight: 700;
-  --text-quote: 1.25rem;
-  --text-quote--line-height: 1.5;
+  --text-h6--font-weight: 600;
+  /* the testimonials' quotes, at size-medium */
+  --text-quote: 1.1875rem;
+  --text-quote--line-height: 1.6;
   --text-quote--letter-spacing: 0;
   --text-quote--font-weight: 400;
-  --text-lead: 1.25rem;
-  --text-lead--line-height: 1.5;
+  /* the page headers' and heroes' text, at size-large */
+  --text-lead: 1.375rem;
+  --text-lead--line-height: 1.6;
   --text-lead--letter-spacing: 0;
   --text-lead--font-weight: 400;
-  --text-large: 1.25rem;
-  --text-large--line-height: 1.5;
+  --text-large: 1.375rem;
+  --text-large--line-height: 1.6;
   --text-large--letter-spacing: 0;
   --text-large--font-weight: 400;
-  --text-medium: 1.125rem;
-  --text-medium--line-height: 1.5;
+  --text-medium: 1.1875rem;
+  --text-medium--line-height: 1.6;
   --text-medium--letter-spacing: 0;
   --text-medium--font-weight: 400;
-  --text-body: 1rem;
-  --text-body--line-height: 1.5;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
   --text-body--letter-spacing: 0;
   --text-body--font-weight: 400;
-  --text-small: 0.875rem;
-  --text-small--line-height: 1.5;
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.6;
   --text-small--letter-spacing: 0;
   --text-small--font-weight: 400;
-  --text-tiny: 0.75rem;
-  --text-tiny--line-height: 1.5;
+  --text-tiny: 0.8125rem;
+  --text-tiny--line-height: 1.6;
   --text-tiny--letter-spacing: 0;
   --text-tiny--font-weight: 400;
-  --text-eyebrow: 0.875rem;
-  --text-eyebrow--line-height: 1.5;
-  --text-eyebrow--letter-spacing: 0.06em;
+  --text-eyebrow: 0.9375rem;
+  --text-eyebrow--line-height: 1.15;
+  --text-eyebrow--letter-spacing: 0.08em;
   --text-eyebrow--font-weight: 600;
 }
 
 :root {
   @variant max-lg {
-    --text-display: 3.75rem;
-    --text-h1: 3rem;
+    --text-display: 3rem;
+    --text-h1: 3.5rem;
     --text-h2: 2.5rem;
+    --text-h3: 2rem;
   }
 
   @variant max-md {
-    --text-display: 3rem;
-    --text-h1: 2.5rem;
-    --text-h2: 2rem;
-    --text-h3: 1.5rem;
+    --text-display: 2.625rem;
+    --text-h1: 2.625rem;
+    --text-h2: 2.125rem;
+    --text-h3: 1.75rem;
   }
 }

@@ -61,9 +61,17 @@ No form is carried over: the kit's contact form comes in a later release. No for
 
 ## Fonts
 
+- **Space Grotesk** (headings and body, weights 300 to 700): an upload the export left out (its `@font-face` points at `url('../images/')`). It's an open font, by Florian Karsten, under the SIL Open Font License 1.1. The owner sent the variable WOFF2 from Fontsource and its `OFL.txt`, which are in `public/assets/fonts/`, loaded by `src/styles/theme/fonts.css` and listed in `CREDITS.md`. The files arrived.
+- No other font: the site's CSS names only Space Grotesk, with a generic `sans-serif` fallback.
+
 ## Colors changed for contrast
 
+None: every role of the old palette passes the theme's contrast pairs as it was.
+
 ## Builder defaults kept
+
+- **About, "Three floors":** the selected tab's background, Webflow's Tabs gray `#c8c8c8` (`.w-tab-link.w--current`), which the site's own tab style never replaced. Kept on `.sk-tabs__tab[aria-selected="true"]`.
+- **Blog posts, quotes:** the light gray left rule of Webflow's `blockquote`, `#e2e2e2`. Kept on `.sk-prose blockquote`.
 
 To use the theme's own styles instead, delete `src/styles/theme/builder-defaults.css`, its import in `src/styles/global.css`, and the `--color-builder-*` colors in the site's preset.
 

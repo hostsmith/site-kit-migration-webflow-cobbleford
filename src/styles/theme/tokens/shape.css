@@ -1,20 +1,22 @@
 /*
- * The structural theme's shapes: small radii by element, so a port changes
- * one token per element, and two shadows mixed from the text color, so they
- * follow a color preset. Tailwind's default radii and shadows are reset, so
- * rounded-md or shadow-lg render nothing.
+ * The shapes of the Cobbleford Webflow site, from its `--_radius---*`
+ * variables: round pills for buttons and tabs, large radii for cards, panels
+ * and images, a medium one for tiles, a small one for inputs. The shadows mix
+ * the text color, as the old menu panel's did. Tailwind's default radii and
+ * shadows are reset, so rounded-md or shadow-lg render nothing.
  */
 
 @theme static {
   --radius-*: initial;
   --shadow-*: initial;
 
-  --radius-tag: 0.25rem;
-  --radius-input: 0.25rem;
-  --radius-card: 0.5rem;
-  --radius-panel: 0.5rem;
-  --radius-button: 0.25rem;
+  --radius-tag: 100rem; /* radius-round */
+  --radius-input: 0.375rem; /* radius-small */
+  --radius-card: 1.25rem; /* radius-large */
+  --radius-panel: 1.25rem; /* radius-large */
+  --radius-button: 100rem; /* radius-round */
+  --radius-tile: 0.75rem; /* radius-medium: icon tiles, value cards */
 
   --shadow-raised: 0 1px 3px color-mix(in oklch, var(--color-fg) 12%, transparent);
-  --shadow-overlay: 0 8px 24px color-mix(in oklch, var(--color-fg) 16%, transparent);
+  --shadow-overlay: 0 16px 32px color-mix(in oklch, var(--color-fg) 12%, transparent);
 }

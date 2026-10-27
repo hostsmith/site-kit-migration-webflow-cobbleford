@@ -164,9 +164,10 @@ button {
   cursor: pointer;
 }
 
+/* The old site's focus ring: 3 px of brown. */
 :focus-visible {
   outline: 3px solid var(--color-brand);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {

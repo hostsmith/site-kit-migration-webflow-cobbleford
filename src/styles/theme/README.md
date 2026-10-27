@@ -26,11 +26,12 @@ To port a design:
 | `tokens/type.css` | the fonts and the text scale, which shrinks below `lg` and `md` | with `fonts.css` and the font files |
 | `tokens/shape.css` | radii and shadows | yes. Shadows take their color from `--color-fg` |
 | `tokens/space.css` | content width, section spacing, gutter, breakpoints | no: the layout CSS is tuned to them |
-| `fonts.css` | `@font-face` for `/assets/fonts/`: none, with system fonts | with `type.css` |
+| `fonts.css` | `@font-face` for `/assets/fonts/`: Space Grotesk | with `type.css` |
 | `base.css` | element defaults close to Webflow's: headings, paragraphs, lists, blockquote, figure, form controls, focus ring, reduced motion | no |
 | `layout.css` | skip link, header, menu and submenus, breadcrumb, footer | no |
 | `sections.css` | every section type, variant and tone, the shared parts, and the interactive parts | no |
 | `prose.css` | rendered markdown (`sk-prose`) | no |
+| `builder-defaults.css` | Webflow's own defaults the old site showed: the selected tab's gray, the quotes' rule | no |
 
 `src/styles/global.css` imports them in this order, with `base.css` in Tailwind's `base` layer and the last three in its `components` layer, so utilities in the site's own markup win over them. `src/styles/site.css` comes last and isn't part of the theme.
 
@@ -64,12 +65,15 @@ Each role is a Tailwind token: a CSS variable for the theme's rules, such as `va
 | accent | `--color-accent`, `--color-accent-fg` | the main button, and the text on it |
 | on dark | `--color-on-dark` | secondary text on dark |
 | error | `--color-error` | form errors |
-| fonts | `--font-heading`, `--font-body` | system fonts |
+| fonts | `--font-heading`, `--font-body` | Space Grotesk, with a system fallback |
 | text | `--text-display`, `-h1`, `-h2`, `-h3`, `-quote`, `-lead`, `-body`, `-small`, `-eyebrow` | the roles every example shares, each with `--line-height`, `--letter-spacing` and `--font-weight` |
 | more text | `--text-h4`, `-h5`, `-h6`, `-large`, `-medium`, `-tiny` | this theme's own, as Client-First's scale has them |
-| radii | `--radius-tag`, `-input`, `-card`, `-panel`, `-button` | by element |
+| radii | `--radius-tag`, `-input`, `-card`, `-panel`, `-button`, `-tile` | by element; `-tile` for icon tiles and value cards |
 | shadows | `--shadow-raised`, `--shadow-overlay` | raised parts, dropdowns |
 | space | `--container-site`, `--spacing-section`, `--spacing-gutter` | the content width, the space between sections, the side gutter |
+| more space | `--container-medium`, `--container-small`, `--spacing-section-medium`, `--spacing-section-small` | the old site's other containers and section spacings: `max-w-small`, `py-section-medium` |
+| site colors | `--color-white`, `--color-green-dark` | white cards and sections; the dark band, the footer and the buttons' hover |
+| builder colors | `--color-builder-tab-current`, `--color-builder-quote-border` | Webflow's defaults kept in `builder-defaults.css` |
 | breakpoints | `--breakpoint-sm`, `--breakpoint-md`, `--breakpoint-lg` | 480, 768 and 992 px |
 
 A text utility such as `text-h2` sets all four of a role's properties. A rule in the theme's CSS names each one.
@@ -78,7 +82,7 @@ A text utility such as `text-h2` sets all four of a role's properties. A rule in
 
 | Scheme | File | |
 | --- | --- | --- |
-| `webflow/neutral` | `presets/colors/neutral.css` | grays only, the default |
+| `cobbleford` | `presets/colors/cobbleford.css` | the Cobbleford Webflow site's colors: cream, ink, brown and green, the default |
 
 Every preset defines the same `--color-*` names. For the site's own colors, add a preset with the same names, and point `tokens/colors.css` at it. `npm run check:styles` checks every preset against the others and against the contrast pairs below.
 
