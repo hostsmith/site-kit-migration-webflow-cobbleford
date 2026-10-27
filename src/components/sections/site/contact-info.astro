@@ -1,0 +1,59 @@
+---
+// contact-info: contact details in titled blocks, such as the address, the
+// opening hours, and the email address and phone number, each block with an
+// optional note.
+import { sectionFields } from "@hostsmith/site-kit-astro/field";
+
+const { section, entry } = Astro.props;
+const f = sectionFields(entry, section);
+const tel = (number: string) => `tel:${number.replace(/[^+\d]/g, "")}`;
+---
+
+<section {...f.root} class="contact-info">
+  <div class="sk-container contact-info__inner">
+    {
+      section.blocks.map((block, i) => (
+        <div class="contact-info__block">
+          <h2 class="contact-info__title" {...f.field("blocks", i, "title")}>
+            {block.title}
+          </h2>
+          {block.address && (
+            <address class="contact-info__address" {...f.field("blocks", i, "address")}>
+              {block.address.split("\n").map((line, j) => (
+                <>
+                  {j > 0 && <br />}
+                  {line}
+                </>
+              ))}
+            </address>
+          )}
+          {block.hours && (
+            <dl class="contact-info__hours">
+              {block.hours.map((row, j) => (
+                <div class="contact-info__row">
+                  <dt {...f.field("blocks", i, "hours", j, "days")}>{row.days}</dt>
+                  <dd {...f.field("blocks", i, "hours", j, "time")}>{row.time}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+          {block.email && (
+            <a href={`mailto:${block.email}`} class="contact-info__link" {...f.field("blocks", i, "email")}>
+              {block.email}
+            </a>
+          )}
+          {block.phone && (
+            <a href={tel(block.phone)} class="contact-info__link" {...f.field("blocks", i, "phone")}>
+              {block.phone}
+            </a>
+          )}
+          {block.note && (
+            <p class="contact-info__note" {...f.field("blocks", i, "note")}>
+              {block.note}
+            </p>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</section>

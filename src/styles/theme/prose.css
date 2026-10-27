@@ -4,11 +4,16 @@
  * out its content. A video link alone in a paragraph renders as an embed
  * (sections.css). global.css imports this file into Tailwind's `components`
  * layer.
+ *
+ * The old site's rich text had no rules of its own beyond its size and color,
+ * so it showed Webflow's element defaults: 10 px between paragraphs, bold
+ * headings of 32 and 24 px with 20 px above them, and images and captions
+ * centered at full width. These rules keep those spacings and sizes.
  */
 
 .sk-prose {
   & > * + * {
-    margin-top: 1rem;
+    margin-top: 0.625rem;
   }
 
   & h2,
@@ -16,21 +21,26 @@
   & h4,
   & h5,
   & h6 {
-    margin-top: 2rem;
+    margin-top: 1.25rem;
   }
 
   & h2 {
-    font-size: var(--text-h3);
-    line-height: var(--text-h3--line-height);
-    letter-spacing: var(--text-h3--letter-spacing);
-    font-weight: var(--text-h3--font-weight);
+    font-size: 2rem;
+    line-height: 2.25rem;
+    letter-spacing: 0;
+    font-weight: 700;
   }
 
   & h3 {
-    font-size: var(--text-h4);
-    line-height: var(--text-h4--line-height);
-    letter-spacing: var(--text-h4--letter-spacing);
-    font-weight: var(--text-h4--font-weight);
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+    letter-spacing: 0;
+    font-weight: 700;
+  }
+
+  & h2 + *,
+  & h3 + * {
+    margin-top: 0.625rem;
   }
 
   & ul,
@@ -38,16 +48,25 @@
     margin-bottom: 0;
   }
 
-  & li + li {
-    margin-top: 0.25rem;
-  }
-
   & blockquote {
     margin-bottom: 0;
   }
 
+  & strong {
+    font-weight: 700;
+  }
+
+  & figure {
+    text-align: center;
+  }
+
   & img {
     display: block;
+    margin-inline: auto;
+  }
+
+  & figcaption {
+    text-align: center;
   }
 
   & code {
@@ -78,57 +97,5 @@
     padding: 0.5rem;
     border: 1px solid var(--color-border);
     text-align: left;
-  }
-}
-
-/*
- * The Cobbleford port: a blog post's body, as Webflow's Rich Text showed it
- * with the site's text and Webflow's own heading defaults (bold, 32 and
- * 24 px), links in the green of the site's text links, and an image's
- * caption, the italic paragraph after it, centered under it.
- */
-.sk-prose {
-  & h2,
-  & h3,
-  & h4,
-  & h5,
-  & h6 {
-    margin-top: 2rem;
-  }
-
-  & h2 {
-    font-size: 2rem;
-    line-height: 1.125;
-    letter-spacing: 0;
-    font-weight: 700;
-  }
-
-  & h3 {
-    font-size: 1.5rem;
-    line-height: 1.25;
-    letter-spacing: 0;
-    font-weight: 700;
-  }
-
-  & a {
-    color: var(--color-accent);
-
-    &:hover {
-      color: var(--color-green-dark);
-    }
-  }
-
-  & img {
-    width: 100%;
-  }
-
-  & p:has(> img:only-child) + p:has(> em:only-child) {
-    margin-top: 0.3125rem;
-    color: var(--color-muted);
-    text-align: center;
-    font-size: var(--text-small);
-    line-height: var(--text-small--line-height);
-    letter-spacing: var(--text-small--letter-spacing);
-    font-weight: var(--text-small--font-weight);
   }
 }

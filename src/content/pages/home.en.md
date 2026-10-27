@@ -2,7 +2,7 @@
 title: Cobbleford Co-Working | Coworking in a restored 1920s woolen mill
 description: Hot desks, dedicated desks and private offices in a restored 1920s woolen mill on the river, five minutes from Main Street. Your first day is on us.
 sections:
-  - id: iil8
+  - id: t5eq
     type: hero
     eyebrow: Co-working in a restored 1920s woolen mill
     title: A ==brighter== place to work, right here in Cobbleford.
@@ -16,9 +16,8 @@ sections:
       label: See Plans
       link: /membership
     variant: image-right
-  - id: hav3
+  - id: g9jx
     type: steps
-    reveal: fade-up
     eyebrow: How it works
     title: Getting started takes ==three== easy steps.
     items:
@@ -28,7 +27,8 @@ sections:
         text: Choose a hot desk, a dedicated desk or a private office.
       - title: Move In
         text: Grab your key fob, find your spot and get to work.
-  - id: y2xw
+    reveal: fade-up
+  - id: jle1
     type: split
     title: Take a Tour
     body: |-
@@ -42,11 +42,10 @@ sections:
     link:
       label: Book a Tour
       link: /contact
+      style: primary
     variant: image-left
-    tone: plain
-  - id: vv46
+  - id: xt09
     type: services-grid
-    reveal: fade-up
     eyebrow: Amenities
     title: Everything you need to do your ==best== work, under one roof.
     intro: From a quick morning at a hot desk to a full-time office for your team, every membership comes with the essentials covered - fast internet, good coffee and friendly people.
@@ -74,9 +73,9 @@ sections:
         icon: kitchen
     variant: cards
     tone: surface
-  - id: oc4p
-    type: testimonials
     reveal: fade-up
+  - id: n5zm
+    type: testimonials
     eyebrow: Happy members
     title: Don’t take our word for it. See what ==members== are saying about us.
     items:
@@ -100,12 +99,12 @@ sections:
         role: UX Researcher
     variant: grid
     tone: surface
-  - id: vn8b
-    type: photo-figures
     reveal: fade-up
+  - id: w1om
+    type: stats-band
     eyebrow: By the numbers
     title: We make your workday ==stress-free== so you can focus on what matters.
-    body: Cobbleford Co-Working opened in one corner of the old mill with twelve desks. Today we share three floors with freelancers, startups and remote teams from all over the valley - and we still know everyone by name.
+    text: Cobbleford Co-Working opened in one corner of the old mill with twelve desks. Today we share three floors with freelancers, startups and remote teams from all over the valley - and we still know everyone by name.
     image: /assets/images/cobbleford-laptops-coffee.jpg
     imageAlt: Two laptops and a coffee mug on a wooden table
     stats:
@@ -117,9 +116,9 @@ sections:
         label: Floors in the old mill
       - value: 24/7
         label: Access for desk and office members
-  - id: b7uq
-    type: collection-list
     reveal: fade-up
+  - id: fi06
+    type: collection-list
     eyebrow: From the blog
     title: News and stories from the ==mill==.
     collection: posts
@@ -128,7 +127,8 @@ sections:
       label: All articles
       link: /blog
     variant: cards
-  - id: yyz2
+    reveal: fade-up
+  - id: h1u8
     type: cta
     title: Join a friendly community of freelancers, makers and remote teams in Cobbleford.
     text: Your first day is on us. Book a tour any weekday between 9am and 4pm and stay to work.

@@ -2,3 +2,62 @@
  * This site's own CSS, outside the theme: rules for its site-local sections
  * and anything the theme doesn't cover. Swapping the theme keeps this file.
  */
+
+/* The collection templates (src/components/collections/): the back link,
+   the post's image and the team member's photo beside the text. */
+.post__back {
+  color: var(--color-accent);
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.post__image {
+  height: 32rem;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+
+  @variant max-md {
+    height: 16rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.member {
+  display: grid;
+  align-items: start;
+  gap: 2rem;
+
+  @variant lg {
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+  }
+}
+
+.member__image {
+  height: 28rem;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+
+  @variant max-md {
+    height: 20rem;
+  }
+}
+
+.member__role {
+  color: var(--color-brand);
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  font-weight: var(--text-eyebrow--font-weight);
+  text-transform: uppercase;
+}

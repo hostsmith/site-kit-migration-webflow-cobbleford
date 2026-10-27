@@ -1,13 +1,13 @@
 ---
 title: "From Woolen Mill to Workspace: The Story of Our Building"
 date: "2026-08-25"
-description: Long before laptops, 214 Millrace Road was full of looms. A short history of the old mill on the river and how it became Cobbleford Co-Working.
-image: "/assets/images/cobbleford-open-plan.jpg"
+description: "Long before laptops, {street} was full of looms. A short history of the old mill on the river and how it became Cobbleford Co-Working."
+image: /assets/images/cobbleford-open-plan.jpg
 imageAlt: Members working at long desks and on a leather sofa in a brick-walled open-plan floor with a mezzanine and a kitchen
 author: hollis-whitcomb
 ---
 
-Look up from your desk at Cobbleford Co-Working and you will see brick walls, steel trusses and windows taller than most front doors. None of that was designed for laptops. For most of the last century, 214 Millrace Road was a woolen mill, and the building still carries the marks of the work that went on inside it.
+Look up from your desk at Cobbleford Co-Working and you will see brick walls, steel trusses and windows taller than most front doors. None of that was designed for laptops. For most of the last century, {street} was a woolen mill, and the building still carries the marks of the work that went on inside it.
 
 ## A mill on the millrace
 

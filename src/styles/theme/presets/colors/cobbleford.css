@@ -1,8 +1,7 @@
 /*
- * cobbleford: the colors of the Cobbleford Co-Working Webflow site, from its
- * variables (`--_colors---*`), on the theme's roles. The cream page, ink
- * text, brown eyebrows and highlights, and green buttons; the dark sections
- * and the footer are green-dark.
+ * cobbleford: the Webflow site's colors (its `--_colors---*` variables), on
+ * the theme's roles. Cream page, ink text, brown eyebrows and highlighted
+ * words, green buttons and a deep green for the dark band and the footer.
  *
  * Every preset in this folder defines the same color roles, and passes the
  * contrast pairs listed in README.md (npm run check:styles). Tailwind's
@@ -13,24 +12,23 @@
   --color-*: initial;
 
   /* Roles */
-  --color-bg: #f6f1e8;
-  --color-fg: #211d19;
-  --color-surface: #ede4d6;
-  --color-tint: #e9dcc8;
-  --color-muted: #5a5148;
-  --color-border: #d9cdbb;
-  --color-brand: #7a5434;
-  --color-accent: #2e5a45;
-  --color-accent-fg: #ffffff;
-  --color-on-dark: #c9d6cc;
+  --color-bg: #f6f1e8; /* cream */
+  --color-fg: #211d19; /* ink */
+  --color-surface: #ede4d6; /* cream-dark */
+  --color-tint: #e9dcc8; /* brown-light */
+  --color-muted: #5a5148; /* ink-muted */
+  --color-border: #d9cdbb; /* border */
+  --color-brand: #7a5434; /* brown */
+  --color-accent: #2e5a45; /* green */
+  --color-accent-fg: #ffffff; /* white */
+  --color-on-dark: #c9d6cc; /* on-dark-muted */
   --color-error: #9b2c1c;
 
-  /* Site colors: the cards on the page, the dark sections and the footer,
-     and the light brown of eyebrows and highlights on them. */
+  /* Site colors */
   --color-white: #ffffff;
   --color-green-dark: #1f3f31;
-  --color-brown-light: #e9dcc8;
 
-  /* Webflow's defaults the old site showed (builder-defaults.css). */
+  /* Webflow's defaults the old site showed (builder-defaults.css) */
   --color-builder-tab-current: #c8c8c8;
+  --color-builder-quote-border: #e2e2e2;
 }

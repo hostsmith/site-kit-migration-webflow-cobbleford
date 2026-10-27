@@ -1,216 +1,255 @@
 # Migration report
 
-The site Cobbleford Co-Working moved from Webflow to this repository on 2026-10-26, from the exports listed under "Sources". This report lists what moved, what changed, what didn't carry over, and what the owner needs to decide before the site goes to production.
+The site Cobbleford Co-Working moved from Webflow to this repository on 2026-10-27, from the exports listed under "Sources". This report lists what moved, what changed, what didn't carry over, and what the owner needs to decide before the site goes to production.
 
 ## For the owner to approve
 
-- [ ] **The 404 page, written anew** in the site's voice, since the export had Webflow's default text: "This page has wandered off." (see "Pages").
-- [ ] **The colors:** none changed for contrast; the theme's error color, which the old site didn't have, is a brick red (see "Colors changed for contrast").
-- [ ] **The grey selected tab** on About, Webflow's own default, kept as the old site showed it (see "Builder defaults kept").
-- [ ] **Space Grotesk,** hosted with the site from the owner's files, under the SIL Open Font License (see "Fonts").
-- [ ] **The map on Contact** loads only when a visitor clicks "Show map", and the post's YouTube video the same way (see "Embeds").
-- [ ] **The forms** (the newsletter and the tour request) don't work until the kit's contact form arrives; the Contact page shows the visit and hours details and the map until then (see "Forms").
-- [ ] **The audience and voice in the brief,** drafted from the old site's copy, confirmed in advance (`.hostsmith/brief.md`).
-- [ ] **The differences from the old site** listed under "Fidelity check" and "Not carried over", left as they are.
-- [ ] **The team photos,** still to come: the cards and member pages show a placeholder until then (see "Missing pieces").
-- [ ] **No alt text was written:** every image had its own (see "Alt text written").
+- [ ] **The 404 page, written anew:** Webflow's was its default "Page Not Found" message. The new one says "This page isn't in the mill.", with links to the home page and to book a tour (see "Pages").
+- [ ] **The font:** Space Grotesk, from the owner's files, under the SIL Open Font License (see "Fonts").
+- [ ] **The map on Contact loads on a click,** with a "Show map" button, so the page sends nothing to OpenStreetMap until the visitor asks (see "Embeds"). The YouTube video in "Inside Our Community Calendar" works the same way.
+- [ ] **Webflow's own defaults kept:** the gray of the selected tab on About, and the light gray rule beside quotes in the blog posts (see "Builder defaults kept").
+- [ ] **No colors changed for contrast,** and no alt text written: every image kept its own (see those sections).
+- [ ] **The forms don't work yet:** the newsletter signup and the tour request form aren't on the new site until the kit's contact form is set up. Visitors can still email or call (see "Forms").
+- [ ] **The differences left as they are,** listed under "Fidelity check", such as Contact's details in columns now the form is gone, and the team section on the page color.
+- [ ] **The team photos:** the team cards and pages show no photo until the owner sends them (see "Missing pieces").
+- [ ] **The comparison with the old site:** no one compared the pages in a browser during the migration. Compare them on the preview site before approving.
 
 ## Sources
 
 | File | Size | Modified |
 | --- | --- | --- |
-| `<site>.webflow` (the code export, an unzipped folder) | 2,144,922 bytes | 2026-10-24 |
+| `<site>.webflow` (code export, unzipped folder) | 2,144,922 bytes (36 files) | 2026-10-24 |
 | `export-demo - Blog Posts - 6ad49570acec9ae2790c9630.csv` | 13,581 bytes | 2026-10-25 |
 | `export-demo - Team - 6ad49566944eb9e842c48787.csv` | 1,482 bytes | 2026-10-25 |
+| `answers.md` (answers given in advance) | | 2026-10-27 |
 
-The site has no custom domain, and its `webflow.io` address publishes no sitemap, so there is none. The answers given in advance are `answers.md`, copied to `.hostsmith/snapshot/answers.md`.
+The site has no custom domain, and its `webflow.io` address publishes no sitemap, so no sitemap was read.
 
 The snapshot is in `.hostsmith/snapshot/`, which git ignores. It can be deleted once the owner has approved the site.
-
-The example's own pages, its `news` collection, its placeholder media and its icon were removed once the migration was done.
 
 ## Pages
 
 | Page | URL | Sections |
 | --- | --- | --- |
-| Home (`home`) | `/` | `hero` (image-right), `steps`, `split` (the tour), `services-grid` (amenities, with icons), `testimonials`, `photo-figures` (site-local: "By the numbers"), `collection-list` (the 3 newest posts), `cta` (card, accent) |
-| Membership (`membership`) | `/membership` | `hero` (page), `plan-cards` (site-local), `faq-aside` (site-local) |
-| About (`about`) | `/about` | `hero` (page), `split` (our story), `services-grid` (values, without icons), `tabs` (the floors), `collection-list` (the team), `cta` (card, accent) |
-| Blog (`blog`) | `/blog` | `hero` (page), `collection-list` (every post) |
-| Contact (`contact`) | `/contact` | `hero` (page), `info-groups` (site-local: visit, opening hours, get in touch), `embed` (the map) |
-| 404 (`404`) | any missing page | `hero` (page), written anew: the export's `404.html` is Webflow's default text ("Page Not Found / The page you are looking for doesn't exist or has been moved"). The new text is in the site's voice, with links home and to the tour, for the owner to approve |
+| Home (`index.html`) | `/` | `hero` (image-right), `steps`, `split` (the tour block inside "How it works"), `services-grid` (cards, surface), `testimonials` (grid), `stats-band` (site-local), `collection-list` (posts, 3), `cta` (card, accent) |
+| Membership | `/membership` | `hero` (page), `plan-cards` (site-local), `questions-aside` (site-local) |
+| About | `/about` | `hero` (page), `split` (image-left), `services-grid` (list, surface), `tabs` (horizontal), `collection-list` (team), `cta` (card, accent) |
+| Blog | `/blog` | `hero` (page), `collection-list` (posts, all) |
+| Contact | `/contact` | `hero` (page), `contact-info` (site-local), `embed` (map) |
+| 404 | served for any missing page | `hero` (page), written anew (see "For the owner to approve") |
+| Blog post template (`detail_blog.html`) | `/blog/<slug>` | the `posts` detail template: header, image, body, and the call to action band |
+| Team template (`detail_team.html`) | `/team/<slug>` | the `team` detail template |
 
-Every page keeps its old `<title>` and meta description. No page needed `template: custom`.
+No page needed `template: custom`.
 
 ## Site-local types and Components
 
-Site-local types, each with its component in `src/components/sections/site/`, its schema in `src/site.schema.ts` and its Decap type in `public/admin/config.site.yml`:
+Site-local types, in `src/components/sections/site/`:
 
-- **`photo-figures`** (Home): a photo beside a green-dark panel with an eyebrow, a title, a paragraph and four figures, the old "By the numbers" (`section_home-numbers`). The kit's `split` has the parts, but no dark tone.
-- **`plan-cards`** (Membership): the three plans as cards, each with its name, price, period, what's included and a "Book a Tour" button (`plan-card_component`, a Component used three times). The kit's `pricing-list` shows only a label and a price.
-- **`faq-aside`** (Membership): the questions beside a heading with an intro and a "How to choose a plan" button (`section_membership-faq`). The kit's `faq` has no intro or link.
-- **`info-groups`** (Contact): "Visit", "Opening hours" and "Get in touch", each with a heading, lines, rows, links and a note (`contact_info`). The kit's `hours-location` has one heading and one note, so two notes and the group headings would have been lost.
+- **`stats-band`** (Home): an image beside an eyebrow, a title, a paragraph and four figures, on the deep green band: the old "By the numbers". `split` has the image and figures but no dark tone, and `stats` has the tone but no image.
+- **`plan-cards`** (Membership): the three plans as cards, each with its name, price and period, features and a "Book a Tour" button. `pricing-list` shows only a label and a price per row.
+- **`questions-aside`** (Membership): the FAQ with its heading group, intro and "How to choose a plan" button beside the questions. `faq` has neither an intro nor a button.
+- **`contact-info`** (Contact): the "Visit", "Opening hours" and "Get in touch" blocks, each with its title and note. `hours-location` has no block titles and one note.
 
 Components found by repetition:
 
-- **The call to action band** (`cta_component`), on Home, About and the blog post template: the library `cta` (card, accent). On the post template, its markup with its text from interface strings (`tourTitle`, `tourText`, `tourButton`).
-- **The section header** (`section-header_component`), on every page: the library types' eyebrow and title.
-- **The plan card** (`plan-card_component`), three times on Membership: `plan-cards`.
-- **The page header** (`page-header_component`), on Membership, About, Blog and Contact: `hero` with the variant `page`.
-- **The check list** (`check-list`), on Home's tour and in About's tabs: a Markdown list, which the theme draws with the old green ticks in a `split` or `tabs` body.
-- **The navbar and the footer:** the layout's, from the settings.
+- **The call to action band** (`cta_component`): on Home, About and the blog post template, with different text. It became `cta` (variant `card`, tone `accent`) on the pages, and the same markup with interface strings (`postsCta*`) in the blog post template.
+- **The section header** (`section-header_component`: eyebrow, title, intro): the header of the library types, `sk-section__header`, and of the site-local types.
+- **The page header** (`section_page-header`): `hero` with the variant `page` on Membership, About, Blog, Contact and the 404 page.
+- **The blog card** (`blog-card_*`), on Home and Blog: `collection-list` cards.
+- **The check list** (`check-list`), on Home and About: a Markdown list in a `split` and in the tabs' bodies, drawn with checks by the theme.
 
 Webflow elements replaced by kit parts:
 
-- **Tabs** (`w-tabs`) on About, "Inside the mill": a `tabs` section, one item per floor.
-- **The map embed** (`w-embed` with an OpenStreetMap frame) on Contact: an `embed` section.
-- **The native accordions** (`details`) on Membership: the `faq-aside` type's own `details`, as the kit's `faq` has them.
-- **The navbar's mobile menu** (a `details` element): the kit's header menu.
+- **Tabs** (`w-tabs`) on About, "Three floors, one community": `tabs`, one item per pane.
+- **The native accordions** (`details`) on Membership: `questions-aside`, still native `details`.
+- **The map embed** (`w-embed` with an `iframe`) on Contact: `embed`, `kind: map`.
+- **The YouTube video** in the post "Inside Our Community Calendar": a video link alone in its paragraph, which the kit renders as an embed.
+- **The navbar's `details` mobile menu**: the kit's header menu.
 
 ## Collections
 
-| Collection | Webflow | Base path | Entries | Drafts | Breadcrumb |
-| --- | --- | --- | --- | --- | --- |
-| `posts` | Blog Posts | `/blog` | 4 | 1: "Getting the Mill Ready for Winter" (`draft: true`, no page) | off |
-| `team` | Team | `/team` | 3 | none | off |
-
-- **`posts` fields:** `title` (Name), `date` (Published Date), `description` (Summary), `image` and `imageAlt` (Main Image and Main Image Alt), `author` (the Author reference, a team member's slug), `draft`, and the body (Body, as Markdown). Title pattern: `{title} | Cobbleford Co-Working`, the interface string `postsPageTitle`. Description pattern: the Summary, the entry's `description`. The template shows the author's name after "by", with no link.
-- **`team` fields:** `title` (Name), `category` (Role, so the list cards show it), `description` (Short Bio), `image` and `imageAlt` (Photo, empty for all three), `draft`. Title pattern: `{title} | Cobbleford Co-Working`, the interface string `teamPageTitle`. Description pattern: the Short Bio, the entry's `description`.
-- **Lists:** Home shows the 3 newest posts, Blog every post, both newest first by `date`; About shows the team in the CSV's order (by slug, which is the same order: Hollis Whitcomb, Ines Calloway, Tobias Renn), each card linked to `/team/<slug>`. No list has a filter. The list cards show the date above a post's title and the role under a member's name, as the old cards did.
-- **Breadcrumb:** both templates have only a back link ("← All articles", "← Meet the team"), so each collection has `breadcrumb: false`, and so does the site, whose pages aren't in folders.
-- **Template text:** "← All articles", "by {author}", "← Meet the team", and the call to action's title, text and button are interface strings, in `ui` in `src/content/settings/site.en.yml`.
-
-The Blog Posts body holds the email address and the phone number as the facts `{email}` and `{phone}`.
+- **`posts`** (Webflow's Blog Posts), at `/blog`: 4 entries, 1 of them a draft ("Getting the Mill Ready for Winter", `draft: true`, no page). Fields: `title` (Name), `date` (Published Date), `description` (Summary), `image` and `imageAlt` (Main Image, Main Image Alt), `author` (a Team slug), `draft`, and the body (Body, as Markdown). Title pattern `{title} | Cobbleford Co-Working` (`postsPageTitle`); description: the Summary, as `description`. Breadcrumb: off (`breadcrumb: false`): the template has only the "← All articles" link. The author shows as the member's name after "by", without a link.
+- **`team`** (Webflow's Team), at `/team`: 3 entries, no drafts. Fields: `title` (Name), `category` (Role, labelled "Role" in the CMS, so the collection list's cards show it), `description` (Short Bio), `image` and `imageAlt` (Photo, empty in every row). Title pattern `{title} | Cobbleford Co-Working` (`teamPageTitle`); description: the Short Bio, as `description`. Breadcrumb: off: the template has only the "← Meet the team" link.
+- **Lists:** Home shows the 3 newest published posts, Blog every published post, both newest first by `date`. About shows all three team members, in the CSV's order, which is also their alphabetical order, each card linking to the member's page. No list has a filter.
+- **Site-wide breadcrumb:** off (`breadcrumb: false` in `src/site.config.ts`): no page is in a folder, and Webflow has no breadcrumb element.
+- **Facts in the bodies:** the email, the phone number, the street address and the plan prices are written as `{email}`, `{phone}`, `{street}` and `{hotDeskPrice}` and the like, so a change in the settings reaches the posts too.
 
 ## Interactions
 
-- **`i-ad0d0a50`** (IX3, timeline `t-e2dcface`): on scroll into view (top at 85%), once, every `section-header_component` faded in while moving up 15%, over 0.7 s, and skipped to the end under reduced motion. It's a simple entrance: `reveal: fade-up` on the 11 sections whose header was a `section-header_component` (Home: steps, amenities, testimonials, by the numbers, blog; Membership: FAQ; About: story, values, floors, team). The theme animates it over 0.7 s, and never under reduced motion. The kit reveals the whole section, where the old site moved only its header.
-
-Webflow's inline style that hid the headers until its script ran isn't carried: the kit hides nothing without its own script.
+- **`i-ad0d0a50`** (IX3, site-wide): every `section-header_component` (the eyebrow and heading above a section) faded up by 15% as it scrolled into view (top at 85% of the viewport, 0.7 s, played once), skipped to the end under reduced motion. Its class is on the section headers of Home (5: steps, amenities, testimonials, numbers, blog), Membership (1: FAQ), About (4: story, values, floors, team) and Contact (1: the tour request form's header). Carried as `reveal: fade-up` on those 10 sections (the Contact one went with its form), with the theme's transition at the old 0.7 s, skipped under reduced motion. The whole section fades up, where the old site moved only its header. Webflow's inline style that hid the headers until its script ran isn't carried.
 
 ## Embeds
 
-- **Contact: the map,** an OpenStreetMap frame titled "Map placeholder showing open countryside": an `embed` section, `kind: map`, loaded on a click (given in advance). Its frame was a fixed 22rem high; it's `21:9`, the nearest aspect. Its caption is the old line under it.
-- **The blog post "Remote Work Doesn't Have to Be Lonely: Inside Our Community Calendar":** its YouTube video, "These CATS are too FUNNY! | New Cat Videos", in the rich text, is a video link alone in its paragraph, which the kit renders as an embed that loads on a click.
+- **Contact:** an OpenStreetMap map (`openstreetmap.org/export/embed.html`) in a `w-embed`, titled "Map placeholder showing open countryside". Choice: **on a click** (`load: click`, given in advance). It's an `embed` section, `kind: map`, at the nearest aspect, 21:9 (the old frame was 22rem tall across the content width), with its caption.
+- **Blog post "Inside Our Community Calendar":** a YouTube video (`3URtTIdnXIk`, "These CATS are too FUNNY! | New Cat Videos") in the rich text. It's a video link alone in its paragraph, which the kit renders as an embed that loads on a click.
 
 ## Forms
 
-No form is carried over: the kit's contact form comes in a later release. The built pages submit nothing to Webflow.
+No form is carried over: the kit's contact form comes in a later release. No form works until the kit's contact form is set up.
 
-- **Newsletter,** in the footer of every page (`wf-form-Newsletter`): a label "Email address", then one field: `newsletter-email`, type email, required, placeholder "you@example.com", autocomplete email. Button: "Join" ("Joining..." while it sends). Success: "Thanks! You are on the list for the next newsletter." Error: "Something went wrong. Please try again, or email hello@cobbleford.example." The footer keeps the column's heading and text, "Newsletter" and "Community events, open house dates and member perks, once a month.", without the form.
-- **Tour Request,** on Contact (`wf-form-Tour-Request`), in a card headed "Request a tour" with the text "Tell us when suits you and we will save you a desk for the day. Fields marked * are required.":
-  - "Name *": `name`, text, required, placeholder "Your name", autocomplete name;
-  - "Email *": `email`, email, required, placeholder "you@example.com", autocomplete email;
-  - "Phone": `phone`, tel, optional, placeholder "Optional", autocomplete tel;
-  - "Preferred day": `preferred-day`, a select: "Any weekday" (empty value), Monday, Tuesday, Wednesday, Thursday, Friday;
-  - "Plan of interest": `plan`, a select: "Not sure yet" (empty value), Hot Desk, Dedicated Desk, Private Office;
-  - "Message": `message`, a text area, optional, up to 5,000 characters, placeholder "Tell us a little about your work and what you need.";
-  - button "Request a Tour" ("Sending..." while it sends); success "Thanks! We will reply within one working day to confirm your tour."; error "Something went wrong. Please try again, or email hello@cobbleford.example."
-
-  The card's heading and text belong to the form, so they wait with it. Until then, the Contact page shows the visit, hours and contact details, and the map.
+- **Newsletter** (footer, every page; `wf-form-Newsletter`, method GET):
+  - Email address: `newsletter-email`, email, required, placeholder "you@example.com".
+  - Button: "Join" (while sending: "Joining...").
+  - Success: "Thanks! You are on the list for the next newsletter."
+  - Error: "Something went wrong. Please try again, or email hello@cobbleford.example."
+- **Tour Request** (Contact; `wf-form-Tour-Request`, method GET), introduced by "Request a tour" and "Tell us when suits you and we will save you a desk for the day. Fields marked * are required.":
+  - Name *: `name`, text, required, placeholder "Your name".
+  - Email *: `email`, email, required, placeholder "you@example.com".
+  - Phone: `phone`, tel, optional, placeholder "Optional".
+  - Preferred day: `preferred-day`, select: Any weekday (empty value), Monday, Tuesday, Wednesday, Thursday, Friday.
+  - Plan of interest: `plan`, select: Not sure yet (empty value), Hot Desk, Dedicated Desk, Private Office.
+  - Message: `message`, textarea, optional, max 5000 characters, placeholder "Tell us a little about your work and what you need."
+  - Button: "Request a Tour" (while sending: "Sending...").
+  - Success: "Thanks! We will reply within one working day to confirm your tour."
+  - Error: "Something went wrong. Please try again, or email hello@cobbleford.example."
 
 ## Fonts
 
-| Family | Where it came from | License | Recommendation | Files |
-| --- | --- | --- | --- | --- |
-| Space Grotesk | An upload the export left out: both `@font-face` rules in `css/<site>.webflow.css` point at `url('../images/')`, weights 300 to 700 | SIL Open Font License 1.1, Florian Karsten | Host the variable WOFF2 with its `OFL.txt` | Arrived: the owner's `space-grotesk-latin-wght-normal.woff2` and `OFL.txt`, from Fontsource, in `public/assets/fonts/`, listed in `CREDITS.md` |
-
-The site uses no other font. Webflow's own `webflow-icons` font, in `webflow.css`, isn't carried: nothing on the site used it.
+- **Space Grotesk** (headings and body, weights 300 to 700): an upload the export left out (its `@font-face` points at `url('../images/')`). It's an open font, by Florian Karsten, under the SIL Open Font License 1.1. The owner sent the variable WOFF2 from Fontsource and its `OFL.txt`, which are in `public/assets/fonts/`, loaded by `src/styles/theme/fonts.css` and listed in `CREDITS.md`. The files arrived.
+- No other font: the site's CSS names only Space Grotesk, with a generic `sans-serif` fallback.
 
 ## Colors changed for contrast
 
-None. Every pair in the theme's contrast table passes with the old site's colors, as they were. The theme's error color, which the old site didn't define, is `#9b2c1c`, a brick red that fits the palette.
+None: every role of the old palette passes the theme's contrast pairs as it was.
 
 ## Builder defaults kept
 
-- **The selected tab on About** ("Inside the mill"): the old site's CSS never styled the current tab, so it showed `webflow.css`'s `.w-tab-link.w--current` background, grey `#c8c8c8`, behind the green label. It's kept as `--color-builder-tab-current` in `src/styles/theme/builder-defaults.css`.
+- **About, "Three floors":** the selected tab's background, Webflow's Tabs gray `#c8c8c8` (`.w-tab-link.w--current`), which the site's own tab style never replaced. Kept on `.sk-tabs__tab[aria-selected="true"]`.
+- **Blog posts, quotes:** the light gray left rule of Webflow's `blockquote`, `#e2e2e2`. Kept on `.sk-prose blockquote`.
 
 To use the theme's own styles instead, delete `src/styles/theme/builder-defaults.css`, its import in `src/styles/global.css`, and the `--color-builder-*` colors in the site's preset.
 
 ## Not carried over
 
-- **The forms:** the newsletter and the tour request (see "Forms").
-- **The password page,** `401.html`: Webflow's, for protected pages. No page was protected.
-- **Webflow's scripts:** `webflow.js`, jQuery from Webflow's CDN, and GSAP with ScrollTrigger from Webflow's CDN, which ran the interaction (see "Interactions").
-- **The draft post** "Getting the Mill Ready for Winter" has an entry with `draft: true`, so it has no page, as on Webflow.
-- **Differences in the port,** each kept to the kit's parts, never dropping content:
-  - Home, "Take a Tour": its own section, a `split`, after the steps; its title is a section title (`h2`), where the old one was an `h3` in the steps section.
-  - About, "Read the full story": a `split`'s link, which the theme draws as a primary button, as Home's "Book a Tour" in the other `split`; the old one was a secondary button.
-  - Contact: the visit, hours and contact groups sit side by side, as the form beside them isn't carried yet.
-  - The home and about sections reveal as a whole, where the old site moved only the section headers.
+- **The password page** (`401.html`): Webflow's default protected-page template. No page of the site is password-protected, and the page doesn't carry over.
+- **The forms:** the newsletter form in the footer and the tour request form on Contact, with its heading "Request a tour" and its line "Tell us when suits you and we will save you a desk for the day. Fields marked * are required." Both are listed under "Forms", for the kit's contact form in a later release. The footer keeps the Newsletter column's title and text. With the form gone, Contact's details sit in three columns where they were one column beside the form.
+- **Draft item:** the blog post "Getting the Mill Ready for Winter" (`getting-the-mill-ready-for-winter`) is a draft, with no live URL. See "Collections".
 
 ## Missing pieces
 
-- **Fonts:** Space Grotesk, which the export left out (see "Fonts"). The owner sent its files.
-- **Utility pages:** the export has `404.html` and `401.html`. Its `404.html` is Webflow's default text, so the 404 page is written anew (see "Pages").
-- **Collections:** Blog Posts and Team each have a template page, `detail_blog.html` and `detail_team.html`, and a CSV. Nothing is missing.
-- **The favicon and the touch icon:** the export had only Webflow's defaults. The owner sent their own (see "Answers").
-- **Typos:** none noticed in the old site's copy, which is carried as it was.
-- **Team photos:** Team has 3 entries without a photo (Hollis Whitcomb, Ines Calloway, Tobias Renn). The owner hasn't sent them yet: the cards and the member pages show a placeholder until they arrive.
-- **What the export never holds:** the CMS content, which comes from the CSVs, and each collection list's settings, which were given in advance (see "Answers").
+- **Media sizes:** `magick` isn't installed on the machine that ran the migration, so no image was resized. None needed it: the widest, `cobbleford-cafe-room.jpg` and `cobbleford-laptops-coffee.jpg`, are 1280 px wide, under twice their widest display (about 930 px, below 992 px). `cobbleford-meeting.jpg` is 600 px wide and shows up to about 930 px wide below 992 px, so it looks soft there, as on the old site: a larger copy from the owner would help.
+- **Font:** the export's `@font-face` for Space Grotesk points at no file (`url('../images/')`): Webflow's export leaves out uploaded fonts. The owner supplied the file (see "Fonts").
+- **404 page:** the export's `404.html` is Webflow's default ("404", "Page Not Found", "The page you are looking for doesn't exist or has been moved"), so the 404 page is written anew (see "Pages").
+- **Favicon and touch icon:** the export's `favicon.ico` and `webclip.png` are Webflow's own defaults, showing Webflow's logo, and weren't carried. The owner supplied the site's own, which are in place.
+- **Team photos:** the 3 team entries have no photo (Team: 3 entries without a photo). The owner hasn't sent them yet: the cards on About show no image, and each member's page shows an empty photo area, until they arrive.
+- **Collection list settings:** the export doesn't hold them (sort, limit, filters). They were given in advance (see "Answers").
 
 ## Answers
 
-All of these were given in advance, in `.hostsmith/snapshot/answers.md`:
+All answers below were given in advance, in `.hostsmith/snapshot/answers.md`, and none was asked during the run.
 
-- **A live address:** none. The site has no custom domain, and its `webflow.io` address publishes no sitemap. Nothing was fetched from it.
-- **A rerun:** no, the first migration in this site.
-- **Replacing the example's content:** yes, all of it.
-- **Webflow Localization:** no, one locale.
-- **Missing CSV exports:** none. Blog Posts and Team are the only collections.
-- **Blog Posts' base path:** `/blog`.
-- **Team's base path:** `/team`.
-- **Space Grotesk:** the owner's files, `space-grotesk-latin-wght-normal.woff2`, the variable font for weights 300 to 700, and `OFL.txt`. Space Grotesk by Florian Karsten, under the SIL Open Font License 1.1, from Fontsource.
-- **Any other font:** none.
-- **The photos' sources:** Pixabay, under the Pixabay Content License (each listed in `CREDITS.md`).
-- **The logo and the icons:** made for the site from Lucide icons, lucide-static 1.49.0, ISC License.
-- **The owner's icons and Open Graph image:** made for the site, under the same licenses as their sources.
-- **The team photos:** not sent yet; build without them.
-- **Resizing:** use ImageMagick's `magick` if installed, otherwise leave the images at their size. `magick` isn't installed, and no image needed it: every photo is already no wider than twice its widest display width (the largest is 1280 px).
-- **The audience and voice:** confirmed as drafted from the old site.
-- **Who sends requests, and how:** Hollis Whitcomb, Founder, by email. **Who approves changes:** Hollis Whitcomb. **The developer:** the Hostsmith team, through the repository's issues.
-- **The plan's limits:** skip the comparison, and report the size of `dist/`.
-- **Playwright's browser:** go ahead if a download is needed. None was: a Chromium was already installed.
-- **The person's comparison in a browser:** not done in this run.
-- **The production URL:** `https://cobbleford.us.hostsmith.link`, in `src/site.config.ts`.
-- **The primary locale's tag:** `en-US`.
-- **A default Open Graph image:** yes, the owner's `og-image.jpg`, 1200 by 630 pixels, as `/assets/images/cobbleford-og-image.jpg`, the settings' `seo.ogImage`.
-- **The favicon and the touch icon:** the export's `favicon.ico` and `webclip.png` are Webflow's defaults (their SHA-1 hashes match Webflow's), so neither was carried. The owner's `favicon.ico` and `apple-touch-icon.png` are `public/favicon.ico` and `public/apple-touch-icon.png`.
-- **The Contact page's map embed:** load it on a click.
-- **Typos and copy:** keep the text exactly as it is, and list any typo in the report.
-- **Blog Posts' title pattern:** `{Name} | Cobbleford Co-Working`; description pattern: the Summary.
-- **Team's title pattern:** `{Name} | Cobbleford Co-Working`; description pattern: the Short Bio.
-- **What the author reference shows:** the team member's Name, as text after "by", with no link.
-- **The home page's blog list:** the 3 newest published posts, newest first, by Published Date.
-- **The Blog page's list:** every published post, newest first, by Published Date.
-- **The About page's team list:** all three members, in the CSV's order (Hollis Whitcomb, Ines Calloway, Tobias Renn), each card linked to the member's page under `/team`.
-- **Filters:** no list has one.
+- **Live address:** none. The site has no custom domain, and its `webflow.io` address publishes no sitemap. Nothing was fetched from it. (given in advance)
+- **Rerun:** no, this is the first migration in this site. (given in advance)
+- **Replace the example's content:** yes, all of it. (given in advance)
+- **Webflow Localization:** not used. The site has one locale. (given in advance)
+- **Missing CSV exports:** none. Blog Posts and Team are the only collections, and both CSVs are given. (given in advance)
+- **Blog Posts' base path:** `/blog`. (given in advance)
+- **Team's base path:** `/team`. (given in advance)
+- **Blog Posts' template patterns:** title `{Name} | Cobbleford Co-Working`, description the `Summary`. (given in advance)
+- **Team's template patterns:** title `{Name} | Cobbleford Co-Working`, description the `Short Bio`. (given in advance)
+- **What the author reference shows:** the team member's `Name`, as text after "by", with no link. (given in advance)
+- **The home page's blog list:** the 3 newest published posts, newest first, by `Published Date`. (given in advance)
+- **The Blog page's list:** every published post, newest first, by `Published Date`. (given in advance)
+- **The About page's team list:** all three team members, in the CSV's order (Hollis Whitcomb, Ines Calloway, Tobias Renn), each card linking to the member's page under `/team`. (given in advance)
+- **Filters:** no list has one. (given in advance)
+- **The Contact page's map embed:** load it on a click. (given in advance)
+- **The photos' sources:** all four from Pixabay, under the Pixabay Content License (commercial use without attribution): `cobbleford-open-plan.jpg` (simonrtr120, 10235505, cropped), `cobbleford-cafe-room.jpg` (uh_yeah_20101995, 4660847), `cobbleford-laptops-coffee.jpg` (life-of-pix, 569121), `cobbleford-meeting.jpg` (sakibmia24, 10503595, cropped). Listed in `CREDITS.md`. (given in advance)
+- **The logo and the icons:** made for the site from Lucide icons, lucide-static 1.49.0, ISC License: the logo from `lamp-desk`, the amenity icons from `laptop`, `monitor`, `door-closed`, `users`, `mic` and `coffee`. (given in advance)
+- **The owner's icons and Open Graph image:** made for the site, from the logo's lamp tile and from `cobbleford-open-plan.jpg`, under the same licenses as their sources. (given in advance)
+- **The team photos:** not sent yet. The site builds without them (see "Missing pieces"). (given in advance)
+- **Resizing:** use ImageMagick's `magick` if it's installed, otherwise leave the images at their size and list them. None needed it (see "Missing pieces"). (given in advance)
+- **The drafted audience and voice:** confirmed as drafted from the old site, in `.hostsmith/brief.md`. (given in advance)
+- **Who sends requests, and how:** Hollis Whitcomb, Founder, by email. (given in advance)
+- **Who approves changes:** Hollis Whitcomb. (given in advance)
+- **The developer:** the Hostsmith team, through the repository's issues. (given in advance)
+- **The plan's limits:** skip the comparison with the plan's limits, and report the size of `dist/`: 1.5 MB (see "Fidelity check"). (given in advance)
+- **Playwright's browser:** go ahead if a download is needed. None was: Playwright's Chromium was already on the machine. (given in advance)
+- **The person's comparison in a browser:** no one compares the pages in this run: recorded as not done. (given in advance)
+- **Typos and copy:** keep the text exactly as it is, and list any typo in the report. No typo was found. (given in advance)
+- **Space Grotesk:** use the owner's files, `fonts/space-grotesk-latin-wght-normal.woff2` (the variable font for weights 300 to 700) and its license, `fonts/OFL.txt`: Space Grotesk by Florian Karsten, SIL Open Font License 1.1, from Fontsource. (given in advance)
+- **Any other font:** the site uses none. (given in advance)
+- **The production URL:** `https://cobbleford.us.hostsmith.link`, in `src/site.config.ts`. (given in advance)
+- **The primary locale's tag:** `en-US`. (given in advance)
+- **A default Open Graph image:** yes, the owner's `og-image.jpg`, 1200 by 630 pixels, for every page without its own: `/assets/images/cobbleford-og.jpg`, as `seo.ogImage`. (given in advance)
+- **The favicon and the touch icon:** the export's `favicon.ico` and `webclip.png` are Webflow's own defaults (SHA-1 `743a2c39…` and `8f20cc5b…`), so they weren't carried. The owner's `favicon.ico` and `apple-touch-icon.png` are `public/favicon.ico` and `public/apple-touch-icon.png`. (given in advance)
 
 ## Alt text written
 
-None. Every image in the export and in the CSVs had its alt text. The amenity icons were decorative (`alt=""`), and are drawn as the kit's icons, hidden from assistive technology.
+None: every image the pages show had its alt text in the export or the CSV. The amenity icons were decorative (`alt=""`) and are now the site's own icons, which the kit hides from assistive technology.
 
 ## Links to check
 
-None. The two links to posts in the pages, `/blog/from-woolen-mill-to-workspace` (About) and `/blog/hot-desk-dedicated-desk-or-private-office` (Membership, and in the post "Inside Our Community Calendar"), are both published. Every post's author is a team member's slug.
+Every internal link in the export's pages and the CSVs' rich text points at a page or a published item in the URL map:
+
+- `/blog/hot-desk-dedicated-desk-or-private-office`, from Membership and from the post "Inside Our Community Calendar";
+- `/blog/from-woolen-mill-to-workspace`, from About.
 
 ## Fidelity check
 
-The check compared each page of the build with the same page of the code export, at 479, 767, 991 and 1440 px, with the site's Space Grotesk on both sides: Home, Membership, About, Blog, Contact, 404, the post "From Woolen Mill to Workspace" and Hollis Whitcomb's page. The CMS areas are empty in the export, so the lists and the templates were checked against the entries instead. Fixed after the first run: the content width, the white "How it works" band, the amenity text size, the testimonial names and roles, the floor tabs' list beside their text, the team band's color, and the map's heading.
+The check ran: `fidelity.mjs` with Playwright 1.64.0 and its Chromium, each page of the build against the same page of the export, at 479, 767, 991 and 1440 px, with the site's Space Grotesk given to the export too. Every picture on the checklist was opened and ticked. The fixes it led to (the stats band's image, the amenities header, the nav's position, the map's title, the team header) were made, and the check ran again before the final review.
+
+**Compared:**
+
+- home, 479 px: overview
+- home, 767 px: overview
+- home, 991 px: overview
+- home, 1440 px: overview
+- membership, 479 px: overview
+- membership, 767 px: overview
+- membership, 991 px: overview
+- membership, 1440 px: overview
+- about, 479 px: overview
+- about, 767 px: overview
+- about, 991 px: overview
+- about, 1440 px: overview
+- blog, 479 px: overview
+- blog, 767 px: overview
+- blog, 991 px: overview
+- blog, 1440 px: overview
+- contact, 479 px: overview
+- contact, 767 px: overview
+- contact, 991 px: overview
+- contact, 1440 px: overview
+- 404, 479 px: overview
+- 404, 767 px: overview
+- 404, 991 px: overview
+- 404, 1440 px: overview
+- blog-from-woolen-mill-to-workspace, 479 px: overview
+- blog-from-woolen-mill-to-workspace, 767 px: overview
+- blog-from-woolen-mill-to-workspace, 991 px: overview
+- blog-from-woolen-mill-to-workspace, 1440 px: overview
+- team-hollis-whitcomb, 479 px: overview
+- team-hollis-whitcomb, 767 px: overview
+- team-hollis-whitcomb, 991 px: overview
+- team-hollis-whitcomb, 1440 px: overview
+- home, 479 px: first slice (header)
+- home, 479 px: end (footer)
+- home, 767 px: first slice (header)
+- home, 767 px: end (footer)
+- home, 991 px: first slice (header)
+- home, 991 px: end (footer)
+- home, 1440 px: first slice (header)
+- home, 1440 px: end (footer)
+
+**Not compared:** None.
 
 | Page | Width | Difference |
 | --- | --- | --- |
-| Every page | all | The footer's newsletter column has no sign-up field (see "Forms"). In the "Visit" column the phone and email come before the hours, and its links are spaced further apart, for touch. |
-| Home | 1440, 991 | "Take a Tour" is a little larger (a section title), and its photo sits a little lower. |
-| Home, About | all | Sections fade up as a whole when they scroll into view, where the old site moved only their headings. |
-| About | all | "Read the full story" is a filled green button, where it was an outlined one. |
-| Contact | all | The tour request form and its card aren't there; the visit, hours and contact groups sit side by side. The map's frame is 21:9, taller than the old 22rem. |
-| 404 | all | New text, with the site's header and footer, where Webflow's page was a bare "Page Not Found". |
-| Blog and team cards, post and member pages | all | They show their content, where the export shows the empty CMS lists and templates. |
+| Home, Blog | all | The blog lists are empty in the export (CMS areas); the build shows the posts, checked against the entries: 3 newest on Home, all 3 published on Blog, newest first. |
+| About | all | The team list is empty in the export; the build shows the three members, with name, role and short bio, but no photo area until the photos arrive. The team section is on the page color, where the old one was on the darker cream: `collection-list` has no tone. |
+| Home | 1440 | The amenities header: the intro and the "See Plans" button sit to the right of the title, as before, but aligned a little differently. |
+| Contact | all | The tour request form isn't carried (see "Forms"), so the contact details sit in three columns (two at 768-991 px, one below) where they were one column beside the form. The map is a placeholder with a "Show map" button until the visitor clicks, and at 21:9 it's shorter than the old 22rem frame on narrow screens. |
+| Footer, every page | all | The newsletter form isn't carried; its column keeps its title and text. The links have 44 px tall touch targets, so the columns are a little taller. |
+| Blog post, team member pages | all | The export's templates are empty (CMS areas); the build shows each entry's fields where the template bound them. |
+| 404 | all | Written anew as a page header in the site's look, with the header and footer, where Webflow's default was a bare centered message. |
+| Every page | all | The whole section fades up as it enters the view, where the old site moved only its header. The screenshots run under reduced motion, where neither moves. |
+| Blog posts | all | Links in the body are in the text color, underlined, where the old site showed the browser's default blue. |
+| Every page | all | Phone links are `tel:8025550147`, where the old site's were `tel:+18025550147`. |
 
-`dist/` is 1.7 MB. The plan's limits weren't compared, as given in advance.
+**Size:** the built site, `dist/`, is 1.5 MB, 12 pages. The plan's limits weren't checked (given in advance).
 
-The person's comparison of the build with the old site in a browser wasn't done: no one compared the pages in this run (given in advance). It's still to do before the domain moves.
+**The person's comparison:** not done. No one compared the pages with the old site in a browser in this run (given in advance). The owner should do it on the preview site before approving.
 
 ## To translate
 

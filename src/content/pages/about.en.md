@@ -2,15 +2,14 @@
 title: About the mill | Cobbleford Co-Working
 description: The story of our 1920s woolen mill, what makes Cobbleford Co-Working different, the three floors and the team who run them.
 sections:
-  - id: er6j
+  - id: iwt8
     type: hero
     eyebrow: About
     title: A 1920s woolen mill, ==back at work==.
-    subtitle: Long before laptops, 214 Millrace Road was full of looms. Today the old mill on the river is home to freelancers, startups and remote teams from all over the valley.
+    subtitle: Long before laptops, {street} was full of looms. Today the old mill on the river is home to freelancers, startups and remote teams from all over the valley.
     variant: page
-  - id: u5vf
+  - id: eeu2
     type: split
-    reveal: fade-up
     eyebrow: Our story
     title: From twelve desks to ==three floors==.
     body: |-
@@ -22,11 +21,11 @@ sections:
     link:
       label: Read the full story
       link: /blog/from-woolen-mill-to-workspace
+      style: secondary
     variant: image-left
-    tone: plain
-  - id: k1xl
-    type: services-grid
     reveal: fade-up
+  - id: va8z
+    type: services-grid
     eyebrow: Why Cobbleford
     title: What makes us ==different==.
     items:
@@ -38,11 +37,11 @@ sections:
         text: Brick walls and steel trusses, with gigabit fiber, a backup line, quiet heat pumps and an elevator to every floor.
       - title: Close to everything
         text: Five minutes from Main Street, with free parking behind the mill and a covered bike rack at the river entrance.
-    variant: cards
+    variant: list
     tone: surface
-  - id: t2q9
-    type: tabs
     reveal: fade-up
+  - id: xwq7
+    type: tabs
     eyebrow: Inside the mill
     title: Three floors, ==one community==.
     intro: Each floor of the old mill has its own character. Here is what you will find where.
@@ -75,14 +74,15 @@ sections:
           - Mail and package room
           - Printing and scanning corner
     variant: horizontal
-  - id: by4b
-    type: collection-list
     reveal: fade-up
+  - id: os3a
+    type: collection-list
     eyebrow: The team
     title: The people who ==run the mill==.
     collection: team
     variant: cards
-  - id: toh2
+    reveal: fade-up
+  - id: rz7q
     type: cta
     title: Come and see the mill for yourself
     text: Drop by any weekday between 9am and 4pm or book a time that suits you. Every tour comes with a free day pass.

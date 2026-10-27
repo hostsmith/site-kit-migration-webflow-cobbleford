@@ -1,19 +1,18 @@
 /*
- * The theme's space, from the Cobbleford Webflow site's variables
- * (`--_spacing---*`): the content width, the section spacings, the gutter and
+ * The space of the Cobbleford Webflow site, from its `--_spacing---*`
+ * variables: the content widths, the section spacings, the gutter and
  * Webflow's three breakpoints, desktop first:
  *
  *   max-lg  below 62rem (992 px), Webflow's tablet, max-width 991px
  *   max-md  below 48rem (768 px), Webflow's mobile landscape, 767px
  *   max-sm  below 30rem (480 px), Webflow's mobile portrait, 479px
  *
- * `--spacing-section` is Client-First's padding-section-large, which most
- * sections use; the page headers and the call to action use
- * `--spacing-section-medium` (py-section-medium), and the map
- * `--spacing-section-small`. `--container-small` is the blog post's column
- * (max-w-small). The header shows its nav from `lg`, where Webflow's Navbar
- * collapses by default. Tailwind's default containers are reset, so
- * max-w-6xl renders nothing.
+ * The header shows its nav from `lg`, where the old navbar showed its links.
+ * `md` is Tailwind's own 768 px, so site markup's md: and lg: mean what they
+ * mean on a Webflow site. `--spacing-section` is the old padding-section-large,
+ * the spacing most sections used; `-medium` and `-small` are the others. The
+ * spacings and the gutter shrink below `lg` and `md`, as the old variables
+ * did. Tailwind's default containers are reset, so max-w-6xl renders nothing.
  */
 
 @theme static {

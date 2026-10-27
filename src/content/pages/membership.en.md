@@ -1,63 +1,52 @@
 ---
 title: Membership and pricing | Cobbleford Co-Working
-description: Hot desks from $149, dedicated desks from $279 and private offices from $649 a month. Every plan is month-to-month, with no long lease.
+description: Hot desks from {hotDeskPrice}, dedicated desks from {dedicatedDeskPrice} and private offices from {privateOfficePrice} a month. Every plan is month-to-month, with no long lease.
 sections:
-  - id: xao0
+  - id: ldr0
     type: hero
     eyebrow: Membership
     title: Simple plans, ==month to month==.
     subtitle: Pick the desk that fits the way you work. Every plan includes fast fiber, free coffee and tea, and an invitation to every member event.
     variant: page
-  - id: w72r
+  - id: j819
     type: plan-cards
     items:
       - name: Hot Desk
-        price: $149
+        price: "{hotDeskPrice}"
         period: a month
-        features: |-
-          Ten days a month on the main floor
-
-          Two hours of meeting room time
-
-          Free coffee and tea all day
-
-          An invitation to every member event
+        features:
+          - Ten days a month on the main floor
+          - Two hours of meeting room time
+          - Free coffee and tea all day
+          - An invitation to every member event
         button:
           label: Book a Tour
           link: /contact
       - name: Dedicated Desk
-        price: $279
+        price: "{dedicatedDeskPrice}"
         period: a month
-        features: |-
-          Your own desk with a lockable drawer
-
-          A monitor and a chair adjusted for you
-
-          Personal locker, mail and package handling
-
-          Six hours of meeting room time
-
-          24/7 access
+        features:
+          - Your own desk with a lockable drawer
+          - A monitor and a chair adjusted for you
+          - Personal locker, mail and package handling
+          - Six hours of meeting room time
+          - 24/7 access
         button:
           label: Book a Tour
           link: /contact
       - name: Private Office
-        price: $649
+        price: "{privateOfficePrice}"
         period: a month
-        features: |-
-          A lockable, furnished room for up to four people
-
-          Twelve hours of meeting room time
-
-          A business mailing address
-
-          24/7 access
+        features:
+          - A lockable, furnished room for up to four people
+          - Twelve hours of meeting room time
+          - A business mailing address
+          - 24/7 access
         button:
           label: Book a Tour
           link: /contact
-  - id: xfh1
-    type: faq-aside
-    reveal: fade-up
+  - id: e2r7
+    type: questions-aside
     eyebrow: FAQ
     title: Questions, ==answered==.
     intro: Nonprofits and students get a discount, and annual memberships get two months free when paid up front. Still deciding? Read our guide to choosing a plan.
@@ -70,7 +59,7 @@ sections:
       - question: Is there a contract or a long lease?
         answer: No. Every plan is month-to-month, so you can upgrade, downgrade or pause as your work changes. Let us know before the first of the month and that is it.
       - question: When is the mill open?
-        answer: The front desk is staffed Monday to Friday, 8am - 6pm, and Saturday, 9am - 1pm. Dedicated desk and private office members have 24/7 key-fob access.
+        answer: The front desk is staffed Monday to Friday, {weekdayHours}, and Saturday, {saturdayHours}. Dedicated desk and private office members have 24/7 key-fob access.
       - question: Can I bring guests or meet clients here?
         answer: Yes. Day guests sign in at the front desk, and every plan includes meeting room hours for client meetings, interviews and workshops.
       - question: Do you offer discounts?
@@ -79,4 +68,5 @@ sections:
         answer: Dedicated desks include mail and package handling. Private offices also get a business mailing address you can put on your website.
       - question: Is there parking and somewhere to leave a bike?
         answer: There is free parking behind the mill and a covered bike rack at the river entrance.
+    reveal: fade-up
 ---

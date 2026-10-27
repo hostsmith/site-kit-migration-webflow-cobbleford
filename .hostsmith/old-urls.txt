@@ -1,15 +1,16 @@
 # Paths of the old site that this site keeps, one per line.
 # `npm run check:urls` fails when one of them has no page in the build output.
-# The Webflow site's pages, from its code export of 2026-10-24, and its
-# published CMS items (Blog Posts at /blog, Team at /team).
+# The Webflow site's static pages:
 /
-/about
 /membership
+/about
 /blog
 /contact
+# Blog Posts (/blog), published items:
 /blog/from-woolen-mill-to-workspace
 /blog/inside-our-community-calendar
 /blog/hot-desk-dedicated-desk-or-private-office
+# Team (/team):
 /team/hollis-whitcomb
 /team/ines-calloway
 /team/tobias-renn

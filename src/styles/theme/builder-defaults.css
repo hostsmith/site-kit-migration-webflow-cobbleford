@@ -1,9 +1,17 @@
-/* Webflow's defaults the old site showed (the report, "Builder defaults kept").
-   The old site's CSS never styled the selected tab on About, so it showed
-   webflow.css's grey for `.w-tab-link.w--current`. Delete this file, its
-   import in global.css and the `--color-builder-*` colors in the preset to
-   use the theme's own styles instead. */
+/*
+ * Webflow's defaults the old site showed (the report, "Builder defaults
+ * kept"): the looks of Webflow's own elements that the site's stylesheet
+ * never set, written anew on the kit's hooks. Delete this file, its import in
+ * global.css and the --color-builder-* colors in the preset to use the
+ * theme's own styles instead.
+ */
 
+/* About, "Three floors": the selected tab's gray, from Webflow's Tabs. */
 .sk-tabs__tab[aria-selected="true"] {
   background-color: var(--color-builder-tab-current);
+}
+
+/* The blog posts' quotes: the light gray rule of Webflow's blockquote. */
+.sk-prose blockquote {
+  border-left-color: var(--color-builder-quote-border);
 }

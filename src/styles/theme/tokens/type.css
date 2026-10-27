@@ -1,8 +1,7 @@
 /*
- * The theme's type: Space Grotesk (fonts.css), and the Cobbleford Webflow
- * site's text scale, from its variables (`--_typography---*`). Headings are
- * semibold with a tight line height, and the larger ones a tight tracking;
- * text is 17 px with a 1.6 line height.
+ * The type of the Cobbleford Webflow site, from its `--_typography---*`
+ * variables: Space Grotesk for everything, semibold headings with tight
+ * lines and tracking, and a body size of 17 px on a 1.6 line height.
  *
  * Each text role has a size, a line height, a letter spacing and a weight.
  * The text-h2 utility sets all four; a rule in the theme's CSS reads all four
@@ -22,6 +21,7 @@
   --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 
+  /* size-display: the big figures and prices */
   --text-display: 3.5rem;
   --text-display--line-height: 1.15;
   --text-display--letter-spacing: -0.02em;
@@ -50,10 +50,12 @@
   --text-h6--line-height: 1.15;
   --text-h6--letter-spacing: 0;
   --text-h6--font-weight: 600;
+  /* the testimonials' quotes, at size-medium */
   --text-quote: 1.1875rem;
   --text-quote--line-height: 1.6;
   --text-quote--letter-spacing: 0;
   --text-quote--font-weight: 400;
+  /* the page headers' and heroes' text, at size-large */
   --text-lead: 1.375rem;
   --text-lead--line-height: 1.6;
   --text-lead--letter-spacing: 0;

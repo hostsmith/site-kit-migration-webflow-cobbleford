@@ -4,31 +4,31 @@ What an agent needs to know about the business before it writes or changes the s
 
 ## Business facts
 
-- **Name:** Cobbleford Co-Working. The site says, in its footer, that it's a fictional business made for a demo.
-- **Location:** a restored 1920s woolen mill on the river, at 214 Millrace Road, Cobbleford, five minutes from Main Street. Free parking behind the mill, and a covered bike rack at the river entrance. It serves freelancers, startups and remote teams from all over the valley.
-- **Hours:** the front desk is staffed Monday to Friday, 8am - 6pm, and Saturday, 9am - 1pm, and is closed on Sunday. Tours run on weekdays, 9am - 4pm. Dedicated desk and private office members have 24/7 key-fob access.
-- **Services:** coworking memberships, all month-to-month with no setup fees: Hot Desk ($149 a month), Dedicated Desk ($279 a month) and Private Office ($649 a month, for up to four people). Two bookable meeting rooms, phone and podcast booths, a quiet room, a kitchen and coffee bar, lockers, mail and package handling, and member events (Thursday lunch-and-learns, First Friday socials, skill shares). Nonprofits and students get a discount; annual memberships get two months free when paid up front. Every tour comes with a free day pass.
-- **Contact:** the email address and the phone number are the settings' facts `{email}` and `{phone}`, and the address `{address}`.
+- **Name:** Cobbleford Co-Working. The footer says it's a fictional business, made for a demo: keep that line.
+- **Location:** 214 Millrace Road, Cobbleford, in a restored 1920s woolen mill on the river, five minutes from Main Street. Free parking behind the mill, and a covered bike rack at the river entrance.
+- **Hours:** the front desk is staffed Monday to Friday, 8am - 6pm, and Saturday, 9am - 1pm, and closed on Sunday. Tours run on weekdays, 9am - 4pm. Dedicated desk and private office members have 24/7 key-fob access.
+- **Services:** memberships, all month-to-month: Hot Desk ($149 a month, ten days a month), Dedicated Desk ($279) and Private Office ($649, for up to four people). Meeting rooms, phone and podcast booths, a kitchen and coffee bar, member events. Discounts for nonprofits and students, and two months free on annual memberships paid up front. Every tour comes with a free day pass.
 
 ## Audience
 
-Drafted from the old site's copy, and confirmed by the owner:
+Drafted from the old site's copy, and confirmed by the owner as drafted.
 
-- Freelancers, consultants, makers, small teams and remote employees in and around Cobbleford, who work from home and want a desk, a reliable connection and some company.
-- They come to compare the three plans and their prices, learn what's included and when the mill is open, read about the community and the building, and book a tour or a free day pass.
+- Freelancers, makers, small teams and remote employees from Cobbleford and the valley, who want a dependable place to work and people around them.
+- They come to compare the plans, see what the space is like, read about the mill and its events, and book a tour or a free day pass.
 
 ## Voice
 
-Drafted from the old site's copy, and confirmed by the owner:
+Drafted from the old site's copy, and confirmed by the owner as drafted.
 
-- **Tone:** warm, plain and neighborly, in short sentences, with a little local pride in the old mill. Never salesy or corporate.
-- **Words to use:** "members", "the mill", "the old mill on the river", "book a tour", "your first day is on us", "month-to-month", "hot desk", "dedicated desk", "private office", "community".
-- **Words to avoid:** "customers" for the members (the copy says "clients" only for the members' own clients), "hub" and "synergy".
+- **Tone:** warm, plain and neighborly, with a little local history. Short sentences in the second person, never salesy.
+- **Words to use:** "members", "the mill", "the old mill on the river", "your first day is on us", "book a tour", "month-to-month".
+- **Words to avoid:** corporate and startup jargon, such as "hub", "synergy" or "solutions"; "customers" for members; anything that sounds like a long lease.
 
 ## Do and don't
 
-- **Do:** mention the free first day, or the free day pass with every tour, wherever a page asks visitors to book; keep plan names and prices exactly as the Membership page has them.
-- **Don't:** quote a price or a plan detail that differs from the Membership page; promise a desk is free on a given day; change a fact's value in the copy instead of in the settings' `facts`.
+- **Do:** mention the free day pass or "your first day is on us" wherever a page asks visitors to book a tour. Keep the prices and hours in the settings' facts.
+- **Do:** keep the text as the owner wrote it: change copy only when they ask.
+- **Don't:** promise a particular desk or office is free, or suggest a contract or long lease.
 
 ## Contacts
 

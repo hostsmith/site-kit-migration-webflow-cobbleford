@@ -2,6 +2,23 @@ name: Cobbleford Co-Working
 logo:
   image: /assets/images/cobbleford-logo.svg
   alt: Cobbleford Co-Working
+facts:
+  - name: phone
+    value: (802) 555-0147
+  - name: email
+    value: hello@cobbleford.example
+  - name: street
+    value: 214 Millrace Road
+  - name: weekdayHours
+    value: 8am - 6pm
+  - name: saturdayHours
+    value: 9am - 1pm
+  - name: hotDeskPrice
+    value: $149
+  - name: dedicatedDeskPrice
+    value: $279
+  - name: privateOfficePrice
+    value: $649
 nav:
   - label: Membership
     link: /membership
@@ -17,6 +34,7 @@ header:
       label: Book a Tour
       link: /contact
       style: primary
+      pinned: true
 footer:
   blocks:
     - type: brand
@@ -25,16 +43,22 @@ footer:
       logoAlt: Cobbleford Co-Working
     - type: contact
       title: Visit
-      address: "{address}"
-      phone: "{phone}"
-      email: "{email}"
+      address: |-
+        {street}
+        Cobbleford
     - type: hours
       withPrevious: true
       rows:
         - days: Mon-Fri
-          time: 8am - 6pm
+          time: "{weekdayHours}"
         - days: Sat
-          time: 9am - 1pm
+          time: "{saturdayHours}"
+    - type: contact
+      withPrevious: true
+      email: "{email}"
+    - type: contact
+      withPrevious: true
+      phone: "{phone}"
     - type: links
       title: Explore
       links:
@@ -56,16 +80,7 @@ footer:
       text: Cobbleford Co-Working is a fictional business, made for a demo.
 seo:
   description: Hot desks, dedicated desks and private offices in a restored 1920s woolen mill on the river, five minutes from Main Street. Your first day is on us.
-  ogImage: /assets/images/cobbleford-og-image.jpg
-facts:
-  - name: phone
-    value: (802) 555-0147
-  - name: email
-    value: hello@cobbleford.example
-  - name: address
-    value: |-
-      214 Millrace Road
-      Cobbleford
+  ogImage: /assets/images/cobbleford-og.jpg
 ui:
   skipLink: Skip to main content
   menu: Menu
@@ -93,8 +108,9 @@ ui:
   postsPageTitle: "{title} | Cobbleford Co-Working"
   teamPageTitle: "{title} | Cobbleford Co-Working"
   postsBack: ← All articles
-  postsByline: "by {author}"
+  postsBy: by
+  postsCtaTitle: Come and see the mill for yourself
+  postsCtaText: Drop by any weekday between 9am and 4pm or book a time that suits you. Every tour comes with a free day pass.
+  postsCtaButton: Book a Tour
   teamBack: ← Meet the team
-  tourTitle: Come and see the mill for yourself
-  tourText: Drop by any weekday between 9am and 4pm or book a time that suits you. Every tour comes with a free day pass.
-  tourButton: Book a Tour
+  teamButton: Book a Tour

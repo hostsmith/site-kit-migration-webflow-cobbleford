@@ -13,8 +13,9 @@
  * without JavaScript both stay visible and usable.
  */
 
+/* The old container-large: 80rem of content inside the gutter. */
 .sk-container {
-  max-width: var(--container-site);
+  max-width: calc(var(--container-site) + 2 * var(--spacing-gutter));
   margin-inline: auto;
   padding-inline: var(--spacing-gutter);
 }
@@ -30,12 +31,15 @@
 /* Skip link: off screen until it has focus. */
 .sk-skip-link {
   position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
+  top: 0.75rem;
+  left: var(--spacing-gutter);
   z-index: 50;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-input);
   background: var(--color-accent);
   color: var(--color-accent-fg);
+  font-weight: 600;
+  text-decoration: none;
   transform: translateY(-200%);
 }
 
@@ -45,8 +49,10 @@
 }
 
 /* Header */
+/* The old navbar: sticky, on the page color, with a rule under it. */
 .sk-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 20;
   border-bottom: 1px solid var(--color-border);
   background: var(--color-bg);
@@ -55,7 +61,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
+    min-height: 4.5rem;
     padding-block: 0.75rem;
   }
 }
@@ -71,7 +78,7 @@
 .sk-header__logo {
   display: block;
   width: auto;
-  height: 2rem;
+  height: 2.75rem;
 }
 
 .sk-header__name {
@@ -87,25 +94,31 @@
   min-height: 2.75rem;
 }
 
+/* The old menu button: a pill with the word "Menu", no icon. */
 .sk-header__menu-button {
   gap: 0.5rem;
-  border: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--color-fg);
   border-radius: var(--radius-button);
   background: transparent;
+  color: var(--color-fg);
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: 600;
 
-  &[aria-expanded="true"] [data-icon="menu"],
-  &:not([aria-expanded="true"]) [data-icon="x"] {
+  &:hover {
+    background: var(--color-fg);
+    color: var(--color-bg);
+  }
+
+  & [data-icon="menu"],
+  & [data-icon="x"] {
     display: none;
   }
 }
 
-/* The label stays for screen readers; the icons show the state. */
 .sk-header__menu-label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
   white-space: nowrap;
 }
 
@@ -113,6 +126,10 @@
 .sk-menu {
   flex-basis: 100%;
   padding-block: 0.5rem 1rem;
+
+  @variant max-lg {
+    padding-block: 0.5rem 2rem;
+  }
 }
 
 .sk-menu[data-ready]:not([data-open]) {
@@ -141,10 +158,26 @@
   display: flex;
   align-items: center;
   min-height: 2.75rem;
+  color: var(--color-fg);
+  font-weight: 500;
   text-decoration: none;
+
+  &:hover {
+    color: var(--color-accent);
+  }
 
   &[aria-current="page"] {
     text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  /* In the panel, the old mobile links: large, with a rule under each. */
+  @variant max-lg {
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--text-large);
+    line-height: var(--text-large--line-height);
+    letter-spacing: var(--text-large--letter-spacing);
   }
 }
 
@@ -207,9 +240,32 @@
 .sk-header__actions {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+/* The header's button, small as the old `is-small` one from `lg`. */
+.sk-header__actions .sk-button,
+.sk-header .sk-header__pinned {
+  @variant lg {
+    padding: 0.5rem 1rem;
+    font-size: var(--text-small);
+    line-height: var(--text-body--line-height);
+    letter-spacing: var(--text-small--letter-spacing);
+  }
+}
+
+.sk-header .sk-header__pinned {
+  padding: 0.5rem 1rem;
+  font-size: var(--text-small);
+  line-height: var(--text-body--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+
+  /* The old header button hid below 480 px, where the panel has it. */
+  @variant max-sm {
+    display: none;
+  }
 }
 
 .sk-header__link,
@@ -256,6 +312,7 @@
     }
 
     & .sk-header__call,
+    & .sk-header__pinned,
     & .sk-header__menu-button:not([hidden]) {
       display: none;
     }
@@ -274,7 +331,7 @@
 
     & .sk-nav__list {
       flex-direction: row;
-      gap: 0 1.5rem;
+      gap: 0 2rem;
     }
 
     & .sk-nav__item {
@@ -298,6 +355,12 @@
       flex-direction: row;
       align-items: center;
       margin: 0;
+    }
+
+    /* The old navbar: the links centered between the logo and the button. */
+    & .sk-nav,
+    & .sk-header__actions {
+      margin-left: auto;
     }
   }
 }
@@ -336,34 +399,49 @@
   font-weight: 700;
 }
 
-/* Footer: the groups as columns from `md`. */
+/* Footer: the old footer, deep green, with four columns from `lg`, two
+   from `md` and one below. */
 .sk-footer {
-  padding-block: 3rem 2rem;
-  background: var(--color-fg);
+  padding-block: var(--spacing-section-medium);
+  background: var(--color-green-dark);
   color: var(--color-bg);
 
   & > .sk-container {
     display: grid;
-    gap: 2rem;
+    gap: 3rem;
 
     @variant md {
-      grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @variant lg {
+      grid-template-columns: 1.3fr 1fr 0.8fr 1.4fr;
     }
   }
 
   & :focus-visible {
-    outline-color: var(--color-bg);
+    outline-color: var(--color-tint);
   }
 }
 
-.sk-footer__group,
+.sk-footer__group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
 .sk-footer__block {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  align-items: flex-start;
+  gap: 0.75rem;
 }
 
-.sk-footer__block--brand,
+.sk-footer__block--brand {
+  gap: 1rem;
+}
+
 .sk-footer__block--contact,
 .sk-footer__block--links,
 .sk-footer__block--hours,
@@ -377,14 +455,15 @@
   display: block;
   align-self: flex-start;
   width: auto;
-  height: 2rem;
+  height: 2.75rem;
 }
 
 .sk-footer__name {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .sk-footer__title {
+  color: var(--color-bg);
   font-size: var(--text-h6);
   line-height: var(--text-h6--line-height);
   letter-spacing: var(--text-h6--letter-spacing);
@@ -393,14 +472,14 @@
 
 .sk-footer__text,
 .sk-footer__address,
-.sk-footer__hours-list,
-.sk-footer__block--copyright {
+.sk-footer__hours-list {
   color: var(--color-on-dark);
 }
 
 .sk-footer__contact {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   font-style: normal;
 }
 
@@ -417,8 +496,15 @@
   align-items: center;
   min-height: 2.75rem;
   color: var(--color-on-dark);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-bg);
+    text-decoration: underline;
+  }
 }
 
+/* The hours as the old footer wrote them: one line per row. */
 .sk-footer__hours-list {
   margin: 0;
 }
@@ -426,8 +512,7 @@
 .sk-footer__hours-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0 1rem;
+  gap: 0 0.3em;
 
   & dd {
     margin: 0;
@@ -437,223 +522,31 @@
 .sk-footer__bottom {
   grid-column: 1 / -1;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.5rem 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--color-muted);
+  border-top: 1px solid var(--color-accent);
+
+  @variant max-md {
+    flex-direction: column;
+  }
 
   & .sk-footer__links {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0 1rem;
   }
+
+  & .sk-footer__text,
+  & .sk-footer__block--copyright {
+    font-size: var(--text-small);
+    line-height: var(--text-small--line-height);
+    letter-spacing: var(--text-small--letter-spacing);
+    font-weight: var(--text-small--font-weight);
+  }
 }
 
 .sk-footer__block--copyright {
   display: block;
-}
-
-/*
- * The Cobbleford port: the old navbar and footer (navbar_*, footer_*), on
- * the rules above. The header sticks to the top, on the page color, with the
- * logo, the nav and a small pill button in one row from `lg`. Below it, a
- * "Menu" pill opens a panel of large links with rules between them and the
- * button at full width. The footer is green-dark, in four columns from `lg`,
- * two from `md` and one below.
- */
-
-/* The content is 80rem wide inside the gutter, as Client-First's
-   padding-global around container-large. */
-.sk-container {
-  max-width: calc(var(--container-site) + 2 * var(--spacing-gutter));
-}
-
-.sk-skip-link {
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-input);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.sk-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-
-  & > .sk-container {
-    min-height: 4.5rem;
-    column-gap: 2rem;
-  }
-}
-
-.sk-header__logo {
-  height: 2.75rem;
-}
-
-.sk-nav__link {
-  color: var(--color-fg);
-  font-weight: 500;
-
-  &:hover {
-    color: var(--color-accent);
-  }
-
-  &[aria-current="page"] {
-    text-decoration: none;
-  }
-}
-
-/* The menu button is a pill with its label, as the old "Menu" button. */
-.sk-header__menu-button {
-  padding: 0.5rem 1rem;
-  border: 2px solid var(--color-fg);
-  color: var(--color-fg);
-  font-size: var(--text-small);
-  line-height: var(--text-small--line-height);
-  letter-spacing: var(--text-small--letter-spacing);
-  font-weight: 600;
-
-  &:hover {
-    background: var(--color-fg);
-    color: var(--color-bg);
-  }
-
-  & .sk-icon {
-    display: none;
-  }
-}
-
-.sk-header__menu-label {
-  position: static;
-  width: auto;
-  height: auto;
-  overflow: visible;
-  clip-path: none;
-}
-
-.sk-header__actions .sk-button {
-  padding: 0.5rem 1rem;
-  font-size: var(--text-small);
-  line-height: var(--text-small--line-height);
-  letter-spacing: var(--text-small--letter-spacing);
-  font-weight: 600;
-}
-
-/* Below `lg`: the panel's links large, with a rule under each, and the
-   button at full width. */
-.sk-menu {
-  @variant max-lg {
-    padding-block: 0.5rem 2rem;
-
-    & .sk-nav__link {
-      padding-block: 0.75rem;
-      border-bottom: 1px solid var(--color-border);
-      font-size: var(--text-large);
-      line-height: var(--text-large--line-height);
-      letter-spacing: var(--text-large--letter-spacing);
-      font-weight: 500;
-    }
-
-    & .sk-header__actions {
-      align-items: stretch;
-      margin-top: 1.5rem;
-    }
-
-    & .sk-header__actions .sk-button {
-      width: 100%;
-      padding: 0.75rem 1.5rem;
-      font-size: var(--text-body);
-      line-height: var(--text-body--line-height);
-      letter-spacing: var(--text-body--letter-spacing);
-      font-weight: 600;
-    }
-  }
-
-  @variant lg {
-    & .sk-nav__list {
-      gap: 0 2rem;
-    }
-  }
-}
-
-/* Footer */
-.sk-footer {
-  padding-block: var(--spacing-section-medium);
-  background: var(--color-green-dark);
-  color: var(--color-bg);
-
-  & > .sk-container {
-    column-gap: 3rem;
-    row-gap: 0;
-
-    @variant md {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    @variant lg {
-      grid-template-columns: 1.3fr 1fr 0.8fr 1.4fr;
-    }
-  }
-
-  & :focus-visible {
-    outline-color: var(--color-brown-light);
-  }
-}
-
-.sk-footer__group {
-  gap: 0.75rem;
-  padding-bottom: 3rem;
-}
-
-.sk-footer__block {
-  gap: 0.75rem;
-  align-items: flex-start;
-}
-
-.sk-footer__block--brand {
-  gap: 1rem;
-}
-
-.sk-footer__logo {
-  height: 2.75rem;
-}
-
-.sk-footer__title {
-  color: var(--color-bg);
-}
-
-.sk-footer__link {
-  text-decoration: none;
-
-  &:hover {
-    color: var(--color-bg);
-    text-decoration: underline;
-  }
-}
-
-.sk-footer__contact {
-  gap: 0.75rem;
-}
-
-.sk-footer__hours-row {
-  justify-content: flex-start;
-  gap: 0 0.375rem;
-}
-
-.sk-footer__bottom {
-  gap: 0.5rem 2rem;
-  border-top-color: var(--color-accent);
-  font-size: var(--text-small);
-  line-height: var(--text-small--line-height);
-  letter-spacing: var(--text-small--letter-spacing);
-  font-weight: var(--text-small--font-weight);
-
-  @variant max-md {
-    flex-direction: column;
-  }
-}
-
-.sk-footer__bottom .sk-footer__text {
   color: var(--color-on-dark);
 }

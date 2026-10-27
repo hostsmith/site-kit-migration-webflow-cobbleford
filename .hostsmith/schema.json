@@ -1262,6 +1262,16 @@
                         "link": {
                           "type": "string",
                           "x-widget": "link"
+                        },
+                        "style": {
+                          "default": "link",
+                          "type": "string",
+                          "enum": [
+                            "link",
+                            "primary",
+                            "secondary"
+                          ],
+                          "x-widget": "select"
                         }
                       },
                       "required": [
@@ -1772,7 +1782,7 @@
                     },
                     "type": {
                       "type": "string",
-                      "const": "photo-figures",
+                      "const": "stats-band",
                       "x-widget": "string"
                     },
                     "reveal": {
@@ -1797,7 +1807,7 @@
                       "minLength": 1,
                       "x-widget": "string"
                     },
-                    "body": {
+                    "text": {
                       "type": "string",
                       "minLength": 1,
                       "x-widget": "string"
@@ -1813,8 +1823,7 @@
                       "x-widget": "string"
                     },
                     "stats": {
-                      "minItems": 2,
-                      "maxItems": 4,
+                      "minItems": 1,
                       "type": "array",
                       "items": {
                         "type": "object",
@@ -1873,6 +1882,16 @@
                       ],
                       "x-widget": "select"
                     },
+                    "eyebrow": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-widget": "string"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-widget": "string"
+                    },
                     "items": {
                       "minItems": 1,
                       "type": "array",
@@ -1895,9 +1914,13 @@
                             "x-widget": "string"
                           },
                           "features": {
-                            "type": "string",
-                            "minLength": 1,
-                            "x-widget": "string"
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1,
+                              "x-widget": "string"
+                            },
+                            "x-widget": "list"
                           },
                           "button": {
                             "type": "object",
@@ -1922,9 +1945,7 @@
                         },
                         "required": [
                           "name",
-                          "price",
-                          "features",
-                          "button"
+                          "price"
                         ],
                         "additionalProperties": false,
                         "x-widget": "object"
@@ -1948,7 +1969,7 @@
                     },
                     "type": {
                       "type": "string",
-                      "const": "faq-aside",
+                      "const": "questions-aside",
                       "x-widget": "string"
                     },
                     "reveal": {
@@ -2042,7 +2063,7 @@
                     },
                     "type": {
                       "type": "string",
-                      "const": "info-groups",
+                      "const": "contact-info",
                       "x-widget": "string"
                     },
                     "reveal": {
@@ -2057,7 +2078,7 @@
                       ],
                       "x-widget": "select"
                     },
-                    "items": {
+                    "blocks": {
                       "minItems": 1,
                       "type": "array",
                       "items": {
@@ -2068,61 +2089,47 @@
                             "minLength": 1,
                             "x-widget": "string"
                           },
-                          "text": {
+                          "address": {
                             "type": "string",
                             "minLength": 1,
                             "x-widget": "string"
                           },
-                          "rows": {
+                          "hours": {
                             "minItems": 1,
                             "type": "array",
                             "items": {
                               "type": "object",
                               "properties": {
-                                "label": {
+                                "days": {
                                   "type": "string",
                                   "minLength": 1,
                                   "x-widget": "string"
                                 },
-                                "value": {
+                                "time": {
                                   "type": "string",
                                   "minLength": 1,
                                   "x-widget": "string"
                                 }
                               },
                               "required": [
-                                "label",
-                                "value"
+                                "days",
+                                "time"
                               ],
                               "additionalProperties": false,
                               "x-widget": "object"
                             },
                             "x-widget": "list"
                           },
-                          "links": {
-                            "minItems": 1,
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "label": {
-                                  "type": "string",
-                                  "minLength": 1,
-                                  "x-widget": "string"
-                                },
-                                "link": {
-                                  "type": "string",
-                                  "x-widget": "link"
-                                }
-                              },
-                              "required": [
-                                "label",
-                                "link"
-                              ],
-                              "additionalProperties": false,
-                              "x-widget": "object"
-                            },
-                            "x-widget": "list"
+                          "email": {
+                            "type": "string",
+                            "format": "email",
+                            "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
+                            "x-widget": "string"
+                          },
+                          "phone": {
+                            "type": "string",
+                            "minLength": 1,
+                            "x-widget": "string"
                           },
                           "note": {
                             "type": "string",
@@ -2142,7 +2149,7 @@
                   "required": [
                     "id",
                     "type",
-                    "items"
+                    "blocks"
                   ],
                   "additionalProperties": false
                 }
@@ -2369,6 +2376,10 @@
                             "secondary"
                           ],
                           "x-widget": "select"
+                        },
+                        "pinned": {
+                          "type": "boolean",
+                          "x-widget": "boolean"
                         }
                       },
                       "required": [
@@ -3113,7 +3124,22 @@
                 "minLength": 1,
                 "x-widget": "string"
               },
-              "postsByline": {
+              "postsBy": {
+                "type": "string",
+                "minLength": 1,
+                "x-widget": "string"
+              },
+              "postsCtaTitle": {
+                "type": "string",
+                "minLength": 1,
+                "x-widget": "string"
+              },
+              "postsCtaText": {
+                "type": "string",
+                "minLength": 1,
+                "x-widget": "string"
+              },
+              "postsCtaButton": {
                 "type": "string",
                 "minLength": 1,
                 "x-widget": "string"
@@ -3123,17 +3149,7 @@
                 "minLength": 1,
                 "x-widget": "string"
               },
-              "tourTitle": {
-                "type": "string",
-                "minLength": 1,
-                "x-widget": "string"
-              },
-              "tourText": {
-                "type": "string",
-                "minLength": 1,
-                "x-widget": "string"
-              },
-              "tourButton": {
+              "teamButton": {
                 "type": "string",
                 "minLength": 1,
                 "x-widget": "string"
@@ -3150,11 +3166,12 @@
               "postsPageTitle",
               "teamPageTitle",
               "postsBack",
-              "postsByline",
+              "postsBy",
+              "postsCtaTitle",
+              "postsCtaText",
+              "postsCtaButton",
               "teamBack",
-              "tourTitle",
-              "tourText",
-              "tourButton"
+              "teamButton"
             ],
             "additionalProperties": {},
             "x-widget": "object"
@@ -3209,16 +3226,10 @@
             "type": "string",
             "minLength": 1,
             "x-widget": "string"
-          },
-          "draft": {
-            "type": "boolean",
-            "x-widget": "boolean"
           }
         },
         "required": [
-          "title",
-          "category",
-          "description"
+          "title"
         ],
         "additionalProperties": false
       }

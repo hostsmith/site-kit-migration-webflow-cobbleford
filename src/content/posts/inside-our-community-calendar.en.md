@@ -2,7 +2,7 @@
 title: "Remote Work Doesn't Have to Be Lonely: Inside Our Community Calendar"
 date: "2026-09-15"
 description: Lunch-and-learns, monthly socials and skill shares - here is what a month of member events looks like at Cobbleford Co-Working, and how to get the most out of them.
-image: "/assets/images/cobbleford-cafe-room.jpg"
+image: /assets/images/cobbleford-cafe-room.jpg
 imageAlt: "Members chatting and working at round wooden tables in a café-style room full of plants"
 author: ines-calloway
 ---

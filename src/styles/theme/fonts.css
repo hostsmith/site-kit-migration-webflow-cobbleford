@@ -1,10 +1,8 @@
 /*
- * The theme's fonts, from public/assets/fonts/, each with its license next to
- * it, and named in tokens/type.css. Never load a font from a third-party CDN:
- * that sends visitor IP addresses to its host.
- *
- * Space Grotesk by Florian Karsten, the variable font for weights 300 to 700,
- * from Fontsource, under the SIL Open Font License 1.1 (OFL.txt).
+ * The theme's fonts: Space Grotesk, the variable font for weights 300 to 700,
+ * from Fontsource, under the SIL Open Font License 1.1, whose text is next to
+ * it in public/assets/fonts/OFL.txt (CREDITS.md). Never load a font from a
+ * third-party CDN: that sends visitor IP addresses to its host.
  */
 
 @font-face {

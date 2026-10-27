@@ -2,7 +2,7 @@
 title: Getting the Mill Ready for Winter
 date: "2026-11-03"
 description: Holiday hours, warmer mornings and where to leave wet boots - a short guide to the colder months at Cobbleford Co-Working.
-image: "/assets/images/cobbleford-laptops-coffee.jpg"
+image: /assets/images/cobbleford-laptops-coffee.jpg
 imageAlt: Two laptops and a coffee mug on a wooden table
 author: tobias-renn
 draft: true

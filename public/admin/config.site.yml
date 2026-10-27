@@ -20,28 +20,29 @@ repo: OWNER/REPOSITORY
 #     fields:
 #       - { name: title, label: Title, widget: string }
 section_types:
-  - name: photo-figures
-    label: Photo and figures
+  - name: stats-band
+    label: Stats band
     widget: object
     fields:
       - { name: eyebrow, label: Eyebrow, widget: string, required: false }
       - { name: title, label: Title, widget: string }
-      - { name: body, label: Body, widget: markdown, required: false }
+      - { name: text, label: Text, widget: text, required: false }
       - { name: image, label: Image, widget: image }
       - { name: imageAlt, label: Image alt text, widget: string, required: false }
       - name: stats
         label: Figures
         label_singular: Figure
         widget: list
-        min: 2
-        max: 4
+        min: 1
         fields:
-          - { name: value, label: Figure, widget: string }
+          - { name: value, label: Value, widget: string }
           - { name: label, label: Label, widget: string }
   - name: plan-cards
     label: Plan cards
     widget: object
     fields:
+      - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+      - { name: title, label: Title, widget: string, required: false }
       - name: items
         label: Plans
         label_singular: Plan
@@ -51,16 +52,16 @@ section_types:
           - { name: name, label: Name, widget: string }
           - { name: price, label: Price, widget: string }
           - { name: period, label: Period, widget: string, required: false }
-          - { name: features, label: What's included, widget: markdown }
-          - { name: button, label: Button, widget: object, fields: *labeled_link }
-  - name: faq-aside
-    label: Questions beside their heading
+          - { name: features, label: Features, label_singular: Feature, widget: list, required: false, field: { name: feature, label: Feature, widget: string } }
+          - { name: button, label: Button, widget: object, required: false, fields: *labeled_link }
+  - name: questions-aside
+    label: Questions beside a heading
     widget: object
     fields:
       - { name: eyebrow, label: Eyebrow, widget: string, required: false }
       - { name: title, label: Title, widget: string }
       - { name: intro, label: Intro, widget: text, required: false }
-      - { name: link, label: Link, widget: object, required: false, fields: *labeled_link }
+      - { name: link, label: Button, widget: object, required: false, fields: *labeled_link }
       - name: items
         label: Questions
         label_singular: Question
@@ -69,39 +70,41 @@ section_types:
         fields:
           - { name: question, label: Question, widget: string }
           - { name: answer, label: Answer, widget: markdown }
-  - name: info-groups
-    label: Info groups
+  - name: contact-info
+    label: Contact details
     widget: object
     fields:
-      - name: items
-        label: Groups
-        label_singular: Group
+      - name: blocks
+        label: Blocks
+        label_singular: Block
         widget: list
         min: 1
         fields:
-          - { name: title, label: Heading, widget: string }
-          - { name: text, label: Text, widget: text, required: false }
-          - name: rows
-            label: Rows
+          - { name: title, label: Title, widget: string }
+          - { name: address, label: Address, widget: text, required: false }
+          - name: hours
+            label: Opening hours
             label_singular: Row
             widget: list
             required: false
             fields:
-              - { name: label, label: Label, widget: string }
-              - { name: value, label: Value, widget: string }
-          - { name: links, label: Links, label_singular: Link, widget: list, required: false, fields: *labeled_link }
+              - { name: days, label: Days, widget: string }
+              - { name: time, label: Time, widget: string }
+          - { name: email, label: Email, widget: string, required: false }
+          - { name: phone, label: Phone, widget: string, required: false }
           - { name: note, label: Note, widget: text, required: false }
 
-# The fields of the site's own interface strings, under the settings' `ui`.
+# The site's interface strings, one field each under the settings' `ui`.
 ui:
-  - { name: postsPageTitle, label: Blog post page title, widget: string, hint: "{title} is the post's title" }
-  - { name: teamPageTitle, label: Team member page title, widget: string, hint: "{title} is the member's name" }
+  - { name: postsPageTitle, label: "Blog post page title, with {title}", widget: string }
+  - { name: teamPageTitle, label: "Team member page title, with {title}", widget: string }
   - { name: postsBack, label: Blog post back link, widget: string }
-  - { name: postsByline, label: Blog post author line, widget: string, hint: "{author} is the author's name" }
+  - { name: postsBy, label: Blog post "by" before the author, widget: string }
+  - { name: postsCtaTitle, label: Blog post call to action title, widget: string }
+  - { name: postsCtaText, label: Blog post call to action text, widget: text }
+  - { name: postsCtaButton, label: Blog post call to action button, widget: string }
   - { name: teamBack, label: Team member back link, widget: string }
-  - { name: tourTitle, label: Tour call to action title, widget: string }
-  - { name: tourText, label: Tour call to action text, widget: text }
-  - { name: tourButton, label: Tour button, widget: string }
+  - { name: teamButton, label: Team member button, widget: string }
 
 # The site's collections, each item starting with `- name: <name>`: one folder
 # collection per collection in src/site.config.ts, which the collection list
@@ -135,8 +138,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { name: title, label: Name, widget: string }
-      - { name: category, label: Role, widget: string }
-      - { name: description, label: Short bio, widget: text }
+      - { name: category, label: Role, widget: string, required: false }
+      - { name: description, label: Short bio, widget: text, required: false }
       - { name: image, label: Photo, widget: image, required: false }
       - { name: imageAlt, label: Photo alt text, widget: string, required: false }
-      - { name: draft, label: Draft, widget: boolean, required: false }
