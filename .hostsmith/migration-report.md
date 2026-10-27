@@ -1,12 +1,18 @@
 # Migration report
 
-<!-- Written by the migration skill, step by step, from node_modules/@hostsmith/site-kit-astro/skills/migrate-webflow/references/report-template.md. Every section stays: one with nothing to report says so in a line. Step 10 removes these comments. -->
-
 The site Cobbleford Co-Working moved from Webflow to this repository on 2026-10-27, from the exports listed under "Sources". This report lists what moved, what changed, what didn't carry over, and what the owner needs to decide before the site goes to production.
 
 ## For the owner to approve
 
-- [ ] <decision, and where it's described below>
+- [ ] **The 404 page, written anew:** Webflow's was its default "Page Not Found" message. The new one says "This page isn't in the mill.", with links to the home page and to book a tour (see "Pages").
+- [ ] **The font:** Space Grotesk, from the owner's files, under the SIL Open Font License (see "Fonts").
+- [ ] **The map on Contact loads on a click,** with a "Show map" button, so the page sends nothing to OpenStreetMap until the visitor asks (see "Embeds"). The YouTube video in "Inside Our Community Calendar" works the same way.
+- [ ] **Webflow's own defaults kept:** the gray of the selected tab on About, and the light gray rule beside quotes in the blog posts (see "Builder defaults kept").
+- [ ] **No colors changed for contrast,** and no alt text written: every image kept its own (see those sections).
+- [ ] **The forms don't work yet:** the newsletter signup and the tour request form aren't on the new site until the kit's contact form is set up. Visitors can still email or call (see "Forms").
+- [ ] **The differences left as they are,** listed under "Fidelity check", such as Contact's details in columns now the form is gone, and the team section on the page color.
+- [ ] **The team photos:** the team cards and pages show no photo until the owner sends them (see "Missing pieces").
+- [ ] **The comparison with the old site:** no one compared the pages in a browser during the migration. Compare them on the preview site before approving.
 
 ## Sources
 
@@ -123,7 +129,6 @@ To use the theme's own styles instead, delete `src/styles/theme/builder-defaults
 ## Missing pieces
 
 - **Media sizes:** `magick` isn't installed on the machine that ran the migration, so no image was resized. None needed it: the widest, `cobbleford-cafe-room.jpg` and `cobbleford-laptops-coffee.jpg`, are 1280 px wide, under twice their widest display (about 930 px, below 992 px). `cobbleford-meeting.jpg` is 600 px wide and shows up to about 930 px wide below 992 px, so it looks soft there, as on the old site: a larger copy from the owner would help.
-
 - **Font:** the export's `@font-face` for Space Grotesk points at no file (`url('../images/')`): Webflow's export leaves out uploaded fonts. The owner supplied the file (see "Fonts").
 - **404 page:** the export's `404.html` is Webflow's default ("404", "Page Not Found", "The page you are looking for doesn't exist or has been moved"), so the 404 page is written anew (see "Pages").
 - **Favicon and touch icon:** the export's `favicon.ico` and `webclip.png` are Webflow's own defaults, showing Webflow's logo, and weren't carried. The owner supplied the site's own, which are in place.
@@ -153,12 +158,12 @@ All answers below were given in advance, in `.hostsmith/snapshot/answers.md`, an
 - **The logo and the icons:** made for the site from Lucide icons, lucide-static 1.49.0, ISC License: the logo from `lamp-desk`, the amenity icons from `laptop`, `monitor`, `door-closed`, `users`, `mic` and `coffee`. (given in advance)
 - **The owner's icons and Open Graph image:** made for the site, from the logo's lamp tile and from `cobbleford-open-plan.jpg`, under the same licenses as their sources. (given in advance)
 - **The team photos:** not sent yet. The site builds without them (see "Missing pieces"). (given in advance)
-- **Resizing:** use ImageMagick's `magick` if it's installed, otherwise leave the images at their size and list them. (given in advance) See "Media" under "Not carried over".
+- **Resizing:** use ImageMagick's `magick` if it's installed, otherwise leave the images at their size and list them. None needed it (see "Missing pieces"). (given in advance)
 - **The drafted audience and voice:** confirmed as drafted from the old site, in `.hostsmith/brief.md`. (given in advance)
 - **Who sends requests, and how:** Hollis Whitcomb, Founder, by email. (given in advance)
 - **Who approves changes:** Hollis Whitcomb. (given in advance)
 - **The developer:** the Hostsmith team, through the repository's issues. (given in advance)
-- **The plan's limits:** skip the comparison with the plan's limits, and report the size of `dist/`: 1.8 MB with the example's pages, before step 11, and its final size under "Size". (given in advance)
+- **The plan's limits:** skip the comparison with the plan's limits, and report the size of `dist/`: 1.5 MB (see "Fidelity check"). (given in advance)
 - **Playwright's browser:** go ahead if a download is needed. None was: Playwright's Chromium was already on the machine. (given in advance)
 - **The person's comparison in a browser:** no one compares the pages in this run: recorded as not done. (given in advance)
 - **Typos and copy:** keep the text exactly as it is, and list any typo in the report. No typo was found. (given in advance)
@@ -171,7 +176,7 @@ All answers below were given in advance, in `.hostsmith/snapshot/answers.md`, an
 
 ## Alt text written
 
-None: every image the pages show had its alt text in the export or the CSV. The amenity icons were decorative (`alt=""`) and are the kit's icons, hidden from assistive technology.
+None: every image the pages show had its alt text in the export or the CSV. The amenity icons were decorative (`alt=""`) and are now the site's own icons, which the kit hides from assistive technology.
 
 ## Links to check
 
@@ -241,6 +246,8 @@ The check ran: `fidelity.mjs` with Playwright 1.64.0 and its Chromium, each page
 | Every page | all | The whole section fades up as it enters the view, where the old site moved only its header. The screenshots run under reduced motion, where neither moves. |
 | Blog posts | all | Links in the body are in the text color, underlined, where the old site showed the browser's default blue. |
 | Every page | all | Phone links are `tel:8025550147`, where the old site's were `tel:+18025550147`. |
+
+**Size:** the built site, `dist/`, is 1.5 MB, 12 pages. The plan's limits weren't checked (given in advance).
 
 **The person's comparison:** not done. No one compared the pages with the old site in a browser in this run (given in advance). The owner should do it on the preview site before approving.
 
