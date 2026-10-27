@@ -1,0 +1,57 @@
+---
+// questions-aside: questions and answers beside a heading group with an
+// intro and a button. Each item is a native <details>, so it opens and closes
+// with Enter or Space and needs no script. Answers are markdown.
+import Title from "@hostsmith/site-kit-astro/components/Title.astro";
+import { sectionFields } from "@hostsmith/site-kit-astro/field";
+import { renderMarkdown } from "@hostsmith/site-kit-astro/markdown";
+
+const { section, entry } = Astro.props;
+const f = sectionFields(entry, section);
+const answers = await Promise.all(
+  section.items.map((item: { answer: string }, i: number) =>
+    renderMarkdown(item.answer, `${entry} section "${section.id}" (questions-aside) items[${i}].answer`, entry),
+  ),
+);
+---
+
+<section {...f.root} class="questions-aside">
+  <div class="sk-container questions-aside__inner">
+    <div class="questions-aside__header">
+      {
+        section.eyebrow && (
+          <p class="questions-aside__eyebrow" {...f.field("eyebrow")}>
+            {section.eyebrow}
+          </p>
+        )
+      }
+      <h2 class="questions-aside__title" {...f.field("title")}><Title text={section.title} /></h2>
+      {
+        section.intro && (
+          <p class="questions-aside__intro" {...f.field("intro")}>
+            {section.intro}
+          </p>
+        )
+      }
+      {
+        section.link && (
+          <a href={section.link.link} class="sk-button sk-button--secondary" {...f.field("link", "label")}>
+            {section.link.label}
+          </a>
+        )
+      }
+    </div>
+    <div class="questions-aside__list">
+      {
+        section.items.map((item: { question: string }, i: number) => (
+          <details class="questions-aside__item">
+            <summary class="questions-aside__question" {...f.field("items", i, "question")}>
+              {item.question}
+            </summary>
+            <div class="questions-aside__answer sk-prose" {...f.field("items", i, "answer")} set:html={answers[i]} />
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,28 +1,41 @@
 ---
-title: Contact
-description: The hours and location section.
+title: Book a tour | Cobbleford Co-Working
+description: Request a tour of Cobbleford Co-Working at {street}. Tours run on weekdays from 9am to 4pm, and your first day is on us.
 sections:
-  - id: o0h1
+  - id: ikp0
     type: hero
-    eyebrow: Section types
-    title: Contact
-    subtitle: The hours and location section. Forms come in a later kit release.
+    eyebrow: Contact
+    title: Come and see the mill ==for yourself==.
+    subtitle: Book a tour and your first day is on us. We reply to every request within one working day.
     variant: page
-  - id: o1h1
-    type: hours-location
-    title: Hours and location
-    address: |-
-      1 Example Street
-      Example City
-    hours:
-      - days: Monday to Friday
-        time: 9:00 AM - 5:00 PM
-      - days: Saturday and Sunday
-        time: Closed
-    phone: "+1 555 0100"
-    email: hello@example.com
-    note: The section's note.
-    mapLink:
-      label: Show on a map
-      link: https://www.openstreetmap.org/?mlat=51.503&mlon=-0.125#map=17/51.503/-0.125
+  - id: iw67
+    type: contact-info
+    blocks:
+      - title: Visit
+        address: |-
+          {street}
+          Cobbleford
+        note: Free parking behind the mill. Bikes go in the covered rack at the river entrance.
+      - title: Opening hours
+        hours:
+          - days: Monday - Friday
+            time: "{weekdayHours}"
+          - days: Saturday
+            time: "{saturdayHours}"
+          - days: Sunday
+            time: Closed
+          - days: Tours
+            time: Weekdays, 9am - 4pm
+        note: Dedicated desk and private office members have 24/7 key-fob access.
+      - title: Get in touch
+        email: "{email}"
+        phone: "{phone}"
+  - id: er01
+    type: embed
+    title: Map placeholder showing open countryside
+    url: https://www.openstreetmap.org/export/embed.html?bbox=-88.00229%2C50.19547%2C-87.98942%2C50.19789&layer=mapnik
+    kind: map
+    aspect: "21:9"
+    caption: Cobbleford Co-Working is fictional, so the map shows open countryside.
+    load: click
 ---

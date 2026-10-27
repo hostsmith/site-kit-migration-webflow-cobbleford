@@ -88,7 +88,7 @@ Every preset defines the same `--color-*` names. For the site's own colors, add 
 
 ## Contrast pairs
 
-The text and background pairs the theme's rules use, and the WCAG AA minimum each needs: 4.5 for text, 3 for text at 24 px and larger. Highlighted words are `--color-brand` on the page and on surfaces, and the text color on dark and accent. `npm run check:styles` checks every pair in every preset. A rule that puts a new pair together adds its row here.
+The text and background pairs the theme's rules use, and the WCAG AA minimum each needs: 4.5 for text, 3 for text at 24 px and larger. Highlighted words are `--color-brand` on the page and on surfaces, `--color-tint` on the deep green band, and the text color on dark and accent. White cards and sections are `--color-white`; the footer and the dark band `--color-green-dark`. `npm run check:styles` checks every pair in every preset. A rule that puts a new pair together adds its row here.
 
 | Text | Background | Minimum |
 | --- | --- | --- |
@@ -104,3 +104,17 @@ The text and background pairs the theme's rules use, and the WCAG AA minimum eac
 | `--color-brand` | `--color-bg` | 4.5 |
 | `--color-brand` | `--color-surface` | 4.5 |
 | `--color-error` | `--color-surface` | 4.5 |
+| `--color-accent` | `--color-bg` | 4.5 |
+| `--color-accent` | `--color-surface` | 4.5 |
+| `--color-fg` | `--color-white` | 4.5 |
+| `--color-muted` | `--color-white` | 4.5 |
+| `--color-brand` | `--color-white` | 4.5 |
+| `--color-accent` | `--color-white` | 4.5 |
+| `--color-bg` | `--color-accent` | 4.5 |
+| `--color-green-dark` | `--color-bg` | 4.5 |
+| `--color-green-dark` | `--color-white` | 4.5 |
+| `--color-accent-fg` | `--color-green-dark` | 4.5 |
+| `--color-bg` | `--color-green-dark` | 4.5 |
+| `--color-on-dark` | `--color-green-dark` | 4.5 |
+| `--color-tint` | `--color-green-dark` | 4.5 |
+| `--color-accent` | `--color-builder-tab-current` | 4.5 |

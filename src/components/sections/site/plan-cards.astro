@@ -1,0 +1,63 @@
+---
+// plan-cards: membership plans as cards, each with its name, its price and
+// period, its features and a button.
+import Title from "@hostsmith/site-kit-astro/components/Title.astro";
+import { sectionFields } from "@hostsmith/site-kit-astro/field";
+
+const { section, entry } = Astro.props;
+const f = sectionFields(entry, section);
+---
+
+<section {...f.root} class="plan-cards">
+  <div class="sk-container">
+    {
+      (section.eyebrow || section.title) && (
+        <div class="plan-cards__header">
+          {section.eyebrow && (
+            <p class="plan-cards__eyebrow" {...f.field("eyebrow")}>
+              {section.eyebrow}
+            </p>
+          )}
+          {section.title && (
+            <h2 class="plan-cards__title" {...f.field("title")}>
+              <Title text={section.title} />
+            </h2>
+          )}
+        </div>
+      )
+    }
+    <ul class="plan-cards__list">
+      {
+        section.items.map((item, i) => (
+          <li class="plan-cards__card">
+            <div class="plan-cards__top">
+              <h3 class="plan-cards__name" {...f.field("items", i, "name")}>
+                {item.name}
+              </h3>
+              <p class="plan-cards__price-row">
+                <span class="plan-cards__price" {...f.field("items", i, "price")}>
+                  {item.price}
+                </span>
+                {item.period && (
+                  <span class="plan-cards__period" {...f.field("items", i, "period")}>
+                    {item.period}
+                  </span>
+                )}
+              </p>
+            </div>
+            {item.features && (
+              <ul class="plan-cards__features">
+                {item.features.map((feature, j) => <li {...f.field("items", i, "features", j)}>{feature}</li>)}
+              </ul>
+            )}
+            {item.button && (
+              <a href={item.button.link} class="sk-button sk-button--primary plan-cards__button" {...f.field("items", i, "button", "label")}>
+                {item.button.label}
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

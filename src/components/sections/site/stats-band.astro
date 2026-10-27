@@ -1,0 +1,48 @@
+---
+// stats-band: an image beside a heading group, a paragraph and figures, on
+// the dark band. The old site's "By the numbers" on the home page.
+import Title from "@hostsmith/site-kit-astro/components/Title.astro";
+import { sectionFields } from "@hostsmith/site-kit-astro/field";
+
+const { section, entry } = Astro.props;
+const f = sectionFields(entry, section);
+---
+
+<section {...f.root} class="stats-band">
+  <div class="sk-container stats-band__inner">
+    <img src={section.image} alt={section.imageAlt} class="stats-band__media" loading="lazy" {...f.field("image")} />
+    <div class="stats-band__content">
+      <div class="stats-band__header">
+        {
+          section.eyebrow && (
+            <p class="stats-band__eyebrow" {...f.field("eyebrow")}>
+              {section.eyebrow}
+            </p>
+          )
+        }
+        <h2 class="stats-band__title" {...f.field("title")}><Title text={section.title} /></h2>
+      </div>
+      {
+        section.text && (
+          <p class="stats-band__text" {...f.field("text")}>
+            {section.text}
+          </p>
+        )
+      }
+      <ul class="stats-band__list">
+        {
+          section.stats.map((stat, i) => (
+            <li class="stats-band__item">
+              <p class="stats-band__value" {...f.field("stats", i, "value")}>
+                {stat.value}
+              </p>
+              <p class="stats-band__label" {...f.field("stats", i, "label")}>
+                {stat.label}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

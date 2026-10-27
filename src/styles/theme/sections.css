@@ -19,13 +19,22 @@
   padding-block: var(--spacing-section);
 }
 
+/* The old section header's 0.7 s fade-up, slower than the theme's. */
+[data-sk-ready] .sk-section[data-reveal] {
+  @variant motion-safe {
+    transition-duration: 0.7s;
+  }
+}
+
+/* The old section header: eyebrow, title and intro, 46rem wide, 3rem above
+   the content. */
 .sk-section__header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.75rem;
-  max-width: 48rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  max-width: 46rem;
+  margin-bottom: 3rem;
 }
 
 .sk-section__title {
@@ -36,10 +45,11 @@
 }
 
 .sk-section__intro {
-  font-size: var(--text-large);
-  line-height: var(--text-large--line-height);
-  letter-spacing: var(--text-large--letter-spacing);
-  font-weight: var(--text-large--font-weight);
+  color: var(--color-muted);
+  font-size: var(--text-medium);
+  line-height: var(--text-medium--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: var(--text-medium--font-weight);
 }
 
 .sk-section__link {
@@ -49,6 +59,7 @@
 }
 
 .sk-eyebrow {
+  color: var(--color-brand);
   font-size: var(--text-eyebrow);
   line-height: var(--text-eyebrow--line-height);
   letter-spacing: var(--text-eyebrow--letter-spacing);
@@ -104,15 +115,36 @@
   }
 }
 
+/* The old white cards: a fine border, a large radius, the border green on
+   hover, and the ring around the whole card when its link has focus. */
 .sk-card {
   position: relative;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
-  background: var(--color-bg);
+  background: var(--color-white);
   color: var(--color-fg);
   overflow: hidden;
+}
+
+.sk-card--linked {
+  &:hover {
+    border-color: var(--color-accent);
+  }
+
+  &:has(.sk-card__title a:focus-visible) {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+
+  & .sk-card__title a {
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
 }
 
 /* A linked card's title link covers the whole card. */
@@ -131,17 +163,19 @@
 .sk-card__media {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 14rem;
   object-fit: cover;
-  background: var(--color-tint);
+  background: var(--color-surface);
 }
 
+/* The date shows before the title, as the old blog cards had it, and a team
+   member's role after the name. */
 .sk-card__body {
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.75rem;
   padding: 1.5rem;
 }
 
@@ -149,15 +183,31 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: var(--radius-tag);
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-tile);
   background: var(--color-tint);
+  color: var(--color-accent);
+
+  & .sk-icon {
+    width: 2rem;
+    height: 2rem;
+  }
 }
 
-.sk-card__category,
 .sk-card__meta {
+  order: -1;
   color: var(--color-muted);
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: var(--text-small--font-weight);
+}
+
+.sk-card__category {
+  order: 1;
+  margin-top: -0.25rem;
+  color: var(--color-brand);
   font-size: var(--text-small);
   line-height: var(--text-small--line-height);
   letter-spacing: var(--text-small--letter-spacing);
@@ -172,16 +222,23 @@
 }
 
 .sk-card__text {
+  order: 2;
   color: var(--color-muted);
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: var(--text-small--font-weight);
 }
 
-/* Above the stretched link, so it stays its own target. */
+/* The old cards had no "read more": the whole card is the link, so it stays
+   for screen readers only. */
 .sk-card__more {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.75rem;
-  margin-top: auto;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .sk-icon {
@@ -195,10 +252,10 @@
 }
 
 .sk-stat__value {
-  font-size: var(--text-h2);
-  line-height: var(--text-h2--line-height);
-  letter-spacing: var(--text-h2--letter-spacing);
-  font-weight: var(--text-h2--font-weight);
+  font-size: var(--text-display);
+  line-height: var(--text-display--line-height);
+  letter-spacing: var(--text-display--letter-spacing);
+  font-weight: var(--text-display--font-weight);
 }
 
 .sk-stat__label {
@@ -217,7 +274,7 @@
 }
 
 .sk-tone-dark {
-  background: var(--color-fg);
+  background: var(--color-green-dark);
   color: var(--color-bg);
 
   & .sk-section__intro,
@@ -227,33 +284,51 @@
   }
 
   & .sk-button--primary {
+    border-color: var(--color-bg);
     background: var(--color-bg);
-    color: var(--color-fg);
+    color: var(--color-green-dark);
+
+    &:hover {
+      border-color: var(--color-white);
+      background: var(--color-white);
+    }
   }
 
   & :focus-visible {
-    outline-color: var(--color-bg);
+    outline-color: var(--color-tint);
   }
 }
 
+/* The old call to action: cream text on green, and the `is-alternate`
+   button, cream with deep green text. */
 .sk-tone-accent {
   background: var(--color-accent);
-  color: var(--color-accent-fg);
+  color: var(--color-bg);
+
+  & .sk-section__intro {
+    color: var(--color-bg);
+  }
 
   & .sk-button--primary {
-    background: var(--color-accent-fg);
-    color: var(--color-accent);
+    border-color: var(--color-bg);
+    background: var(--color-bg);
+    color: var(--color-green-dark);
+
+    &:hover {
+      border-color: var(--color-white);
+      background: var(--color-white);
+    }
   }
 
   & :focus-visible {
-    outline-color: var(--color-accent-fg);
+    outline-color: var(--color-tint);
   }
 }
 
 /* hero */
 .sk-hero > .sk-container {
   display: grid;
-  gap: 2rem;
+  gap: 3rem;
   align-items: center;
 }
 
@@ -261,7 +336,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .sk-hero__badge {
@@ -300,7 +375,8 @@
   display: block;
   width: 100%;
   object-fit: cover;
-  background: var(--color-tint);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
 }
 
 .sk-hero--centered {
@@ -317,18 +393,33 @@
   }
 }
 
+/* The old home hero: text and image side by side from `lg`, the image 36rem
+   tall, then 28rem and 20rem as the columns stack. */
 .sk-hero--image-left,
 .sk-hero--image-right {
   & > .sk-container {
-    @variant md {
-      grid-template-columns: 1fr 1fr;
+    @variant lg {
+      grid-template-columns: 1.1fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  & .sk-hero__media {
+    height: 36rem;
+
+    @variant max-lg {
+      height: 28rem;
+    }
+
+    @variant max-md {
+      height: 20rem;
     }
   }
 }
 
 /* The image shows on the left; the text still comes first in reading order. */
 .sk-hero--image-left .sk-hero__media {
-  @variant md {
+  @variant lg {
     order: -1;
   }
 }
@@ -367,8 +458,23 @@
   }
 }
 
-.sk-hero--page .sk-hero__media {
-  aspect-ratio: 16 / 9;
+/* The old page header: on the surface color, with the medium section
+   spacing, its text 50rem wide and its subtitle muted. */
+.sk-hero--page {
+  padding-block: var(--spacing-section-medium);
+  background: var(--color-surface);
+
+  & .sk-hero__content {
+    max-width: 50rem;
+  }
+
+  & .sk-hero__subtitle {
+    color: var(--color-muted);
+  }
+
+  & .sk-hero__media {
+    aspect-ratio: 16 / 9;
+  }
 }
 
 /* rich-text */
@@ -397,6 +503,7 @@
 .sk-collection-list__list,
 .sk-services-grid__list {
   display: grid;
+  align-items: stretch;
   gap: 1.5rem;
   margin: 0;
   padding: 0;
@@ -419,14 +526,127 @@
   min-width: 0;
 }
 
+/* A header with a link: the title on the left, the intro and the link as a
+   button on the right from `lg`, as the old amenities and blog headers. */
+.sk-services-grid .sk-section__header:has(.sk-section__link),
+.sk-collection-list .sk-section__header:has(.sk-section__link) {
+  max-width: none;
+
+  @variant lg {
+    display: grid;
+    grid-template-columns: minmax(0, 46rem) minmax(0, 30rem);
+    justify-content: space-between;
+    align-items: end;
+    gap: 1rem 3rem;
+
+    & .sk-eyebrow {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    & .sk-section__title {
+      grid-column: 1;
+      grid-row: 2 / 4;
+    }
+
+    & .sk-section__intro {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    & .sk-section__link {
+      grid-column: 2;
+      grid-row: 3;
+      justify-self: start;
+    }
+  }
+}
+
+.sk-collection-list .sk-section__header:has(.sk-section__link) {
+  @variant lg {
+    grid-template-columns: minmax(0, 46rem) auto;
+
+    & .sk-section__title {
+      grid-row: 2;
+    }
+
+    & .sk-section__link {
+      grid-row: 1 / 3;
+      align-self: end;
+    }
+  }
+}
+
+/* The link beside a title, as the old `button is-secondary`. */
+.sk-section__link {
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-button);
+  color: var(--color-accent);
+  font-size: var(--text-body);
+  line-height: var(--text-h6--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    background: var(--color-accent);
+    color: var(--color-accent-fg);
+  }
+}
+
+/* The old amenity cards: white tiles without a border. */
+.sk-services-grid--cards .sk-card {
+  border: 0;
+}
+
+.sk-services-grid--cards .sk-card__body,
+.sk-services-grid--list .sk-card__body {
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.sk-services-grid .sk-card__text {
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
+  font-weight: var(--text-body--font-weight);
+}
+
+/* The list variant, the old values: text cards in two columns from `md`,
+   with a green rule on top, under a centered header. */
+.sk-services-grid--list .sk-section__header {
+  align-items: center;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.sk-services-grid--list .sk-card {
+  border: 0;
+  border-top: 4px solid var(--color-accent);
+  border-radius: var(--radius-tile);
+}
+
+.sk-services-grid--list .sk-card__body {
+  gap: 0.75rem;
+}
+
 /* The list variants: rows, the image beside the text from `md`. */
-.sk-collection-list--list .sk-collection-list__list,
-.sk-services-grid--list .sk-services-grid__list {
+.sk-collection-list--list .sk-collection-list__list {
   grid-template-columns: 1fr;
 }
 
+.sk-services-grid--list .sk-services-grid__list {
+  grid-template-columns: 1fr;
+
+  @variant md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .sk-collection-list--list .sk-card,
-.sk-services-grid--list .sk-card {
+.sk-services-grid--list .sk-card:has(.sk-card__media) {
   @variant md {
     display: grid;
     grid-template-columns: 16rem 1fr;
@@ -501,9 +721,25 @@
   list-style: none;
 }
 
+/* The old testimonials: on the page color, under a centered header, in
+   three columns from `lg`, two from `md`. */
+.sk-testimonials.sk-tone-surface {
+  background: var(--color-bg);
+}
+
+.sk-testimonials .sk-section__header {
+  align-items: center;
+  margin-inline: auto;
+  text-align: center;
+}
+
 .sk-testimonials--grid .sk-testimonials__list {
   @variant md {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  @variant lg {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -517,25 +753,31 @@
 .sk-testimonials__item {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 1.5rem;
   height: 100%;
   margin: 0;
-  padding: 1.5rem;
-  border: 1px solid var(--color-border);
+  padding: 2rem;
   border-radius: var(--radius-card);
+  background: var(--color-white);
 }
 
 .sk-testimonials__quote {
   margin: 0;
   padding: 0;
   border: 0;
+  color: var(--color-fg);
+  font-size: var(--text-quote);
+  line-height: var(--text-quote--line-height);
+  letter-spacing: var(--text-quote--letter-spacing);
+  font-weight: var(--text-quote--font-weight);
 }
 
 .sk-testimonials__author {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0 0.75rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
   margin: 0;
   color: inherit;
 }
@@ -550,13 +792,16 @@
   background: var(--color-tint);
 }
 
+/* The old quotes had no photos: the empty placeholder stays out. */
+.sk-testimonials__placeholder {
+  display: none;
+}
+
 .sk-testimonials__name {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .sk-testimonials__role {
-  flex-basis: 100%;
-  padding-left: 3.75rem;
   color: var(--color-muted);
 }
 
@@ -595,7 +840,15 @@
 }
 
 .sk-cta .sk-section__header {
+  max-width: 40rem;
   margin-bottom: 0;
+}
+
+.sk-cta .sk-section__title {
+  font-size: var(--text-h3);
+  line-height: var(--text-h3--line-height);
+  letter-spacing: var(--text-h3--letter-spacing);
+  font-weight: var(--text-h3--font-weight);
 }
 
 .sk-cta--banner > .sk-container {
@@ -606,8 +859,58 @@
   }
 }
 
-.sk-cta--card > .sk-container {
-  max-width: 48rem;
+/* The card, the old call to action: a rounded box the width of the
+   content, the text beside the button from `lg`. Its tone colors the box,
+   and the section stays on the page color. */
+.sk-cta--card {
+  padding-block: var(--spacing-section-medium);
+  background: transparent;
+
+  & > .sk-container {
+    max-width: var(--container-site);
+    margin-inline: max(var(--spacing-gutter), calc((100% - var(--container-site)) / 2));
+    padding: 4rem;
+    border-radius: var(--radius-panel);
+
+    @variant max-lg {
+      padding: 3.5rem;
+    }
+
+    @variant max-md {
+      padding: 2rem;
+    }
+
+    @variant lg {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+  }
+
+  &.sk-tone-accent {
+    background: transparent;
+
+    & > .sk-container {
+      background: var(--color-accent);
+    }
+  }
+
+  &.sk-tone-dark {
+    background: transparent;
+
+    & > .sk-container {
+      background: var(--color-green-dark);
+    }
+  }
+
+  &.sk-tone-surface {
+    background: transparent;
+
+    & > .sk-container {
+      background: var(--color-surface);
+    }
+  }
 }
 
 /* hours-location */
@@ -719,16 +1022,28 @@
   min-width: 0;
 }
 
-/* steps: the theme draws the numbers */
+/* steps: the theme draws the numbers. The old "How it works": on white,
+   under a centered header, the steps as bordered cards in three columns from
+   `lg`, each with its number in brown. */
+.sk-steps {
+  background: var(--color-white);
+}
+
+.sk-steps .sk-section__header {
+  align-items: center;
+  margin-inline: auto;
+  text-align: center;
+}
+
 .sk-steps__list {
   display: grid;
-  gap: 2rem;
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
   list-style: none;
   counter-reset: step;
 
-  @variant md {
+  @variant lg {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -736,12 +1051,20 @@
 .sk-steps__item {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-white);
   counter-increment: step;
 
   &::before {
-    content: counter(step, decimal-leading-zero);
-    font-weight: 700;
+    content: counter(step, decimal-leading-zero) / "";
+    color: var(--color-brand);
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    letter-spacing: var(--text-h3--letter-spacing);
+    font-weight: var(--text-h3--font-weight);
   }
 }
 
@@ -756,18 +1079,43 @@
   color: var(--color-muted);
 }
 
+/* A split right after the steps continues their white section, as the old
+   tour block sat inside "How it works". */
+.sk-steps + .sk-split {
+  padding-top: 0;
+  background: var(--color-white);
+
+  & .sk-section__title {
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    letter-spacing: var(--text-h3--letter-spacing);
+    font-weight: var(--text-h3--font-weight);
+  }
+
+  & .sk-split__media {
+    height: 30rem;
+
+    @variant max-md {
+      height: 18rem;
+    }
+  }
+}
+
 .sk-steps {
   min-width: 0;
 }
 
 /* split: the image first in reading order, the variant gives its side */
+/* The old image and text blocks: side by side from `lg`, 4rem apart, the
+   image rounded and 32rem tall. */
 .sk-split > .sk-container {
   display: grid;
   align-items: center;
   gap: 2rem;
 
-  @variant md {
+  @variant lg {
     grid-template-columns: 1fr 1fr;
+    gap: 4rem;
   }
 }
 
@@ -777,7 +1125,7 @@
 
 .sk-split--image-right .sk-split__media,
 .sk-split--image-right .sk-video {
-  @variant md {
+  @variant lg {
     order: 2;
   }
 }
@@ -785,15 +1133,21 @@
 .sk-split__media {
   display: block;
   width: 100%;
+  height: 32rem;
   object-fit: cover;
-  background: var(--color-tint);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+
+  @variant max-md {
+    height: 20rem;
+  }
 }
 
 .sk-split__content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .sk-split__content .sk-section__header {
@@ -802,6 +1156,44 @@
 
 .sk-split__body {
   min-width: 0;
+  color: var(--color-muted);
+  font-size: var(--text-medium);
+  line-height: var(--text-medium--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: var(--text-medium--font-weight);
+
+  /* Above the prose rule: the old blocks set 1.5rem between their parts. */
+  &.sk-prose > * + * {
+    margin-top: 1.5rem;
+  }
+}
+
+/* The old check lists: a green check before each item, no bullets. */
+.sk-split__body ul,
+.sk-tabs__body ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-fg);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
+  font-weight: var(--text-body--font-weight);
+
+  & li {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  & li::before {
+    content: "✓" / "";
+    color: var(--color-accent);
+    font-weight: 700;
+  }
 }
 
 .sk-split__stats {
@@ -890,24 +1282,30 @@
   min-width: 0;
 }
 
-/* tabs: every panel under its label until the script runs */
+/* tabs: every panel under its label until the script runs. The old floors:
+   pill tabs in green outline, then a white panel with the text on the left
+   and the check list on the right from `md`. */
 .sk-tabs__list:not([hidden]) {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid var(--color-border);
+  gap: 0.75rem;
+  margin-bottom: 2rem;
 }
 
 .sk-tabs__tab {
   min-height: 2.75rem;
-  padding: 0.5rem 1rem;
-  border: 0;
-  border-bottom: 2px solid transparent;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-button);
   background: transparent;
+  color: var(--color-accent);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
+  font-weight: 600;
 
-  &[aria-selected="true"] {
-    border-bottom-color: currentColor;
-    font-weight: 700;
+  &:hover {
+    background: var(--color-surface);
   }
 }
 
@@ -920,8 +1318,48 @@
 
 .sk-tabs__panel:not([hidden]) {
   display: grid;
-  gap: 1rem;
+  gap: 1rem 3rem;
   align-content: start;
+  padding: 3rem;
+  border-radius: var(--radius-panel);
+  background: var(--color-white);
+
+  @variant md {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @variant max-md {
+    padding: 1.5rem;
+  }
+}
+
+/* The panel's label and title in the left column, then its body's text, and
+   its check list beside them. */
+.sk-tabs__panel > * {
+  @variant md {
+    grid-column: 1;
+  }
+}
+
+.sk-tabs__body {
+  display: contents;
+  color: var(--color-muted);
+  font-size: var(--text-medium);
+  line-height: var(--text-medium--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: var(--text-medium--font-weight);
+
+  & > ul {
+    @variant md {
+      grid-column: 2;
+      grid-row: 1 / span 3;
+      align-self: start;
+    }
+  }
+
+  &.sk-prose > * + * {
+    margin-top: 0;
+  }
 }
 
 .sk-tabs__label {
@@ -942,9 +1380,7 @@
   font-weight: var(--text-h4--font-weight);
 }
 
-.sk-tabs__body {
-  min-width: 0;
-}
+
 
 .sk-tabs__link {
   display: inline-flex;
@@ -1105,10 +1541,17 @@
   margin: 0;
 }
 
+/* The old map: a rounded frame with a fine border, then a small caption. */
+.sk-embed {
+  padding-block: var(--spacing-section-small);
+}
+
 .sk-embed__frame {
   position: relative;
   width: 100%;
+  overflow: hidden;
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
   background: var(--color-surface);
   color: var(--color-fg);
 }
@@ -1157,11 +1600,15 @@
   justify-content: center;
   min-height: 2.75rem;
   padding: 0.75rem 1.5rem;
-  border: 0;
+  border: 2px solid var(--color-accent);
   border-radius: var(--radius-button);
   background: var(--color-accent);
   color: var(--color-accent-fg);
   font-weight: 600;
+}
+
+.sk-embed__link {
+  color: var(--color-accent);
 }
 
 .sk-embed__link {
@@ -1179,7 +1626,12 @@
 }
 
 .sk-embed__caption {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
+  color: var(--color-muted);
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: var(--text-small--font-weight);
 }
 
 .sk-embed {
@@ -1353,4 +1805,379 @@
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 0.15em;
+}
+
+/* -------------------------------------------------------------------------
+   Site-local types (src/components/sections/site/), each in classes of its
+   own, ported from the old site's components.
+   ------------------------------------------------------------------------- */
+
+/* stats-band: the old "By the numbers", on deep green. */
+.stats-band {
+  padding-block: var(--spacing-section);
+  background: var(--color-green-dark);
+  color: var(--color-bg);
+
+  & .sk-highlight {
+    color: var(--color-tint);
+  }
+
+  & :focus-visible {
+    outline-color: var(--color-tint);
+  }
+}
+
+.stats-band__inner {
+  display: grid;
+  align-items: center;
+  gap: 3rem;
+
+  @variant lg {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.stats-band__media {
+  display: block;
+  width: 100%;
+  height: 34rem;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+
+  @variant max-lg {
+    height: 24rem;
+  }
+
+  @variant max-md {
+    height: 18rem;
+  }
+}
+
+.stats-band__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.stats-band__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 46rem;
+}
+
+.stats-band__eyebrow {
+  color: var(--color-tint);
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  font-weight: var(--text-eyebrow--font-weight);
+  text-transform: uppercase;
+}
+
+.stats-band__title {
+  font-size: var(--text-h2);
+  line-height: var(--text-h2--line-height);
+  letter-spacing: var(--text-h2--letter-spacing);
+  font-weight: var(--text-h2--font-weight);
+}
+
+.stats-band__text {
+  color: var(--color-on-dark);
+  font-size: var(--text-medium);
+  line-height: var(--text-medium--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: var(--text-medium--font-weight);
+}
+
+.stats-band__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stats-band__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stats-band__value {
+  color: var(--color-bg);
+  font-size: var(--text-display);
+  line-height: var(--text-display--line-height);
+  letter-spacing: var(--text-display--letter-spacing);
+  font-weight: var(--text-display--font-weight);
+}
+
+.stats-band__label {
+  color: var(--color-on-dark);
+}
+
+/* plan-cards: the old membership plans, three white cards from `lg`. */
+.plan-cards {
+  padding-block: var(--spacing-section);
+}
+
+.plan-cards__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 46rem;
+  margin-bottom: 3rem;
+}
+
+.plan-cards__eyebrow {
+  color: var(--color-brand);
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  font-weight: var(--text-eyebrow--font-weight);
+  text-transform: uppercase;
+}
+
+.plan-cards__title {
+  font-size: var(--text-h2);
+  line-height: var(--text-h2--line-height);
+  letter-spacing: var(--text-h2--letter-spacing);
+  font-weight: var(--text-h2--font-weight);
+}
+
+.plan-cards__list {
+  display: grid;
+  align-items: stretch;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @variant lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.plan-cards__card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-white);
+}
+
+.plan-cards__top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.plan-cards__name {
+  font-size: var(--text-h4);
+  line-height: var(--text-h4--line-height);
+  letter-spacing: var(--text-h4--letter-spacing);
+  font-weight: var(--text-h4--font-weight);
+}
+
+.plan-cards__price-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.plan-cards__price {
+  color: var(--color-fg);
+  font-size: var(--text-display);
+  line-height: var(--text-display--line-height);
+  letter-spacing: var(--text-display--letter-spacing);
+  font-weight: var(--text-display--font-weight);
+}
+
+.plan-cards__period {
+  color: var(--color-muted);
+}
+
+.plan-cards__features {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-muted);
+}
+
+.plan-cards__button {
+  width: 100%;
+}
+
+/* questions-aside: the old membership FAQ, on white, the header beside the
+   questions from `lg`. */
+.questions-aside {
+  padding-block: var(--spacing-section);
+  background: var(--color-white);
+}
+
+.questions-aside__inner {
+  display: grid;
+  align-items: start;
+  gap: 2rem;
+
+  @variant lg {
+    grid-template-columns: 1fr 1.6fr;
+    gap: 4rem;
+  }
+}
+
+.questions-aside__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 46rem;
+}
+
+.questions-aside__eyebrow {
+  color: var(--color-brand);
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  font-weight: var(--text-eyebrow--font-weight);
+  text-transform: uppercase;
+}
+
+.questions-aside__title {
+  font-size: var(--text-h2);
+  line-height: var(--text-h2--line-height);
+  letter-spacing: var(--text-h2--letter-spacing);
+  font-weight: var(--text-h2--font-weight);
+}
+
+.questions-aside__intro {
+  color: var(--color-muted);
+  font-size: var(--text-medium);
+  line-height: var(--text-medium--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: var(--text-medium--font-weight);
+}
+
+.questions-aside__list {
+  min-width: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.questions-aside__item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.questions-aside__question {
+  display: list-item;
+  min-height: 2.75rem;
+  padding-block: 1.5rem;
+  list-style-position: inside;
+  color: var(--color-fg);
+  font-size: var(--text-medium);
+  line-height: var(--text-h6--line-height);
+  letter-spacing: var(--text-medium--letter-spacing);
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+.questions-aside__answer {
+  padding-bottom: 1.5rem;
+  color: var(--color-muted);
+}
+
+/* contact-info: the old contact details, in three columns from `lg`. */
+.contact-info {
+  padding-block: var(--spacing-section);
+}
+
+.contact-info__inner {
+  display: grid;
+  align-items: start;
+  gap: 2rem;
+
+  @variant md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @variant lg {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  }
+}
+
+.contact-info__block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.contact-info__title {
+  font-size: var(--text-h5);
+  line-height: var(--text-h5--line-height);
+  letter-spacing: var(--text-h5--letter-spacing);
+  font-weight: var(--text-h5--font-weight);
+}
+
+.contact-info__address {
+  font-style: normal;
+}
+
+.contact-info__hours {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0;
+
+  & dd {
+    margin: 0;
+  }
+}
+
+.contact-info__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.contact-info__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--color-accent);
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--color-green-dark);
+  }
+}
+
+.contact-info__note {
+  color: var(--color-muted);
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  letter-spacing: var(--text-small--letter-spacing);
+  font-weight: var(--text-small--font-weight);
 }

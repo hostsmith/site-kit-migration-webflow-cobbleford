@@ -19,13 +19,129 @@ repo: OWNER/REPOSITORY
 #     widget: object
 #     fields:
 #       - { name: title, label: Title, widget: string }
-section_types: []
+section_types:
+  - name: stats-band
+    label: Stats band
+    widget: object
+    fields:
+      - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+      - { name: title, label: Title, widget: string }
+      - { name: text, label: Text, widget: text, required: false }
+      - { name: image, label: Image, widget: image }
+      - { name: imageAlt, label: Image alt text, widget: string, required: false }
+      - name: stats
+        label: Figures
+        label_singular: Figure
+        widget: list
+        min: 1
+        fields:
+          - { name: value, label: Value, widget: string }
+          - { name: label, label: Label, widget: string }
+  - name: plan-cards
+    label: Plan cards
+    widget: object
+    fields:
+      - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+      - { name: title, label: Title, widget: string, required: false }
+      - name: items
+        label: Plans
+        label_singular: Plan
+        widget: list
+        min: 1
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: price, label: Price, widget: string }
+          - { name: period, label: Period, widget: string, required: false }
+          - { name: features, label: Features, label_singular: Feature, widget: list, required: false, field: { name: feature, label: Feature, widget: string } }
+          - { name: button, label: Button, widget: object, required: false, fields: *labeled_link }
+  - name: questions-aside
+    label: Questions beside a heading
+    widget: object
+    fields:
+      - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+      - { name: title, label: Title, widget: string }
+      - { name: intro, label: Intro, widget: text, required: false }
+      - { name: link, label: Button, widget: object, required: false, fields: *labeled_link }
+      - name: items
+        label: Questions
+        label_singular: Question
+        widget: list
+        min: 1
+        fields:
+          - { name: question, label: Question, widget: string }
+          - { name: answer, label: Answer, widget: markdown }
+  - name: contact-info
+    label: Contact details
+    widget: object
+    fields:
+      - name: blocks
+        label: Blocks
+        label_singular: Block
+        widget: list
+        min: 1
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: address, label: Address, widget: text, required: false }
+          - name: hours
+            label: Opening hours
+            label_singular: Row
+            widget: list
+            required: false
+            fields:
+              - { name: days, label: Days, widget: string }
+              - { name: time, label: Time, widget: string }
+          - { name: email, label: Email, widget: string, required: false }
+          - { name: phone, label: Phone, widget: string, required: false }
+          - { name: note, label: Note, widget: text, required: false }
+
+# The site's interface strings, one field each under the settings' `ui`.
+ui:
+  - { name: postsPageTitle, label: "Blog post page title, with {title}", widget: string }
+  - { name: teamPageTitle, label: "Team member page title, with {title}", widget: string }
+  - { name: postsBack, label: Blog post back link, widget: string }
+  - { name: postsBy, label: Blog post "by" before the author, widget: string }
+  - { name: postsCtaTitle, label: Blog post call to action title, widget: string }
+  - { name: postsCtaText, label: Blog post call to action text, widget: text }
+  - { name: postsCtaButton, label: Blog post call to action button, widget: string }
+  - { name: teamBack, label: Team member back link, widget: string }
+  - { name: teamButton, label: Team member button, widget: string }
 
 # The site's collections, each item starting with `- name: <name>`: one folder
 # collection per collection in src/site.config.ts, which the collection list
 # section can show. Every collection is translated, so none is a files
 # collection.
 collections:
+  - name: posts
+    label: Blog posts
+    label_singular: Blog post
+    folder: src/content/posts
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Published date, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false }
+      - { name: description, label: Summary, widget: text }
+      - { name: image, label: Main image, widget: image, required: false }
+      - { name: imageAlt, label: Main image alt text, widget: string, required: false }
+      - { name: author, label: Author, widget: relation, collection: team, search_fields: [title], value_field: "{{slug}}", display_fields: [title], required: false }
+      - { name: draft, label: Draft, widget: boolean, required: false }
+      - { name: body, label: Body, widget: markdown }
+  - name: team
+    label: Team
+    label_singular: Team member
+    folder: src/content/team
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Name, widget: string }
+      - { name: category, label: Role, widget: string, required: false }
+      - { name: description, label: Short bio, widget: text, required: false }
+      - { name: image, label: Photo, widget: image, required: false }
+      - { name: imageAlt, label: Photo alt text, widget: string, required: false }
   - name: news
     label: News
     label_singular: News entry

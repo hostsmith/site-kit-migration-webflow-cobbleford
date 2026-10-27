@@ -25,19 +25,52 @@ The snapshot is in `.hostsmith/snapshot/`, which git ignores. It can be deleted 
 
 | Page | URL | Sections |
 | --- | --- | --- |
+| Home (`index.html`) | `/` | `hero` (image-right), `steps`, `split` (the tour block inside "How it works"), `services-grid` (cards, surface), `testimonials` (grid), `stats-band` (site-local), `collection-list` (posts, 3), `cta` (card, accent) |
+| Membership | `/membership` | `hero` (page), `plan-cards` (site-local), `questions-aside` (site-local) |
+| About | `/about` | `hero` (page), `split` (image-left), `services-grid` (list, surface), `tabs` (horizontal), `collection-list` (team), `cta` (card, accent) |
+| Blog | `/blog` | `hero` (page), `collection-list` (posts, all) |
+| Contact | `/contact` | `hero` (page), `contact-info` (site-local), `embed` (map) |
+| 404 | served for any missing page | `hero` (page), written anew (see "For the owner to approve") |
+| Blog post template (`detail_blog.html`) | `/blog/<slug>` | the `posts` detail template: header, image, body, and the call to action band |
+| Team template (`detail_team.html`) | `/team/<slug>` | the `team` detail template |
+
+No page needed `template: custom`.
 
 ## Site-local types and Components
+
+Site-local types, in `src/components/sections/site/`:
+
+- **`stats-band`** (Home): an image beside an eyebrow, a title, a paragraph and four figures, on the deep green band: the old "By the numbers". `split` has the image and figures but no dark tone, and `stats` has the tone but no image.
+- **`plan-cards`** (Membership): the three plans as cards, each with its name, price and period, features and a "Book a Tour" button. `pricing-list` shows only a label and a price per row.
+- **`questions-aside`** (Membership): the FAQ with its heading group, intro and "How to choose a plan" button beside the questions. `faq` has neither an intro nor a button.
+- **`contact-info`** (Contact): the "Visit", "Opening hours" and "Get in touch" blocks, each with its title and note. `hours-location` has no block titles and one note.
+
+Components found by repetition:
+
+- **The call to action band** (`cta_component`): on Home, About and the blog post template, with different text. It became `cta` (variant `card`, tone `accent`) on the pages, and the same markup with interface strings (`postsCta*`) in the blog post template.
+- **The section header** (`section-header_component`: eyebrow, title, intro): the header of the library types, `sk-section__header`, and of the site-local types.
+- **The page header** (`section_page-header`): `hero` with the variant `page` on Membership, About, Blog, Contact and the 404 page.
+- **The blog card** (`blog-card_*`), on Home and Blog: `collection-list` cards.
+- **The check list** (`check-list`), on Home and About: a Markdown list in a `split` and in the tabs' bodies, drawn with checks by the theme.
+
+Webflow elements replaced by kit parts:
+
+- **Tabs** (`w-tabs`) on About, "Three floors, one community": `tabs`, one item per pane.
+- **The native accordions** (`details`) on Membership: `questions-aside`, still native `details`.
+- **The map embed** (`w-embed` with an `iframe`) on Contact: `embed`, `kind: map`.
+- **The YouTube video** in the post "Inside Our Community Calendar": a video link alone in its paragraph, which the kit renders as an embed.
+- **The navbar's `details` mobile menu**: the kit's header menu.
 
 ## Collections
 
 ## Interactions
 
-- **`i-ad0d0a50`** (IX3, site-wide): every `section-header_component` (the eyebrow and heading above a section) faded up by 15% as it scrolled into view (top at 85% of the viewport, 0.7 s, played once), skipped to the end under reduced motion. Found on Home (6), Membership (2), About (5), Blog (1), Contact (2), the blog post template (1) and the team template (1).
+- **`i-ad0d0a50`** (IX3, site-wide): every `section-header_component` (the eyebrow and heading above a section) faded up by 15% as it scrolled into view (top at 85% of the viewport, 0.7 s, played once), skipped to the end under reduced motion. Its class is on the section headers of Home (5: steps, amenities, testimonials, numbers, blog), Membership (1: FAQ), About (4: story, values, floors, team) and Contact (1: the tour request form's header). Carried as `reveal: fade-up` on those 10 sections (the Contact one went with its form), with the theme's transition at the old 0.7 s, skipped under reduced motion. The whole section fades up, where the old site moved only its header. Webflow's inline style that hid the headers until its script ran isn't carried.
 
 ## Embeds
 
-- **Contact:** an OpenStreetMap map (`openstreetmap.org/export/embed.html`) in a `w-embed`, titled "Map placeholder showing open countryside".
-- **Blog post "Inside Our Community Calendar":** a YouTube video (`3URtTIdnXIk`) in the rich text.
+- **Contact:** an OpenStreetMap map (`openstreetmap.org/export/embed.html`) in a `w-embed`, titled "Map placeholder showing open countryside". Choice: **on a click** (`load: click`, given in advance). It's an `embed` section, `kind: map`, at the nearest aspect, 21:9 (the old frame was 22rem tall across the content width), with its caption.
+- **Blog post "Inside Our Community Calendar":** a YouTube video (`3URtTIdnXIk`, "These CATS are too FUNNY! | New Cat Videos") in the rich text. It's a video link alone in its paragraph, which the kit renders as an embed that loads on a click.
 
 ## Forms
 
@@ -78,6 +111,7 @@ To use the theme's own styles instead, delete `src/styles/theme/builder-defaults
 ## Not carried over
 
 - **The password page** (`401.html`): Webflow's default protected-page template. No page of the site is password-protected, and the page doesn't carry over.
+- **The forms:** the newsletter form in the footer and the tour request form on Contact, with its heading "Request a tour" and its line "Tell us when suits you and we will save you a desk for the day. Fields marked * are required." Both are listed under "Forms", for the kit's contact form in a later release. The footer keeps the Newsletter column's title and text. With the form gone, Contact's details sit in three columns where they were one column beside the form.
 - **Draft item:** the blog post "Getting the Mill Ready for Winter" (`getting-the-mill-ready-for-winter`) is a draft, with no live URL. See "Collections".
 
 ## Missing pieces
@@ -106,6 +140,8 @@ All answers below were given in advance, in `.hostsmith/snapshot/answers.md`, an
 - **The favicon and the touch icon:** the export's `favicon.ico` and `webclip.png` are Webflow's own defaults (SHA-1 `743a2c39…` and `8f20cc5b…`), so they weren't carried. The owner's `favicon.ico` and `apple-touch-icon.png` are `public/favicon.ico` and `public/apple-touch-icon.png`. (given in advance)
 
 ## Alt text written
+
+None: every image the pages show had its alt text in the export or the CSV. The amenity icons were decorative (`alt=""`) and are the kit's icons, hidden from assistive technology.
 
 ## Links to check
 
